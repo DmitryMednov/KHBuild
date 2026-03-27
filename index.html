@@ -190,7 +190,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 <!-- SECTION 1: Не масштабируемые места -->
 <div class="section-title">1. Ключевые не масштабируемые места</div>
-<div class="section-desc">Позиции с критической нагрузкой, которые блокируют рост с 10 до 16-20 проектов</div>
+<div class="section-desc">Позиции с критической нагрузкой, которые блокируют рост с 10 до 16-20 проектов. До Q4 2025 текущие функции Андрея выполняли 7 человек. С 31 марта закупщик уходит — нагрузка ещё вырастет.</div>
 
 <div class="scale-grid">
   <div class="scale-card">
@@ -240,24 +240,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 
   <div class="scale-card">
-    <h3 style="color:var(--warning);">Андрей Метельский — Head of Operations</h3>
-    <div class="person">Permitting + координация стройки + Google Drive + BT setup + закупки</div>
-    <div class="scale-bar"><div class="fill" style="width:75%; background:var(--warning);"></div></div>
-    <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--warning)">75% — ключевой носитель знаний</span></div>
+    <h3 style="color:var(--danger);">Андрей Метельский — Head of Operations</h3>
+    <div class="person">Pre-Construction (16 задач) + Construction (16 задач) + Admin</div>
+    <div class="scale-bar"><div class="fill" style="width:100%; background:var(--danger);"></div></div>
+    <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--danger)">120-150% — 12+ часов/день</span></div>
     <div class="scale-bar"><div class="fill" style="width:24%; background:var(--accent);"></div></div>
     <div class="scale-metric"><span>Data points (52 из 217)</span><span class="val">24%</span></div>
-    <div style="margin-top:12px; font-size:12px; color:#8B6914; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
-      Ключевой носитель knowledge о процессах. Автор data model на 217 data points. Управляет двумя параллельными структурами папок в Google Drive. Участвует в закупках на еженедельных встречах.
+    <div style="margin-top:12px; font-size:12px; color:var(--danger); background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
+      Совмещает работу 7 человек (до Q4 2025): permitting, координация стройки, utilities, архитекторы/инженеры, юрисдикции, BT/GDrive setup, финальные инспекции, CO-пакет. 16 активных проектов. Свободного ресурса нет.
     </div>
   </div>
 
   <div class="scale-card">
-    <h3>Алёна Данылова — Estimations / Закупки</h3>
-    <div class="person">Создание бюджета из арх. планов (Excel Estimator) + отправка контрактов</div>
-    <div class="scale-bar"><div class="fill" style="width:60%; background:var(--accent);"></div></div>
-    <div class="scale-metric"><span>Нагрузка</span><span class="val">60% — переходная роль</span></div>
-    <div style="margin-top:12px; font-size:12px; color:var(--muted); background:#F0F0EC; padding:8px 12px; border-radius:6px;">
-      Переходная роль: расширяется от estimations к procurement. Excel Estimator (~80+ позиций) — полностью вручную, без интеграции с BuilderTrend. Двойной ввод данных при масштабировании.
+    <h3 style="color:var(--warning);">Алёна Данылова — Estimations → Закупки</h3>
+    <div class="person">Бюджет из арх. планов (Excel Estimator) + принимает закупки от Руби</div>
+    <div class="scale-bar"><div class="fill" style="width:75%; background:var(--warning);"></div></div>
+    <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--warning)">75% → растёт (+ procurement)</span></div>
+    <div style="margin-top:12px; font-size:12px; color:#8B6914; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
+      С 31 марта принимает закупки от Руби. Excel Estimator (~80+ позиций) вручную, без интеграции с BT. До Q4 2025 закупками занимались 3 человека. Риск перегрузки при масштабировании.
     </div>
   </div>
 
@@ -272,12 +272,54 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 
   <div class="scale-card">
-    <h3>Руби — Закупщик</h3>
-    <div class="person">Текущие закупки материалов</div>
-    <div class="scale-bar"><div class="fill" style="width:50%; background:var(--accent);"></div></div>
-    <div class="scale-metric"><span>Нагрузка</span><span class="val">50% — нет системного процесса</span></div>
+    <h3 style="color:var(--muted);">Руби — Закупщик (уходит 31 марта)</h3>
+    <div class="person">Закупки передаются Алёне</div>
+    <div class="scale-bar"><div class="fill" style="width:0%; background:var(--border);"></div></div>
+    <div class="scale-metric"><span>Статус</span><span class="val" style="color:var(--danger)">Позиция закрывается</span></div>
     <div style="margin-top:12px; font-size:12px; color:var(--muted); background:#F0F0EC; padding:8px 12px; border-radius:6px;">
-      Нет системного процесса закупок — всё решается устно на еженедельных встречах. Приходит за каждой оплатой к Анастасии. Артур вмешивается по отдельным позициям (окна, бетон). Масштабирование невозможно без формализации.
+      Функции закупок переходят к Алёне. До Q4 2025 закупками и подрядчиками занимались 3 человека. Нет системного процесса — всё решалось устно на встречах. Формализация необходима до передачи.
+    </div>
+  </div>
+</div>
+
+<!-- Role overlaps -->
+<div style="background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:20px 24px; margin-bottom:32px;">
+  <div style="font-weight:600; font-size:15px; margin-bottom:14px;">Пересечения и дублирование ролей</div>
+  <div style="display:flex; flex-direction:column; gap:10px;">
+    <div style="display:flex; gap:12px; align-items:flex-start; padding:10px 14px; background:var(--danger-bg); border-radius:8px;">
+      <div style="min-width:24px; height:24px; border-radius:6px; background:var(--danger); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">!</div>
+      <div style="flex:1; font-size:13px;">
+        <span style="font-weight:600;">Закупки: Андрей ∩ Руби → Алёна ∩ Артур</span><br>
+        <span style="color:var(--muted);">4 человека участвуют в закупках без чёткого ownership. Андрей координирует на встречах, Руби (уходит) исполняла, Алёна принимает, Артур вмешивается по отдельным позициям (окна, бетон). Нет единого ответственного.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:flex-start; padding:10px 14px; background:var(--danger-bg); border-radius:8px;">
+      <div style="min-width:24px; height:24px; border-radius:6px; background:var(--danger); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">!</div>
+      <div style="flex:1; font-size:13px;">
+        <span style="font-weight:600;">Sales/Pre-sale: Артур ∩ Шейлин</span><br>
+        <span style="color:var(--muted);">Шейлин квалифицирует лидов, но закрывает сделки только Артур. Follow-up разделён нечётко: Шейлин «добивает» неответивших, но воронка не структурирована. Планируется переход Шейлин в чистые продажи — пока не реализован.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:flex-start; padding:10px 14px; background:var(--warning-bg); border-radius:8px;">
+      <div style="min-width:24px; height:24px; border-radius:6px; background:var(--warning); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">~</div>
+      <div style="flex:1; font-size:13px;">
+        <span style="font-weight:600;">BuilderTrend setup: Андрей ∩ PM</span><br>
+        <span style="color:var(--muted);">Андрей создаёт проектные папки и наполняет BT, PM должны поддерживать данные актуальными — но PM самоучки, график не обновляется. Нет чёткого разграничения кто за что отвечает в BT после initial setup.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:flex-start; padding:10px 14px; background:var(--warning-bg); border-radius:8px;">
+      <div style="min-width:24px; height:24px; border-radius:6px; background:var(--warning); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">~</div>
+      <div style="flex:1; font-size:13px;">
+        <span style="font-weight:600;">Финансовый контроль: Анастасия ∩ Иван</span><br>
+        <span style="color:var(--muted);">Иван — поддержка Анастасии (договоры, QB, кредитки), но граница ответственности нечёткая. Настя платит в BoA, Иван разносит в QB с задержкой. При болезни/отпуске Анастасии — полная остановка финансов.</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:flex-start; padding:10px 14px; background:var(--warning-bg); border-radius:8px;">
+      <div style="min-width:24px; height:24px; border-radius:6px; background:var(--warning); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600;">~</div>
+      <div style="flex:1; font-size:13px;">
+        <span style="font-weight:600;">Подрядчики на стройке: Андрей ∩ PM ∩ Артур</span><br>
+        <span style="color:var(--muted);">PM координируют на объекте, Андрей решает проблемы с отдельными подрядчиками, Артур «тушит пожары». Три уровня вмешательства без эскалационной матрицы.</span>
+      </div>
     </div>
   </div>
 </div>
