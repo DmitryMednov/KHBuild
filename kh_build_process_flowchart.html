@@ -136,7 +136,7 @@ body{background:var(--bg);color:var(--tx);font-family:var(--font);}
 
 <div class="hdr">
   <div style="margin-bottom:12px;">
-    <a href="index.html" style="display:inline-block; padding:6px 16px; background:var(--tx); color:#fff; border-radius:6px; text-decoration:none; font-size:13px; font-weight:500; opacity:0.85; transition:opacity .2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">← Назад к карте процессов</a>
+    <a href="index.html" style="display:inline-block; padding:8px 20px; background:#1D6FA5; color:#ffffff; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">← Назад к карте процессов</a>
   </div>
   <h1>KH Build — Граф производственного процесса (AS IS)</h1>
   <div class="sub">Кружки = шаги · Стрелки = последовательность · Рамки ╌ = параллельные процессы · Строительство 12–16 мес.</div>
@@ -325,29 +325,52 @@ const phases = [
 ]},
 ];
 
-function renderNode(item, color, idx) {
+// Counter object passed by reference to keep numbering continuous across rows and parallel blocks
+function countNodes(item) {
+  if (item.skip) return 0;
+  if (item.par) {
+    // Count max nodes across parallel rows (they run in parallel, so share numbers)
+    let max = 0;
+    item.rows.forEach(row => {
+      let c = 0;
+      row.forEach(it => c += countNodes(it));
+      if (c > max) max = c;
+    });
+    return max;
+  }
+  return 1;
+}
+
+function renderNode(item, color, counter) {
   if (item.skip) return `<div style="width:${item.skip * 154}px;min-width:${item.skip * 154}px"></div>`;
 
   if (item.par) {
     let h = `<div class="parallel-block"><div class="par-label">${item.label||'⇅'}</div>`;
+    const baseIdx = counter.idx;
     item.rows.forEach((row, ri) => {
+      // Each parallel row starts from the same base number
+      const rowCounter = {idx: baseIdx};
       h += '<div class="par-row">';
       row.forEach((it, ii) => {
         if (ii > 0) h += '<div class="arrow-h">→</div>';
-        h += renderNode(it, color, ii);
+        h += renderNode(it, color, rowCounter);
       });
       h += '</div>';
     });
+    // Advance counter by the max nodes in any parallel row
+    counter.idx = baseIdx + countNodes(item);
     h += '</div>';
     return h;
   }
 
+  counter.idx++;
+  const num = counter.idx;
   const sysH = item.t && item.t.length ? `<div class="nt">${item.t.map(x=>`<span>${x}</span>`).join('')}</div>` : '';
   const flowH = item.flow === 'pay' ? '<div class="flow-tag pay">💰 непрерывно</div>' : item.flow === 'fin' ? '<div class="flow-tag fin">🔄 непрерывно</div>' : '';
   const cls = item.ms ? 'node milestone' : 'node';
 
   return `<div class="${cls}">
-    <div class="circle" style="background:${colors[color]}">${item.ms ? '<span>✓</span>' : (idx+1)}</div>
+    <div class="circle" style="background:${colors[color]}">${item.ms ? '<span>✓</span>' : num}</div>
     <div class="node-text">
       <div class="nn">${item.n}</div>
       <div class="nw">${item.w}</div>
@@ -370,17 +393,16 @@ function render() {
     html += `<div class="phase-label"><div class="pn" style="color:${colors[ph.c]}">${ph.name}</div><div class="pd">${ph.dur}</div><div class="pw">${ph.who}</div></div>`;
     html += `<div class="phase-content" style="border-left-color:${colors[ph.c]}">`;
 
+    const counter = {idx: 0};
     ph.rows.forEach(row => {
       html += '<div class="swim-row">';
-      let nodeIdx = 0;
       row.forEach((item, i) => {
-        if (i > 0 && !item.skip) html += '<div class="arrow-h">→</div>';
         if (item.skip) {
+          // Each skipped slot = node(130px) + arrow(24px) = 154px
           html += `<div style="width:${item.skip * 154}px;min-width:${item.skip * 154}px"></div>`;
-          if (i < row.length - 1 && !row[i+1].skip) html += '';
         } else {
-          html += renderNode(item, ph.c, nodeIdx);
-          nodeIdx++;
+          if (i > 0) html += '<div class="arrow-h">→</div>';
+          html += renderNode(item, ph.c, counter);
         }
       });
       html += '</div>';
