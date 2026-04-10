@@ -145,42 +145,42 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
 <div class="header">
   <div class="logo">KH BUILD</div>
   <h1>Дэшборд продаж</h1>
-  <div class="subtitle">Статус воронки и расшифровка поступлений · Апрель 2024 (исторический снапшот)</div>
+  <div class="subtitle">Статус воронки и расшифровка поступлений · Апрель 2026</div>
   <a class="back" href="index.html">← Назад к карте процессов</a>
 </div>
 
-<!-- KPIs -->
+<!-- KPIs: real → potential → max -->
 <div class="kpi-grid">
-  <div class="kpi accent">
-    <div class="label">Construction Fee · план</div>
-    <div class="value">$1.73M</div>
-    <div class="note">10 сделок в воронке</div>
+  <div class="kpi success">
+    <div class="label">Подписано · реальный fee</div>
+    <div class="value">$500K</div>
+    <div class="note">3 контракта подписано (Karen & Jeremy, Jason, Victor & Wendy)</div>
   </div>
   <div class="kpi success">
-    <div class="label">Взвешенная сумма</div>
-    <div class="value">$1.21M</div>
-    <div class="note">С учётом probability</div>
-  </div>
-  <div class="kpi success">
-    <div class="label">Депозиты получены</div>
+    <div class="label">Фактически получено</div>
     <div class="value">$15K</div>
-    <div class="note">3 из 10 сделок</div>
+    <div class="note">Депозиты: $8K + $4K + $3K</div>
   </div>
   <div class="kpi warning">
-    <div class="label">Подписанных контрактов</div>
-    <div class="value">3</div>
-    <div class="note">Jason #1, Karen & Jeremy #3, Victor & Wendy #6</div>
+    <div class="label">Потенциал · pending</div>
+    <div class="value">$1.23M</div>
+    <div class="note">7 сделок, если все подпишутся</div>
   </div>
   <div class="kpi accent">
-    <div class="label">Конверсия сделок</div>
-    <div class="value">30%</div>
-    <div class="note">Signed / Total</div>
+    <div class="label">Взвешенный pending</div>
+    <div class="value">$630K</div>
+    <div class="note">С учётом probability (75/50/25%)</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">Максимум возможного</div>
+    <div class="value">$1.73M</div>
+    <div class="note">Если все 10 сделок закроются</div>
   </div>
 </div>
 
 <!-- Deals table -->
 <div class="section-title">Воронка сделок</div>
-<div class="section-desc">10 активных сделок. Construction Fee — наша маржа с проекта. Probability — оценка Артура по этапу обсуждения. Примечания раскрывают контекст и next step.</div>
+<div class="section-desc">10 активных сделок, отсортированных от самых вероятных (контракт подписан + внесён депозит) к наименее вероятным (низкая probability). Construction Fee — наша маржа с проекта. Probability — оценка Артура по этапу обсуждения.</div>
 
 <div style="overflow-x:auto;">
 <table class="deal-table">
@@ -198,39 +198,41 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <!-- ====== SIGNED ====== -->
+    <tr style="background:rgba(34,201,151,0.06);">
       <td>1</td>
-      <td>Custom</td>
-      <td>Jason Matthews</td>
-      <td>301 1st Ave, Redington Beach</td>
-      <td class="fee">$150,000</td>
-      <td class="prob" style="color:var(--success);">50%</td>
-      <td class="status-signed">✓ Signed</td>
-      <td>$4,000</td>
-      <td class="note">Нет денег оплатить разрешения на 31 мая. Обещал оплатить к марту.</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Redington</td>
-      <td>Jason Matthews</td>
-      <td>15664 1st Ln E, Redington Beach</td>
-      <td class="fee">$150,000</td>
-      <td class="prob">50%</td>
-      <td class="status-pending">— Pending</td>
-      <td>—</td>
-      <td class="note">Архитектор в работе.</td>
-    </tr>
-    <tr>
-      <td>3</td>
       <td>Custom</td>
       <td>Karen and Jeremy Hantman</td>
       <td>5118 31st Ave S, Gulfport</td>
       <td class="fee">$150,000</td>
       <td class="prob" style="color:var(--success);">50%</td>
       <td class="status-signed">✓ Signed</td>
-      <td>$8,000</td>
+      <td style="color:var(--success); font-weight:700;">$8,000</td>
       <td class="note">Подтверждено 19 марта, готовы подписать и внести депозит. Shay запросил оплату.</td>
     </tr>
+    <tr style="background:rgba(34,201,151,0.06);">
+      <td>2</td>
+      <td>Custom</td>
+      <td>Jason Matthews</td>
+      <td>301 1st Ave, Redington Beach</td>
+      <td class="fee">$150,000</td>
+      <td class="prob" style="color:var(--success);">50%</td>
+      <td class="status-signed">✓ Signed</td>
+      <td style="color:var(--success); font-weight:700;">$4,000</td>
+      <td class="note">Нет денег оплатить разрешения на 31 мая. Обещал оплатить к марту.</td>
+    </tr>
+    <tr style="background:rgba(34,201,151,0.06);">
+      <td>3</td>
+      <td>Custom</td>
+      <td>Victor Tonas & Wendy</td>
+      <td>1807 Pass A Grille Way</td>
+      <td class="fee">$200,000</td>
+      <td class="prob" style="color:var(--success);">50%</td>
+      <td class="status-signed">✓ Signed</td>
+      <td style="color:var(--success); font-weight:700;">$3,000</td>
+      <td class="note">LIA закончил дизайн 20 марта. Victor одобрит, мы двигаемся к preliminary meeting с T. Park. All looking good now. Артур — nurture.</td>
+    </tr>
+    <!-- ====== PENDING — by likelihood ====== -->
     <tr>
       <td>4</td>
       <td>Custom</td>
@@ -251,21 +253,32 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="prob">50%</td>
       <td class="status-pending">— Pending</td>
       <td>—</td>
-      <td class="note">Met с Laura в Pompano 18 марта. Shay продолжит Laura → подпись архитектору.</td>
+      <td class="note">Met с Laura в Pompano 18 марта. Shay продолжит Laura → подпись архитектору. Активная фаза.</td>
     </tr>
     <tr>
       <td>6</td>
       <td>Custom</td>
-      <td>Victor Tonas & Wendy</td>
-      <td>1807 Pass A Grille Way</td>
-      <td class="fee">$200,000</td>
-      <td class="prob" style="color:var(--success);">50%</td>
-      <td class="status-signed">✓ Signed</td>
-      <td>$3,000</td>
-      <td class="note">LIA закончил дизайн 20 марта. Victor одобрит, мы двигаемся к preliminary meeting с T. Park. All looking good now. Артур — nurture.</td>
+      <td>Karen and Dave</td>
+      <td>TBD</td>
+      <td class="fee">$150,000</td>
+      <td class="prob">50%</td>
+      <td class="status-pending">— Pending</td>
+      <td>—</td>
+      <td class="note">Met at the office 26 марта. Annie Quinn представляет. Смотрят дом за $1.1M (Артур 2). Обход домов на неделе 13 апреля.</td>
     </tr>
     <tr>
       <td>7</td>
+      <td>Redington</td>
+      <td>Jason Matthews</td>
+      <td>15664 1st Ln E, Redington Beach</td>
+      <td class="fee">$150,000</td>
+      <td class="prob">50%</td>
+      <td class="status-pending">— Pending</td>
+      <td>—</td>
+      <td class="note">Архитектор в работе. Зависит от первого проекта Jason — там денег нет до марта.</td>
+    </tr>
+    <tr>
+      <td>8</td>
       <td>Custom</td>
       <td>Alan and Mary</td>
       <td>Terra Verde</td>
@@ -276,7 +289,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="note">Бюджет $1.5M (Land + Build). Honed $1.0M — должно хватить. Артур — nurture.</td>
     </tr>
     <tr>
-      <td>8</td>
+      <td>9</td>
       <td>Custom</td>
       <td>Timothy</td>
       <td>206 Poinsiana</td>
@@ -284,10 +297,10 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="prob">50%</td>
       <td class="status-pending">— Pending</td>
       <td>—</td>
-      <td class="note">Met с Conor (realtor) и Timothy. Они вернутся на связь как только всё будет готово.</td>
+      <td class="note">Met с Conor (realtor) и Timothy. Они вернутся на связь как только всё будет готово. Wait-and-see.</td>
     </tr>
-    <tr>
-      <td>9</td>
+    <tr style="background:rgba(212,133,15,0.05);">
+      <td>10</td>
       <td>Huron (TBD)</td>
       <td>Katherine King</td>
       <td>9301 Sun Isle Drive NE</td>
@@ -295,28 +308,33 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="prob" style="color:var(--warning);">25%</td>
       <td class="status-pending">— Pending</td>
       <td>—</td>
-      <td class="note">Zoning: NS-1. 24 фута max. Design Flood Elevation Lot 75 — 100, no breakaway walls, no UMWA. Recommended Model: 3. Huron (?) 17m Arrowhead + Custom #2 (1935 Shore Acres) + Custom c RIOS.</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Custom</td>
-      <td>Karen and Dave</td>
-      <td>TBD</td>
-      <td class="fee">$150,000</td>
-      <td class="prob">50%</td>
-      <td class="status-pending">— Pending</td>
-      <td>—</td>
-      <td class="note">Met at the office 26 марта. Annie Quinn представляет. Смотрят дом за $1.1M (Артур 2). Обход домов на неделе 13 апреля.</td>
+      <td class="note">Zoning: NS-1. 24 фута max. Design Flood Elevation Lot 75 — 100, no breakaway walls, no UMWA. Recommended Model: 3. Huron (?) 17m Arrowhead + Custom #2 (1935 Shore Acres) + Custom c RIOS. Сложный кейс.</td>
     </tr>
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="4" style="text-align:right;">TOTAL</td>
+      <td colspan="4" style="text-align:right;">SIGNED · реальный fee</td>
+      <td class="fee" style="color:var(--success);">$500,000</td>
+      <td></td>
+      <td>3 сделки</td>
+      <td style="color:var(--success);">$15,000</td>
+      <td style="color:var(--success);">Реальные деньги в работе</td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align:right;">PENDING · потенциал</td>
+      <td class="fee" style="color:var(--warning);">$1,233,000</td>
+      <td></td>
+      <td>7 сделок</td>
+      <td>—</td>
+      <td style="color:var(--accent);">Взвешенно: ~$630K</td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align:right;">МАКСИМУМ · если всё подпишут</td>
       <td class="fee">$1,733,000</td>
       <td></td>
       <td></td>
       <td>$15,000</td>
-      <td style="color:var(--accent);">Weighted: $1,207,250</td>
+      <td style="color:var(--accent);">10 сделок</td>
     </tr>
   </tfoot>
 </table>
@@ -327,29 +345,29 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
 <div class="section-desc">Взвешенная сумма по вероятностям закрытия сделок. Используется для планирования кэш-флоу.</div>
 
 <div class="chart-wrap">
-  <div class="chart-title">Construction Fee по вероятности закрытия</div>
+  <div class="chart-title">Pending сделки по вероятности закрытия</div>
 
   <div class="bar-row">
     <div class="bar-label">75% — Joe Ebanks & Gil</div>
-    <div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--success);"></div></div>
+    <div class="bar-track"><div class="bar-fill" style="width:25%; background:var(--success);"></div></div>
     <div class="bar-val">$203K · $152K взв.</div>
   </div>
 
   <div class="bar-row">
-    <div class="bar-label">50% — 8 сделок</div>
-    <div class="bar-track"><div class="bar-fill" style="width:74%; background:var(--accent);"></div></div>
-    <div class="bar-val">$1,380K · $690K взв.</div>
+    <div class="bar-label">50% — 5 сделок</div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--accent);"></div></div>
+    <div class="bar-val">$880K · $440K взв.</div>
   </div>
 
   <div class="bar-row">
     <div class="bar-label">25% — Katherine King</div>
-    <div class="bar-track"><div class="bar-fill" style="width:8%; background:var(--warning);"></div></div>
+    <div class="bar-track"><div class="bar-fill" style="width:18%; background:var(--warning);"></div></div>
     <div class="bar-val">$150K · $37.5K взв.</div>
   </div>
 
   <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:12px;">
-    <span style="color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Итого план / взвешенно</span>
-    <span style="font-weight:700; color:var(--accent);">$1,733,000 · $879K (без round)</span>
+    <span style="color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Итого pending / взвешенно</span>
+    <span style="font-weight:700; color:var(--accent);">$1,233,000 · ~$630K (без signed)</span>
   </div>
 </div>
 
@@ -406,12 +424,12 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
   <div class="timing-card">
     <div class="when">Финал · Декабрь</div>
     <h3>Closing и CO</h3>
-    <p>На текущей воронке: 2–3 проекта до CO к концу 2024. Финальные расчёты и передача ключей. Остаток construction fee закрывается здесь.</p>
+    <p>На текущей воронке: 2–3 проекта до CO к концу 2026. Финальные расчёты и передача ключей. Остаток construction fee закрывается здесь.</p>
   </div>
 </div>
 
 <div class="footer">
-  KH Build LLC · Дэшборд продаж · Исторический снапшот на 6 апреля 2024 · Конфиденциально
+  KH Build LLC · Дэшборд продаж · Снапшот на 6 апреля 2026 · Конфиденциально
 </div>
 
 </div>
