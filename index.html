@@ -6,20 +6,21 @@
 <title>KH Build LLC — Карта процессов и AI-трансформация</title>
 <style>
 :root {
-  --bg: #FAFAF8;
-  --card: #FFFFFF;
-  --border: #E5E3DD;
-  --text: #1A1A18;
-  --muted: #6B6A65;
-  --accent: #1D6FA5;
-  --danger: #C0392B;
-  --success: #1D9E75;
-  --warning: #D4850F;
-  --ai: #6C41D4;
-  --ai-bg: #F0ECFE;
-  --danger-bg: #FCEEEC;
-  --success-bg: #E8F8F0;
-  --warning-bg: #FEF3E0;
+  --bg: #0c0e12;
+  --card: #13161c;
+  --surface2: #1a1e26;
+  --border: #252a35;
+  --text: #d4d8e0;
+  --muted: #7a8295;
+  --accent: #4f8ff7;
+  --danger: #ef4444;
+  --success: #22c997;
+  --warning: #f59e0b;
+  --ai: #a78bfa;
+  --ai-bg: rgba(167, 139, 250, 0.12);
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --success-bg: rgba(34, 201, 151, 0.12);
+  --warning-bg: rgba(245, 158, 11, 0.12);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
@@ -49,8 +50,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 /* Tabs */
 .tabs { display:flex; gap:4px; margin-bottom:24px; flex-wrap:wrap; }
 .tab { padding:8px 16px; border-radius:8px; font-size:13px; cursor:pointer; border:0.5px solid var(--border); background:var(--card); transition:all .2s; user-select:none; }
-.tab:hover { background:#F0F0EC; }
-.tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.tab:hover { background:var(--surface2); }
+.tab.active { background:var(--accent); color:#0c0e12; border-color:var(--accent); }
 .tab .badge { display:inline-block; background:var(--danger); color:#fff; border-radius:10px; padding:0 6px; font-size:10px; margin-left:4px; font-weight:600; }
 .tab.active .badge { background:rgba(255,255,255,.3); }
 
@@ -77,17 +78,17 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .step .step-note { font-size:13px; color:var(--muted); margin-top:4px; }
 .step .tags { display:flex; gap:4px; flex-wrap:wrap; margin-top:8px; }
 .tag { display:inline-block; padding:2px 8px; border-radius:6px; font-size:11px; font-weight:500; }
-.tag.sys { background:#E6F1FB; color:#185FA5; }
+.tag.sys { background:rgba(79,143,247,0.14); color:#7bb0ff; }
 .tag.bn { background:var(--danger-bg); color:var(--danger); }
 .tag.ai { background:var(--ai-bg); color:var(--ai); }
 .tag.ready { background:var(--success-bg); color:var(--success); }
 
 /* Bottleneck detail */
-.bn-detail { background:#FFF5F4; border:0.5px solid #E8C4BF; border-radius:8px; padding:12px 16px; margin-top:8px; font-size:13px; color:#8B2818; display:none; }
+.bn-detail { background:var(--danger-bg); border:0.5px solid rgba(239,68,68,0.35); border-radius:8px; padding:12px 16px; margin-top:8px; font-size:13px; color:#fca5a5; display:none; }
 .step.expanded .bn-detail { display:block; }
 
 /* AI recommendation */
-.ai-detail { background:var(--ai-bg); border:0.5px solid #D4C8F0; border-radius:8px; padding:12px 16px; margin-top:8px; font-size:13px; color:#4A2B96; display:none; }
+.ai-detail { background:var(--ai-bg); border:0.5px solid rgba(167,139,250,0.35); border-radius:8px; padding:12px 16px; margin-top:8px; font-size:13px; color:#c4b5fd; display:none; }
 .step.expanded .ai-detail { display:block; }
 
 /* Scalability analysis */
@@ -95,7 +96,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .scale-card { background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:20px; }
 .scale-card h3 { font-size:15px; font-weight:600; margin-bottom:8px; }
 .scale-card .person { font-size:13px; color:var(--muted); margin-bottom:12px; }
-.scale-bar { height:8px; background:#EEE; border-radius:4px; margin:8px 0; overflow:hidden; }
+.scale-bar { height:8px; background:var(--surface2); border-radius:4px; margin:8px 0; overflow:hidden; }
 .scale-bar .fill { height:100%; border-radius:4px; transition:width .6s; }
 .scale-metric { display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:4px; }
 .scale-metric .val { font-weight:600; color:var(--text); }
@@ -105,9 +106,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .tier { background:var(--card); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; }
 .tier-header { padding:16px 20px; font-weight:600; font-size:15px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
 .tier-header .tier-badge { padding:4px 12px; border-radius:8px; font-size:12px; font-weight:600; }
-.tier1 .tier-header { background:#E8F8F0; } .tier1 .tier-badge { background:var(--success); color:#fff; }
-.tier2 .tier-header { background:var(--warning-bg); } .tier2 .tier-badge { background:var(--warning); color:#fff; }
-.tier3 .tier-header { background:#F0ECFE; } .tier3 .tier-badge { background:var(--ai); color:#fff; }
+.tier1 .tier-header { background:var(--success-bg); } .tier1 .tier-badge { background:var(--success); color:#0c0e12; }
+.tier2 .tier-header { background:var(--warning-bg); } .tier2 .tier-badge { background:var(--warning); color:#0c0e12; }
+.tier3 .tier-header { background:var(--ai-bg); } .tier3 .tier-badge { background:var(--ai); color:#0c0e12; }
 .tier-body { padding:16px 20px; display:none; }
 .tier.open .tier-body { display:block; }
 .module { display:flex; gap:16px; padding:12px 0; border-bottom:0.5px solid var(--border); align-items:flex-start; }
@@ -117,7 +118,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .module .mod-impact { font-size:11px; padding:2px 8px; border-radius:6px; white-space:nowrap; }
 .module .mod-impact.high { background:var(--success-bg); color:var(--success); }
 .module .mod-impact.med { background:var(--warning-bg); color:var(--warning); }
-.module .mod-impact.low { background:#F0F0EC; color:var(--muted); }
+.module .mod-impact.low { background:var(--surface2); color:var(--muted); }
 .module .mod-timeline { font-size:12px; color:var(--muted); min-width:80px; text-align:right; }
 .module .mod-desc { font-size:12px; color:var(--muted); margin-top:4px; }
 
@@ -125,7 +126,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .coverage-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:8px; margin-bottom:24px; }
 .cov-item { display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--card); border:0.5px solid var(--border); border-radius:8px; }
 .cov-item .cov-name { font-size:13px; flex:1; }
-.cov-item .cov-bar { width:80px; height:6px; background:#EEE; border-radius:3px; overflow:hidden; }
+.cov-item .cov-bar { width:80px; height:6px; background:var(--surface2); border-radius:3px; overflow:hidden; }
 .cov-item .cov-bar .fill { height:100%; border-radius:3px; }
 .cov-item .cov-pct { font-size:12px; font-weight:600; min-width:32px; text-align:right; }
 
@@ -135,7 +136,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .stop-item .stop-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
 .stop-item .stop-icon.crit { background:var(--danger-bg); }
 .stop-item .stop-icon.high { background:var(--warning-bg); }
-.stop-item .stop-icon.med { background:#F0F0EC; }
+.stop-item .stop-icon.med { background:var(--surface2); }
 .stop-item .stop-text h4 { font-size:14px; font-weight:500; }
 .stop-item .stop-text p { font-size:12px; color:var(--muted); }
 .stop-item .stop-solution { font-size:12px; color:var(--success); font-weight:500; min-width:140px; text-align:right; }
@@ -205,7 +206,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--danger)">95% — критическая</span></div>
     <div class="scale-bar"><div class="fill" style="width:29%; background:var(--accent);"></div></div>
     <div class="scale-metric"><span>Data points (63 из 217)</span><span class="val">29%</span></div>
-    <div style="margin-top:12px; font-size:12px; color:var(--danger); background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fca5a5; background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
       Вовлечён буквально во всё: единственный sales closer (конверсия 70%), участвует в архитектурных решениях, контролирует стройку, забирает часть клиентской коммуникации. Lot Fit Study — 20 мин вручную. Невозможно масштабировать без делегирования или AI.
     </div>
   </div>
@@ -217,7 +218,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--danger)">95% — критическая (рост из-за закупок)</span></div>
     <div class="scale-bar"><div class="fill" style="width:5%; background:var(--accent);"></div></div>
     <div class="scale-metric"><span>Data points (10 формально)</span><span class="val">5%</span></div>
-    <div style="margin-top:12px; font-size:12px; color:var(--danger); background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fca5a5; background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
       Single point of failure в финансах. С марта 2026 получила закупки (ранее Ruby) — нагрузка существенно возросла. Sworn Statement — 2-3 дня/мес на 10 проектов. Ручная сверка в 3 системах. Платежи вручную в Bank of America.
     </div>
   </div>
@@ -227,7 +228,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="person">Квалификация лидов + интерьерный дизайн + коммуникация с клиентами + BT To-Dos</div>
     <div class="scale-bar"><div class="fill" style="width:85%; background:var(--warning);"></div></div>
     <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--warning)">85% — перегрузка ролей (в процессе перехода)</span></div>
-    <div style="margin-top:12px; font-size:12px; color:#8B6914; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fcd34d; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
       Основной контакт с клиентами: спецификации, change orders, запросы, информирование по проектам, сбор подписей. Участвует в постановке задач через BT To-Dos. Роль в переходном состоянии: часть клиентской коммуникации забрал Артур, по ряду вопросов клиенты контактируют напрямую с Андреем и PM. Коммуникация в iMessage не трекается в CRM.
     </div>
   </div>
@@ -237,7 +238,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="person">Бюджет (Estimator) + закупки (новая роль с марта 2026)</div>
     <div class="scale-bar"><div class="fill" style="width:80%; background:var(--warning);"></div></div>
     <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--warning)">80% — значительный рост</span></div>
-    <div style="margin-top:12px; font-size:12px; color:#8B6914; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fcd34d; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
       Создаёт Estimator (~80+ позиций) полностью вручную в Excel, без интеграции с BT. С марта 2026 приняла закупки (ранее Ruby) — нагрузка существенно возросла. Двойной ввод данных гарантирован.
     </div>
   </div>
@@ -247,7 +248,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="person">Daily logs + координация подрядчиков + отчётность</div>
     <div class="scale-bar"><div class="fill" style="width:80%; background:var(--warning);"></div></div>
     <div class="scale-metric"><span>Нагрузка (3.3 дома/PM)</span><span class="val" style="color:var(--warning)">80% — потолок 4/PM</span></div>
-    <div style="margin-top:12px; font-size:12px; color:#8B6914; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fcd34d; background:var(--warning-bg); padding:8px 12px; border-radius:6px;">
       PM слабо интегрированы в BuilderTrend. Информация теряется. Артур тушит пожары. BT используется как календарь, не как source of truth. Напрямую обращаются к клиентам по ряду вопросов.
     </div>
   </div>
@@ -257,7 +258,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="person">Permitting + pre-construction + BuilderTrend + utilities + инспекции</div>
     <div class="scale-bar"><div class="fill" style="width:90%; background:var(--danger);"></div></div>
     <div class="scale-metric"><span>Нагрузка</span><span class="val" style="color:var(--danger)">90% — волнообразная, пиково критическая</span></div>
-    <div style="margin-top:12px; font-size:12px; color:var(--danger); background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:#fca5a5; background:var(--danger-bg); padding:8px 12px; border-radius:6px;">
       Объём задач, ранее распределённый между 7 специалистами, сейчас снизился вместе с числом проектов — но разумно требует 2-3 человека. Нагрузка волнообразная: бывает шквал задач (подача документов, инспекции, utilities), который нужно разгребать сутками, а затем затишье. Планировать по затишью опасно — при пике не будет ресурсов.
     </div>
   </div>
@@ -267,7 +268,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="person">Подготовка договоров + проверка документов вендоров + категоризация в QB</div>
     <div class="scale-bar"><div class="fill" style="width:65%; background:var(--accent);"></div></div>
     <div class="scale-metric"><span>Нагрузка</span><span class="val">65% — операционная поддержка</span></div>
-    <div style="margin-top:12px; font-size:12px; color:var(--muted); background:#F0F0EC; padding:8px 12px; border-radius:6px;">
+    <div style="margin-top:12px; font-size:12px; color:var(--muted); background:var(--surface2); padding:8px 12px; border-radius:6px;">
       Операционная поддержка Анастасии. Разносит транзакции в QuickBooks с задержкой. Ручная категоризация расшифровок 5 кредитных карт (Артур, Андрей, 3 PM). Расшифровки приходят с задержками.
     </div>
   </div>
@@ -293,9 +294,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <div class="section-title" style="color:var(--danger);">4. Предварительное условие: построение процессов и определение ролей</div>
 <div class="section-desc">Перед интеграцией AI необходимо формализовать процессы и закрепить зоны ответственности. Сейчас роли размыты, процессы не стандартизированы — AI будет автоматизировать хаос.</div>
 
-<div style="background:var(--danger-bg); border:1px solid #E8C4BF; border-radius:12px; padding:20px 24px; margin-bottom:16px;">
-  <div style="font-weight:600; font-size:15px; color:var(--danger); margin-bottom:12px;">Почему это первый шаг, а не AI</div>
-  <div style="font-size:13px; color:#5A1A10; line-height:1.7;">
+<div style="background:var(--danger-bg); border:1px solid rgba(239,68,68,0.35); border-radius:12px; padding:20px 24px; margin-bottom:16px;">
+  <div style="font-weight:600; font-size:15px; color:#fca5a5; margin-bottom:12px;">Почему это первый шаг, а не AI</div>
+  <div style="font-size:13px; color:var(--text); line-height:1.7;">
     Текущая ситуация: у команды нет чётких зон ответственности. Шейлин совмещает дизайн, продажи и operations. Артур замыкает на себе 29% всех data points и является единственным sales closer. PM самоучки в BuilderTrend. Руби (закупки) приходит за каждой оплатой без системного процесса. Анастасия — single point of failure всего финансового контура. Внедрение AI поверх неструктурированных процессов не даст устойчивого результата.
   </div>
 </div>
@@ -394,9 +395,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 </div>
 
-<div style="background:var(--success-bg); border:0.5px solid #B8E0CB; border-radius:12px; padding:16px 20px; margin-top:16px; margin-bottom:24px;">
-  <div style="font-weight:600; font-size:14px; color:#0F6E56; margin-bottom:8px;">Рекомендация для Kelner Homes</div>
-  <div style="font-size:13px; color:#085041; line-height:1.7;">
+<div style="background:var(--success-bg); border:0.5px solid rgba(34,201,151,0.35); border-radius:12px; padding:16px 20px; margin-top:16px; margin-bottom:24px;">
+  <div style="font-weight:600; font-size:14px; color:#6ee7b7; margin-bottom:8px;">Рекомендация для Kelner Homes</div>
+  <div style="font-size:13px; color:var(--text); line-height:1.7;">
     Создать «конверсионный мост» в rebuild/flood-zone сегменте: контент-хаб (12-20 страниц по flood-zone, 49% rule, BFE, freeboard), лид-магниты (Flood-Zone Rebuild Assessment, BOYL Lot Feasibility Call), BOYL "elevated modern" пакеты. Партнёрства с adjusters, инженерами, elevation-подрядчиками. Позиционирование: "Ultra-Modern + Flood-Ready Rebuild".
   </div>
 </div>
