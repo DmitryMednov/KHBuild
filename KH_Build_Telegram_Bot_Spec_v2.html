@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KH Build — Telegram Bot Module Spec v2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root {
+  --bg: #0c0e12;
+  --surface: #13161c;
+  --surface2: #1a1e26;
+  --border: #252a35;
+  --text: #d4d8e0;
+  --text-muted: #7a8295;
+  --accent: #4f8ff7;
+  --accent2: #22c997;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --code-bg: #0d1017;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; font-weight:300; line-height:1.7; }
+.container { max-width:920px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-size:2.2rem; font-weight:700; color:#fff; margin:60px 0 12px; letter-spacing:-0.5px; }
+h1:first-of-type { margin-top:0; }
+h2 { font-size:1.4rem; font-weight:600; color:var(--accent); margin:40px 0 10px; }
+h3 { font-size:1.1rem; font-weight:500; color:var(--text); margin:28px 0 8px; }
+p { margin:0 0 14px; }
+strong { font-weight:500; color:#fff; }
+em { color:var(--text-muted); font-style:italic; }
+a { color:var(--accent); }
+
+.hero { text-align:center; padding:60px 0 40px; border-bottom:1px solid var(--border); margin-bottom:48px; }
+.hero h1 { font-size:2.8rem; margin:0 0 8px; letter-spacing:-1px; }
+.hero .sub { font-size:1.2rem; color:var(--text-muted); margin-bottom:20px; }
+.hero .lang-badge { display:inline-block; background:var(--danger); color:#fff; font-weight:600; font-size:0.85rem; padding:6px 18px; border-radius:6px; margin-top:12px; letter-spacing:0.5px; }
+.hero .meta { color:var(--text-muted); font-size:0.85rem; margin-top:16px; }
+
+.callout { background:var(--surface); border-left:3px solid var(--accent); padding:16px 20px; border-radius:0 8px 8px 0; margin:20px 0; }
+.callout.warn { border-left-color:var(--warn); }
+.callout.danger { border-left-color:var(--danger); }
+.callout.green { border-left-color:var(--accent2); }
+.callout strong { color:var(--accent); }
+.callout.warn strong { color:var(--warn); }
+.callout.danger strong { color:var(--danger); }
+.callout.green strong { color:var(--accent2); }
+
+table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:0.88rem; }
+th { background:var(--surface2); color:var(--accent); font-weight:600; text-align:left; padding:10px 14px; border-bottom:2px solid var(--border); }
+td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; }
+tr:hover td { background:var(--surface); }
+
+code { font-family:'JetBrains Mono',monospace; font-size:0.82rem; background:var(--code-bg); padding:2px 6px; border-radius:4px; color:var(--accent2); }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:8px; padding:16px 20px; overflow-x:auto; margin:12px 0 20px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.6; color:var(--text); }
+
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin:20px 0; }
+.metric { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-align:center; }
+.metric .label { font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.metric .before { font-size:1rem; color:var(--danger); text-decoration:line-through; opacity:0.7; }
+.metric .after { font-size:1.5rem; font-weight:700; color:var(--accent2); }
+.metric .unit { font-size:0.7rem; color:var(--text-muted); }
+
+.toc { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px 28px; margin:0 0 40px; }
+.toc h3 { margin:0 0 12px; color:var(--accent); font-size:0.9rem; text-transform:uppercase; letter-spacing:1px; }
+.toc ol { padding-left:20px; }
+.toc li { margin:4px 0; color:var(--text-muted); font-size:0.9rem; }
+.toc a { color:var(--text); text-decoration:none; }
+.toc a:hover { color:var(--accent); }
+
+hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <h1>KH Build — Telegram Bot</h1>
+  <div class="sub">Voice + Photo → AI → JobTread + Procurement Alerts</div>
+  <div class="lang-badge">BOT UI LANGUAGE: ENGLISH</div>
+  <div class="meta">Техническая спецификация v2.0 &middot; Апрель 2026 &middot; Дмитрий Меднов &middot; Конфиденциально</div>
+</div>
+
+<div class="toc">
+  <h3>Содержание</h3>
+  <ol>
+    <li><a href="#s1">Резюме проекта</a></li>
+    <li><a href="#s2">Procurement & Payment Trigger (ключевое)</a></li>
+    <li><a href="#s3">Дизайн бота (английский интерфейс)</a></li>
+    <li><a href="#s4">Архитектура конвейера</a></li>
+    <li><a href="#s5">Промпт структуризатора</a></li>
+    <li><a href="#s6">Примеры из практики</a></li>
+    <li><a href="#s7">Обработка ошибок</a></li>
+    <li><a href="#s8">Система алертов и эскалации</a></li>
+    <li><a href="#s9">План внедрения</a></li>
+    <li><a href="#s10">Влияние на бизнес</a></li>
+  </ol>
+</div>
+
+<!-- ============== SECTION 1 ============== -->
+<h1 id="s1">1. Резюме проекта</h1>
+
+<p>Модуль голосового Telegram-бота для KH Build — интерфейс, позволяющий прорабам (PM) отправлять отчёты голосом, фото и видео прямо со стройплощадки. Бот обрабатывает сообщения через AI-конвейер (Whisper STT + Claude Vision + Claude Structurer), заносит данные в JobTread и <strong>мгновенно триггерит алерты для закупок и бухгалтерии</strong>.</p>
+
+<div class="callout danger">
+  <strong>Язык интерфейса: английский.</strong> PM — американцы (Richard Adams, Gregory Paris, Zachary Gange). Клиенты — американцы. Вся коммуникация с ботом на EN. Whisper распознаёт английский как основной язык.
+</div>
+
+<div class="callout warn">
+  <strong>Ключевое нововведение:</strong> каждый отчёт PM автоматически генерирует алерты для закупок (Алёна) и бухгалтерии (Анастасия/Иван) о необходимости выставить платежи. Это устраняет главную боль — задержки закупок, которые тормозят каждую стройку.
+</div>
+
+<p><strong>Проблема:</strong> PM заполняют daily logs раз в неделю на ~5%. Закупки обсуждаются устно на еженедельных встречах. Между завершением работ и оплатой подрядчику проходит дни, иногда недели.</p>
+
+<p><strong>Решение:</strong> PM говорит 60 секунд в Telegram → AI структурирует → JobTread обновляется → Алёна и Анастасия получают алерт с чётким списком платежей. Всё за 15 секунд.</p>
+
+<div class="metric-grid">
+  <div class="metric"><div class="label">Daily log полнота</div><div class="before">~5%</div><div class="after">90%+</div></div>
+  <div class="metric"><div class="label">Цикл закупки</div><div class="before">6–27 дней</div><div class="after">3–7 дней</div></div>
+  <div class="metric"><div class="label">Покрытие данных</div><div class="before">32%</div><div class="after">70%+</div><div class="unit">за 60 дней</div></div>
+  <div class="metric"><div class="label">Стоимость</div><div class="after">$11–28</div><div class="unit">/месяц</div></div>
+</div>
+
+<hr>
+
+<!-- ============== SECTION 2 ============== -->
+<h1 id="s2">2. Procurement & Payment Trigger</h1>
+<p>Ключевое нововведение: автоматическая цепочка <code>отчёт PM → алерт на закупку/оплату</code>. Сейчас это главное узкое горлышко на каждой стройке.</p>
+
+<h2>2.1 Текущая проблема (AS IS)</h2>
+<table>
+  <tr><th>Этап</th><th>Что происходит</th><th>Задержка</th><th>Последствия</th></tr>
+  <tr><td>PM завершает фазу</td><td>Говорит устно на встрече или в чате</td><td>1–7 дней</td><td>Подрядчик ждёт оплаты</td></tr>
+  <tr><td>Андрей/Артур узнают</td><td>На еженедельной встрече по закупкам</td><td>0–3 дня</td><td>Закупка не инициирована</td></tr>
+  <tr><td>Руби/Алёна заказывают</td><td>Идут к Анастасии за оплатой</td><td>1–3 дня</td><td>Материалы не заказаны</td></tr>
+  <tr><td>Анастасия платит</td><td>Вручную в Bank of America</td><td>1–2 дня</td><td>Доставка не начата</td></tr>
+  <tr><td>Материал приезжает</td><td>Доставка после оплаты</td><td>3–14 дней</td><td>Стройка стоит</td></tr>
+</table>
+<div class="callout danger"><strong>Итого: 6–27 дней</strong> от завершения работ до поступления материалов. При 12–16 месяцах стройки это суммарно добавляет 2–4 месяца к циклу.</div>
+
+<h2>2.2 Новый процесс (TO BE)</h2>
+<table>
+  <tr><th>Этап</th><th>Что происходит</th><th>Задержка</th><th>Результат</th></tr>
+  <tr><td>PM говорит в бот</td><td>"Rough plumbing done, electrical starts tomorrow with Lawson"</td><td>0 сек</td><td>Данные зафиксированы</td></tr>
+  <tr><td>AI структурирует</td><td>Статус задач + след. фаза + потребность в материалах</td><td>5–15 сек</td><td>JSON с procurement_triggers</td></tr>
+  <tr><td>Алерт Алёне</td><td>⚡ "734 Placido: Electrical starting tomorrow. Verify wire/conduit PO status."</td><td>&lt;1 мин</td><td>Закупка инициирована сразу</td></tr>
+  <tr><td>Алерт Анастасии</td><td>💰 "Xpress completed rough plumbing. Invoice expected: ~$7K."</td><td>&lt;1 мин</td><td>Оплата сегодня</td></tr>
+  <tr><td>Материалы на объекте</td><td>PO выставлен, оплачен, доставлен</td><td>3–7 дней</td><td>Без простоя</td></tr>
+</table>
+<div class="callout green"><strong>Экономия: 3–7 дней</strong> вместо 6–27. Сокращение цикла стройки на 1–2 месяца.</div>
+
+<h2>2.3 Типы procurement-триггеров</h2>
+<table>
+  <tr><th>Триггер</th><th>Когда срабатывает</th><th>Кому алерт</th><th>Содержание</th></tr>
+  <tr><td><code>TASK_COMPLETED</code></td><td>PM: работы подрядчика завершены</td><td>Анастасия + Иван</td><td>"💰 [Project]: [Contractor] completed [scope]. Expected invoice: ~$[amount]. Verify & process payment."</td></tr>
+  <tr><td><code>NEXT_PHASE_STARTING</code></td><td>PM: завтра/на след. неделе — новая фаза</td><td>Алёна</td><td>"⚡ [Project]: [Phase] starting [date]. Materials needed: [list]. Verify PO status."</td></tr>
+  <tr><td><code>MATERIAL_DELIVERED</code></td><td>PM: получили материалы</td><td>Анастасия</td><td>"✅ [Project]: [Material] received and accepted. Process vendor payment."</td></tr>
+  <tr><td><code>MATERIAL_BACKORDERED</code></td><td>PM: задержка доставки</td><td>Алёна + Андрей</td><td>"⚠️ [Project]: [Material] delayed to [date]. Find alternative or adjust schedule."</td></tr>
+  <tr><td><code>CHANGE_ORDER_DETECTED</code></td><td>PM: доп. работы/материалы вне плана</td><td>Артур + Алёна</td><td>"📝 [Project]: Change order: [desc]. Get quote. Client approval required."</td></tr>
+  <tr><td><code>INSPECTION_CORRECTIONS</code></td><td>PM: замечания инспекции</td><td>Алёна + PM</td><td>"🔧 [Project]: Corrections for [contractor]. Materials needed: [list]."</td></tr>
+</table>
+
+<h2>2.4 Пример полного цикла</h2>
+<h3>PM Richard (voice, 45 sec):</h3>
+<div class="callout">
+  <em>"Hey, rough plumbing is done on Placido. Xpress finished today, two guys, everything looks good. Tomorrow Lawson starts electrical, they confirmed 9 AM. Also, the lumber package from BMC came in, we accepted it."</em>
+</div>
+
+<h3>Автоматические алерты (&lt;1 минуты):</h3>
+<p><strong>Алерт #1 → Анастасия + Иван:</strong></p>
+<pre>"💰 734 Placido: Xpress Quality Services completed rough plumbing (2 crew).
+Expected invoice: ~$7,000. Budget line: 13.17.1 Plumbing Trade Work.
+Please verify scope and process payment."</pre>
+
+<p><strong>Алерт #2 → Алёна:</strong></p>
+<pre>"⚡ 734 Placido: Electrical phase starting tomorrow (Apr 11).
+Contractor: Lawson Electric LLC. Budget: $38,200 (actual bid).
+Verify: wire, conduit, panel materials PO status.
+Ensure deposit paid to Lawson per contract."</pre>
+
+<p><strong>Алерт #3 → Анастасия:</strong></p>
+<pre>"✅ 734 Placido: Lumber package delivery from BMC received and
+accepted by PM. Process payment per PO if not pre-paid."</pre>
+
+<h2>2.5 Как AI определяет суммы платежей</h2>
+<p>AI <strong>не выдумывает суммы</strong>. Он сопоставляет упомянутого подрядчика и scope с данными из JobTread:</p>
+<p>1. Запрашивает budget items по проекту (Estimator с 164 позициями)<br>
+2. Находит строку «Plumbing Trade Work» = $7,000 (actual bid из Sworn Statement)<br>
+3. Вставляет в алерт как «expected invoice», не как точную сумму<br>
+4. Анастасия сверяет с фактическим счётом подрядчика перед оплатой</p>
+
+<hr>
+
+<!-- ============== SECTION 3 ============== -->
+<h1 id="s3">3. Дизайн бота (английский интерфейс)</h1>
+
+<h2>3.1 Идентификация</h2>
+<table>
+  <tr><th>Параметр</th><th>Значение</th></tr>
+  <tr><td>Имя бота</td><td><code>@KHBuildBot</code> (или <code>@KelnerHomesBot</code>)</td></tr>
+  <tr><td>Язык</td><td>English (Whisper primary: EN)</td></tr>
+  <tr><td>Доступ</td><td>Приватный — whitelist Telegram ID</td></tr>
+  <tr><td>Пользователи</td><td>Richard Adams, Gregory Paris, Zachary Gange (PM), Andrey, Artur</td></tr>
+</table>
+
+<h2>3.2 Команды</h2>
+<table>
+  <tr><th>Команда</th><th>Описание</th><th>Ответ бота (EN)</th></tr>
+  <tr><td><code>/start</code></td><td>Онбординг + выбор проекта</td><td>"Welcome, Richard! Select your active project: 1) 734 Placido 2) Monte Cristo"</td></tr>
+  <tr><td><code>/project</code></td><td>Сменить проект</td><td>"Switched to Monte Cristo. All reports will be logged here."</td></tr>
+  <tr><td><code>/status</code></td><td>Текущий статус</td><td>"734 Placido: Rough MEP phase, 65% complete, 2 open issues, next inspection: Apr 15"</td></tr>
+  <tr><td><code>/today</code></td><td>Задачи на сегодня</td><td>"Today: Rough Electrical (Lawson, 9 AM). Window delivery expected (TMD)."</td></tr>
+  <tr><td><code>/issue</code></td><td>Отчёт о проблеме</td><td>"Got it. Describe the issue by voice or text, and attach a photo if possible."</td></tr>
+  <tr><td><code>/inspection</code></td><td>Результат инспекции</td><td>"Logging inspection. What type? (Rough Electrical / Rough Plumbing / Framing / ...)"</td></tr>
+  <tr><td><code>/undo</code></td><td>Удалить последнюю запись</td><td>"Last entry removed: 'Rough plumbing completed' from 10 min ago."</td></tr>
+  <tr><td><code>/help</code></td><td>Список команд</td><td>"Available commands: /project, /status, /today, /issue, /inspection, /undo"</td></tr>
+</table>
+
+<h2>3.3 Подтверждения бота</h2>
+<h3>После стандартного отчёта:</h3>
+<pre>✅ Daily log saved for 734 Placido:
+• Rough plumbing: COMPLETED (Xpress, 2 crew)
+• Rough electrical: starts tomorrow 9 AM (Lawson)
+• Lumber delivery from BMC: accepted
+→ View in JobTread: [link]
+📢 Procurement &amp; payment alerts sent to Alyona and Anastasia.</pre>
+
+<h3>После отчёта о проблеме:</h3>
+<pre>⚠️ ISSUE logged for 734 Placido:
+• Foundation crack on garage side (~2 ft), severity: HIGH
+• 2 photos attached
+• Assigned to: Artur (decision needed: structural engineer)
+→ Artur has been notified directly.</pre>
+
+<h3>После инспекции с замечаниями:</h3>
+<pre>🔍 Inspection logged for 734 Placido:
+• Rough Electrical: PASSED WITH CORRECTIONS
+• 1) Add GFCI outlet in 2nd floor bathroom
+• 2) Relocate junction box in utility room
+• Lawson to fix tomorrow
+📢 Procurement alert sent to Alyona: GFCI outlet + junction box materials needed.</pre>
+
+<hr>
+
+<!-- ============== SECTION 4 ============== -->
+<h1 id="s4">4. Архитектура конвейера</h1>
+<table>
+  <tr><th>Слой</th><th>Компонент</th><th>Технология</th><th>Задержка</th><th>Стоимость</th></tr>
+  <tr><td>1. Ввод</td><td>Telegram Bot API</td><td>Python (aiogram) + webhook</td><td>&lt;1 сек</td><td>Бесплатно</td></tr>
+  <tr><td>2. Транскрипция</td><td>OpenAI Whisper</td><td>whisper-1 (EN primary)</td><td>2–5 сек</td><td>$0.006/мин</td></tr>
+  <tr><td>3. Анализ фото</td><td>Claude Vision</td><td>Sonnet — конструкционный контекст</td><td>2–4 сек</td><td>~$0.01–0.03/фото</td></tr>
+  <tr><td>4. Структуризация</td><td>Claude API</td><td>Sonnet — текст → JSON entities</td><td>2–4 сек</td><td>~$0.01–0.02/сообщ.</td></tr>
+  <tr><td>5. Запись</td><td>JobTread Pave API</td><td>POST api.jobtread.com/pave</td><td>&lt;1 сек</td><td>Бесплатно</td></tr>
+  <tr><td>6. Алерты</td><td>Telegram Bot API</td><td>→ Алёна, Анастасия, Артур</td><td>&lt;1 сек</td><td>Бесплатно</td></tr>
+  <tr><td>7. Обратная связь</td><td>Telegram Bot API</td><td>→ PM (подтверждение)</td><td>&lt;1 сек</td><td>Бесплатно</td></tr>
+</table>
+
+<h2>4.1 Типы сообщений PM</h2>
+<table>
+  <tr><th>Тип ввода</th><th>Telegram event</th><th>Конвейер</th><th>Цель в JobTread</th></tr>
+  <tr><td>Voice</td><td><code>message.voice</code></td><td>.ogg → Whisper → Claude structurer</td><td>createComment + updateTask</td></tr>
+  <tr><td>Photo</td><td><code>message.photo</code></td><td>Download → Claude Vision → tag</td><td>createFile + createComment</td></tr>
+  <tr><td>Video</td><td><code>message.video</code></td><td>Keyframes → Claude Vision</td><td>createFile + createComment</td></tr>
+  <tr><td>Photo + caption</td><td><code>message.photo</code> + caption</td><td>Photo pipeline + caption context</td><td>createFile + createComment</td></tr>
+  <tr><td>Text</td><td><code>message.text</code></td><td>Direct → Claude structurer</td><td>createComment or updateTask</td></tr>
+  <tr><td>Voice + photo (group)</td><td>Multiple in sequence</td><td>Aggregate 60s window → single report</td><td>Consolidated daily log</td></tr>
+  <tr><td>Location</td><td><code>message.location</code></td><td>Auto-tag to nearest project</td><td>Job identification</td></tr>
+</table>
+
+<h2>4.2 Контекстная инъекция из JobTread</h2>
+<p>Перед каждым запуском структуризатора middleware запрашивает контекст:</p>
+<table>
+  <tr><th>Поле</th><th>Pave Query</th><th>Зачем</th></tr>
+  <tr><td>Текущие задачи</td><td><code>organization.jobs[id].tasks.nodes</code></td><td>Fuzzy-match упоминаний PM с задачами</td></tr>
+  <tr><td>Подрядчики</td><td><code>organization.jobs[id].aces.nodes</code></td><td>Fuzzy-match названий подрядчиков</td></tr>
+  <tr><td>Бюджетные позиции</td><td><code>organization.jobs[id].budgetItems.nodes</code></td><td>Суммы для procurement алертов</td></tr>
+  <tr><td>Последние отчёты</td><td><code>organization.jobs[id].comments (7 дней)</code></td><td>Избежать дубликатов</td></tr>
+  <tr><td>Открытые проблемы</td><td><code>organization.jobs[id].comments (flagged)</code></td><td>Отслеживание решения</td></tr>
+</table>
+
+<hr>
+
+<!-- ============== SECTION 5 ============== -->
+<h1 id="s5">5. Промпт структуризатора</h1>
+<p>JSON-схема с обязательной секцией <code>procurement_triggers</code>:</p>
+<pre>{
+  "daily_log": {
+    "work_performed": "string",
+    "crew_on_site": [{"name": "", "company": "", "count": 0}],
+    "weather": "string",
+    "deliveries": ["string"],
+    "issues": [{"description": "", "severity": "low|medium|high|critical",
+                "requires_decision_from": "string", "photo_ref": null}],
+    "notes_for_client": "string|null",
+    "safety_observations": "string|null"
+  },
+  "task_updates": [{
+    "task_name": "match to scheduled tasks",
+    "status": "not_started|in_progress|completed|blocked",
+    "actual_start": "date|null",
+    "actual_finish": "date|null",
+    "pct_complete": 0,
+    "notes": ""
+  }],
+  "inspection_notes": [{
+    "type": "string",
+    "result": "pass|fail|partial",
+    "corrections_required": "string|null"
+  }],
+  "material_tracking": [{
+    "material": "string",
+    "status": "ordered|delivered|installed|backordered",
+    "notes": ""
+  }],
+  "change_orders": [{
+    "description": "string",
+    "reason": "client_request|code_requirement|field_condition",
+    "estimated_impact": "string"
+  }],
+  "follow_ups": [{
+    "action": "string",
+    "assigned_to": "string",
+    "urgency": "low|medium|high"
+  }],
+  <strong>"procurement_triggers": [{
+    "type": "TASK_COMPLETED|NEXT_PHASE_STARTING|MATERIAL_DELIVERED|
+            MATERIAL_BACKORDERED|CHANGE_ORDER_DETECTED|INSPECTION_CORRECTIONS",
+    "project": "string",
+    "contractor": "string",
+    "scope": "string",
+    "budget_line": "string (from estimator)",
+    "expected_amount": 0,
+    "alert_to": ["Anastasia", "Ivan"],
+    "action_required": "string",
+    "urgency": "low|medium|high",
+    "next_phase_materials": [
+      {"item": "string", "vendor": "string", "po_status": "check"}
+    ]
+  }]</strong>
+}</pre>
+
+<div class="callout danger">
+  <strong>ОБЯЗАТЕЛЬНОЕ ПРАВИЛО:</strong> ALWAYS генерируй <code>procurement_triggers</code> если PM упомянул: (a) завершение работ, (b) начало новой фазы, (c) доставку материалов, (d) задержку, (e) change order, (f) замечания инспекции. Это не опционально.
+</div>
+
+<hr>
+
+<!-- ============== SECTION 6 ============== -->
+<h1 id="s6">6. Примеры из практики</h1>
+<p>На данных проекта 734 Placido / Rab Residence.</p>
+
+<h2>6.1 Стандартный дневной отчёт</h2>
+<p><strong>PM voice:</strong> <em>"Rough plumbing is done. Xpress, two guys. Weather's great. Lawson starts electrical tomorrow at 9. Lumber from BMC came in."</em></p>
+<p><strong>AI output:</strong> daily_log + 2 task_updates + 1 material_tracking + 2 procurement_triggers (TASK_COMPLETED → Anastasia, NEXT_PHASE_STARTING → Alyona)</p>
+
+<h2>6.2 Критическая проблема + фото</h2>
+<p><strong>PM voice + 2 photos:</strong> <em>"Found a crack in the foundation on the garage side, about two feet long. Need Artur to look at it, might need a structural engineer."</em></p>
+<p><strong>AI output:</strong> issue (severity: critical, assigned: Artur) + 2 photos tagged to Foundations + Telegram alert to Artur</p>
+
+<h2>6.3 Инспекция с замечаниями</h2>
+<p><strong>PM after /inspection:</strong> <em>"Rough electrical passed with corrections — need to add a GFCI outlet in the second floor bathroom and relocate a junction box in the utility room. Lawson said they'll fix it tomorrow."</em></p>
+<p><strong>AI output:</strong> inspection_notes (partial) + task_update (90%) + procurement_trigger INSPECTION_CORRECTIONS → Alyona (materials: GFCI outlet, junction box)</p>
+
+<h2>6.4 Задержка материалов</h2>
+<p><strong>PM text:</strong> <em>"TMD windows delivery pushed to next Thursday, some items backordered"</em></p>
+<p><strong>AI output:</strong> material_tracking (backordered) + task_update (Windows: blocked) + procurement_trigger MATERIAL_BACKORDERED → Alyona + Andrey</p>
+
+<h2>6.5 Change order</h2>
+<p><strong>PM voice:</strong> <em>"Client asked to add a gas line for an outdoor kitchen in the backyard. Not in the plan, need a change order."</em></p>
+<p><strong>AI output:</strong> change_order (client_request) + follow_ups (Gas Guru quote → Alyona, CO approval → Artur) + procurement_trigger CHANGE_ORDER_DETECTED</p>
+
+<hr>
+
+<!-- ============== SECTION 7 ============== -->
+<h1 id="s7">7. Обработка ошибок</h1>
+<table>
+  <tr><th>Сценарий</th><th>Обработка</th><th>Ответ PM (EN)</th></tr>
+  <tr><td>Whisper не распознал</td><td>Повтор. Если снова ошибка → просит переписать</td><td>"I couldn't understand the audio. Could you type it or re-record?"</td></tr>
+  <tr><td>Неясный проект</td><td>Спрашивает PM</td><td>"Which project? 1) 734 Placido 2) Monte Cristo"</td></tr>
+  <tr><td>Неизвестный подрядчик</td><td>Сохраняет с флагом confidence: low</td><td>"I logged 'Angel' as contractor — is this Angel Stucco LLC?"</td></tr>
+  <tr><td>Задача не найдена</td><td>Заметка без привязки, флаг на проверку</td><td>"Couldn't match 'drywall prep' to a scheduled task. Saved as note."</td></tr>
+  <tr><td>Множество сообщений за 60 сек</td><td>Агрегация в единый отчёт</td><td>Одно подтверждение на всё</td></tr>
+  <tr><td>Фото без контекста</td><td>Claude Vision анализирует, тегирует к фазе</td><td>"Photo saved to 734 Placido / Rough MEP. Anything to add?"</td></tr>
+  <tr><td>Не по теме</td><td>Игнорирует вежливо</td><td>"I'm set up for construction reports only. Use /help for commands."</td></tr>
+  <tr><td>Обрыв интернета</td><td>Очередь локально, повтор при восстановлении</td><td>"Your report is queued and will upload when connection restores."</td></tr>
+  <tr><td>Дубликат</td><td>Проверка за 24ч</td><td>"This looks similar to your report from 2 hours ago. Save anyway?"</td></tr>
+</table>
+
+<hr>
+
+<!-- ============== SECTION 8 ============== -->
+<h1 id="s8">8. Система алертов и эскалации</h1>
+<table>
+  <tr><th>Серьёзность</th><th>Действие</th><th>Уведомление</th><th>Пример</th></tr>
+  <tr><td>Низкая</td><td>Запись в JobTread</td><td>Нет</td><td>"Minor paint touch-up needed"</td></tr>
+  <tr><td>Средняя</td><td>Запись + тег ответственного</td><td>Telegram</td><td>"TMD delivery delayed 3 days"</td></tr>
+  <tr><td>Высокая</td><td>Запись + закреп + назначение</td><td>Telegram + email (Артур, Андрей)</td><td>"Foundation crack, engineer needed"</td></tr>
+  <tr><td>Критическая</td><td>Запись + немедленный алерт</td><td>Telegram + email + звонок GHL</td><td>"Safety: exposed wiring in occupied area"</td></tr>
+</table>
+
+<h2>8.1 Ежедневная сводка для Артура (18:00)</h2>
+<pre>📋 KH Build Daily Summary — April 10, 2026
+
+734 Placido (Richard): Rough plumbing done. Electrical starts tomorrow.
+⚠️ Foundation crack — needs your call.
+
+Monte Cristo (Gregory): Masonry 70%. On schedule. No issues.
+
+Pompano (Zachary): Interior framing 50%. Lumber received.
+1 medium issue: HVAC unit backordered.</pre>
+
+<hr>
+
+<!-- ============== SECTION 9 ============== -->
+<h1 id="s9">9. План внедрения</h1>
+<table>
+  <tr><th>Фаза</th><th>Срок</th><th>Объём</th><th>Критерий успеха</th></tr>
+  <tr><td>Прототип</td><td>Нед. 1</td><td>Бот: voice → text → reply (EN). Тест Дмитрий.</td><td>Whisper точно распознаёт EN строит. термины</td></tr>
+  <tr><td>Пилот</td><td>Нед. 2–3</td><td>Полный пайплайн + procurement алерты. Richard на 734 Placido.</td><td>5 отчётов с точностью &gt;85%. Алёна подтверждает полезность.</td></tr>
+  <tr><td>Все PM</td><td>Нед. 4–5</td><td>3 PM + procurement + payment алерты.</td><td>Все PM ежедневно. Анастасия обрабатывает платежи day-of.</td></tr>
+  <tr><td>Автоматизация</td><td>Нед. 6–8</td><td>Дедупликация, авто-PO, связка с QB.</td><td>Цикл закупок &lt; 48ч от завершения фазы.</td></tr>
+</table>
+
+<h2>9.1 Технические вехи</h2>
+<table>
+  <tr><th>Веха</th><th>Кто</th><th>Срок</th><th>Зависимости</th></tr>
+  <tr><td>Создать бот через BotFather</td><td>Дмитрий</td><td>День 1</td><td>—</td></tr>
+  <tr><td>VPS + Python + aiogram</td><td>Дмитрий</td><td>Дни 1–2</td><td>VPS</td></tr>
+  <tr><td>Whisper интеграция</td><td>Дмитрий</td><td>Дни 2–3</td><td>OpenAI API key</td></tr>
+  <tr><td>Claude structurer + тест</td><td>Дмитрий</td><td>Дни 3–5</td><td>Anthropic API key</td></tr>
+  <tr><td>Claude Vision</td><td>Дмитрий</td><td>Дни 5–7</td><td>Работающий structurer</td></tr>
+  <tr><td>JobTread Pave API</td><td>Дмитрий</td><td>Дни 7–10</td><td>JT grant key</td></tr>
+  <tr><td>Procurement trigger engine</td><td>Дмитрий</td><td>Дни 8–12</td><td>JT budget data</td></tr>
+  <tr><td>Онбординг Richard</td><td>Дмитрий</td><td>День 12</td><td>Работающий пайплайн</td></tr>
+  <tr><td>Итерации</td><td>Дмитрий + Richard</td><td>Дни 12–22</td><td>Реальные данные</td></tr>
+  <tr><td>Масштаб на всех PM</td><td>Дмитрий</td><td>Дни 22–28</td><td>Стабильный пилот</td></tr>
+  <tr><td>Алерты + ежедневная сводка</td><td>Дмитрий</td><td>Дни 28–35</td><td>Подтверждение Артура</td></tr>
+</table>
+
+<h2>9.2 Стоимость</h2>
+<table>
+  <tr><th>Позиция</th><th>В месяц</th><th>Комментарий</th></tr>
+  <tr><td>VPS хостинг</td><td>$5–10</td><td>Hetzner CX22 или аналог</td></tr>
+  <tr><td>Whisper API</td><td>$1–3</td><td>~132 сообщ./мес × 1 мин × $0.006</td></tr>
+  <tr><td>Claude API (Sonnet)</td><td>$5–15</td><td>~132 structurer + ~50 vision</td></tr>
+  <tr><td>Telegram Bot API</td><td>Бесплатно</td><td>—</td></tr>
+  <tr><td>JobTread API</td><td>Бесплатно</td><td>Включено в подписку</td></tr>
+  <tr><td><strong>ИТОГО</strong></td><td><strong>$11–28</strong></td><td>Полный продакшн на 3 PM</td></tr>
+</table>
+
+<hr>
+
+<!-- ============== SECTION 10 ============== -->
+<h1 id="s10">10. Влияние на бизнес</h1>
+
+<div class="metric-grid">
+  <div class="metric"><div class="label">Цикл закупки</div><div class="before">6–27 дней</div><div class="after">3–7 дней</div></div>
+  <div class="metric"><div class="label">Daily log полнота</div><div class="before">~5%/нед</div><div class="after">~90%/день</div></div>
+  <div class="metric"><div class="label">Покрытие 217 точек</div><div class="before">32%</div><div class="after">53%→85%</div></div>
+  <div class="metric"><div class="label">Отчёт → оплата</div><div class="before">3–14 дней</div><div class="after">0–1 день</div></div>
+  <div class="metric"><div class="label">Простой/закупки</div><div class="before">2–4 мес</div><div class="after">0.5–1 мес</div></div>
+  <div class="metric"><div class="label">Пропускная PM</div><div class="before">3.3 дома</div><div class="after">4–4.5 дома</div></div>
+</div>
+
+<table>
+  <tr><th>Метрика</th><th>До</th><th>После</th></tr>
+  <tr><td>Цикл закупки (отчёт PM → материалы)</td><td>6–27 дней</td><td>3–7 дней</td></tr>
+  <tr><td>Полнота daily logs</td><td>~5%, раз/неделю</td><td>~90%, ежедневно</td></tr>
+  <tr><td>Покрытие данных (217 точек)</td><td>32%</td><td>53% (60 дней) → 85% (6 мес)</td></tr>
+  <tr><td>Время от завершения работ до оплаты</td><td>3–14 дней</td><td>0–1 день</td></tr>
+  <tr><td>Простой из-за закупок</td><td>~2–4 мес/проект суммарно</td><td>~0.5–1 мес/проект</td></tr>
+  <tr><td>Пропускная способность PM</td><td>3.3 дома/PM</td><td>4–4.5 домов/PM</td></tr>
+  <tr><td>Стоимость системы</td><td>$0</td><td>$11–28/мес</td></tr>
+</table>
+
+<hr>
+<p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-top:40px;">
+  KH Build LLC &middot; Конфиденциально &middot; Апрель 2026
+</p>
+
+</div>
+</body>
+</html>
