@@ -175,6 +175,49 @@ hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
 @media(max-width:640px) {
   .pd-row, .pd-inner-row, .pd-chip-row { grid-template-columns:1fr 1fr; }
 }
+
+/* Mobile optimization */
+@media (max-width:768px) {
+  .container { padding:20px 14px 48px; }
+  .hero { padding:32px 16px 24px; margin:-20px -14px 28px; }
+  .hero h1 { font-size:1.7rem; letter-spacing:-0.3px; }
+  .hero .sub { font-size:0.95rem; margin-bottom:12px; }
+  .hero .lang-badge { font-size:0.7rem; padding:5px 12px; }
+  .hero .meta { font-size:0.72rem; margin-top:10px; }
+  h1 { font-size:1.4rem; margin:36px 0 10px; }
+  h2 { font-size:1.1rem; margin:24px 0 8px; }
+  h3 { font-size:1rem; margin:20px 0 6px; }
+  p { font-size:0.88rem; }
+  .callout { padding:12px 14px; }
+  .callout strong { font-size:0.88rem; }
+  /* Responsive tables: make every table horizontally scrollable */
+  table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; font-size:0.78rem; white-space:normal; }
+  table th, table td { padding:7px 8px; font-size:0.78rem; }
+  pre { font-size:0.7rem; padding:12px 14px; }
+  code { font-size:0.76rem; }
+  .metric-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .metric { padding:12px; }
+  .metric .after { font-size:1.15rem; }
+  .metric .label { font-size:0.68rem; }
+  .toc { padding:14px 18px; }
+  .toc li { font-size:0.82rem; }
+  .theme-toggle { top:10px; right:10px; width:36px; height:36px; font-size:15px; }
+  .pipeline-diagram { margin:18px auto; }
+  .pd-label { font-size:0.85rem; }
+  .pd-box { padding:10px 12px; }
+  .pd-box .pd-title { font-size:0.8rem; }
+  .pd-box .pd-sub { font-size:0.68rem; }
+  .pd-chip { font-size:0.65rem; padding:6px 4px; }
+  .pd-box-inner .pdi-title { font-size:0.74rem; }
+  .pd-box-inner .pdi-sub { font-size:0.65rem; }
+  .pd-arrow-label::before { font-size:0.65rem; }
+  .pd-latency { font-size:0.75rem; }
+}
+@media (max-width:420px) {
+  .metric-grid { grid-template-columns:1fr; }
+  .hero h1 { font-size:1.4rem; }
+  .pd-row, .pd-inner-row, .pd-chip-row { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
