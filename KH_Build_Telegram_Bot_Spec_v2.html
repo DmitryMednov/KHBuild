@@ -211,6 +211,10 @@ hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
   </ol>
 </div>
 
+<div class="callout warn">
+  <strong>⚠ Пререквизит:</strong> миграция на JobTread (завершается ~июнь 2026). JobTread имеет нативное PM mobile-app — PMs могут заполнять daily logs, photos, task updates прямо в нём. Решение о строительстве этого бота — <strong>условное</strong>, принимается после 30–60 дней наблюдения за adoption JT PM app. См. <a href="#s1">раздел 1.3</a> и Шаг 0 в плане внедрения.
+</div>
+
 <!-- ============== SECTION 1 — WHY ============== -->
 <h1 id="s1">1. Влияние на бизнес — зачем мы это делаем</h1>
 
@@ -245,6 +249,15 @@ hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
   <strong>Главный бизнес-эффект:</strong> сокращение простоев по закупкам на ~2 месяца с проекта × 10 проектов = экономия ~20 месяцев совокупного простоя в год. Пропускная способность команды растёт с 10 до 13-14 домов при тех же 3 PM. Окупаемость — первые 2 устранённые простоя.
 </div>
 
+<h2>1.3 Решение go/no-go — после 30–60 дней наблюдения</h2>
+<p>После завершения миграции команда 30–60 дней работает с нативным JobTread PM mobile-app. Ключевая метрика — <strong>daily log completion rate</strong> (процент рабочих дней с заполненным daily log по каждому из 3 PM). По итогам измерения выбирается один из трёх сценариев.</p>
+<table>
+  <tr><th>Adoption JT PM-app</th><th>Решение</th><th>Что строим</th><th>Стоимость</th></tr>
+  <tr><td>&gt; 60%</td><td>Бот не нужен</td><td>PM-app достаточен. Процесс работает.</td><td>$0 + экономия 35 дней разработки</td></tr>
+  <tr><td>40–60%</td><td>Частичный бот</td><td>Только procurement &amp; payment triggers на middleware (JT → Claude → Alerts для Алёны/Анастасии). Без voice UX и daily logs.</td><td>~$200–450/мес</td></tr>
+  <tr><td>&lt; 40%</td><td>Полный бот</td><td>Текущая спецификация в силе. Voice-first для resistant PMs + procurement triggers.</td><td>$450–965/мес</td></tr>
+</table>
+
 <hr>
 
 <!-- ============== SECTION 2 ============== -->
@@ -268,7 +281,7 @@ hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
   <div class="metric"><div class="label">Daily log полнота</div><div class="before">~5%</div><div class="after">90%+</div></div>
   <div class="metric"><div class="label">Цикл закупки</div><div class="before">6–27 дней</div><div class="after">3–7 дней</div></div>
   <div class="metric"><div class="label">Покрытие данных</div><div class="before">32%</div><div class="after">70%+</div><div class="unit">за 60 дней</div></div>
-  <div class="metric"><div class="label">Стоимость</div><div class="after">$450–965</div><div class="unit">/месяц на 3 PM</div></div>
+  <div class="metric"><div class="label">Стоимость</div><div class="after">$0 / $200–450 / $450–965</div><div class="unit">зависит от adoption JT app</div></div>
 </div>
 
 <hr>
@@ -643,6 +656,7 @@ Pompano (Zachary): Interior framing 50%. Lumber received.
 <h1 id="s10">10. План внедрения</h1>
 <table>
   <tr><th>Фаза</th><th>Срок</th><th>Объём</th><th>Критерий успеха</th></tr>
+  <tr><td><strong>Шаг 0: Наблюдение</strong></td><td>30–60 дней после JT migration</td><td>Замер daily log completion rate в JT PM-app по 3 PMs</td><td>Определён сценарий (full / partial / skip). Артур утверждает go/no-go.</td></tr>
   <tr><td>Прототип</td><td>Нед. 1</td><td>Бот: voice → text → reply (EN). Тест TBD.</td><td>Whisper точно распознаёт EN строит. термины</td></tr>
   <tr><td>Пилот</td><td>Нед. 2–3</td><td>Полный пайплайн + procurement алерты. Richard на 734 Placido.</td><td>5 отчётов с точностью &gt;85%. Алёна подтверждает полезность.</td></tr>
   <tr><td>Все PM</td><td>Нед. 4–5</td><td>3 PM + procurement + payment алерты.</td><td>Все PM ежедневно. Анастасия обрабатывает платежи day-of.</td></tr>
@@ -652,6 +666,7 @@ Pompano (Zachary): Interior framing 50%. Lumber received.
 <h2>10.1 Технические вехи</h2>
 <table>
   <tr><th>Веха</th><th>Кто</th><th>Срок</th><th>Зависимости</th></tr>
+  <tr><td><strong>Observation period в JT PM app</strong></td><td>TBD</td><td>30–60 дней после Шага 3 migration plan</td><td>JobTread live, 3 PMs активны в JT</td></tr>
   <tr><td>Создать бот через BotFather</td><td>TBD</td><td>День 1</td><td>—</td></tr>
   <tr><td>VPS + Python + aiogram</td><td>TBD</td><td>Дни 1–2</td><td>VPS</td></tr>
   <tr><td>Whisper интеграция</td><td>TBD</td><td>Дни 2–3</td><td>OpenAI API key</td></tr>
@@ -666,6 +681,9 @@ Pompano (Zachary): Interior framing 50%. Lumber received.
 </table>
 
 <h2>10.2 Стоимость</h2>
+<div class="callout warn">
+  Стоимость ниже рассчитана для <strong>полного сценария</strong> (adoption JT PM-app &lt; 40%, см. раздел 1.3). При <strong>частичном сценарии</strong> (adoption 40–60%, только procurement triggers) — ~40–50% от указанной суммы. При <strong>нулевом сценарии</strong> (adoption &gt; 60%) бот не строится, стоимость $0.
+</div>
 <p>Расчёт пересмотрен для реалистичной нагрузки: <strong>3 PM × ~25 сообщений/день</strong> (голос 30–90 сек, фото-серии до 6 шт., видео-обходы 30–60 сек), 22 рабочих дня в месяц. Это <strong>~1,650 сообщений/мес</strong>, ~25 часов аудио, ~3,500 фото для анализа, ~150 видео-фрагментов. Плюс структуризация каждого, контекстная инъекция из JobTread на каждый запрос.</p>
 
 <table>
@@ -678,7 +696,7 @@ Pompano (Zachary): Interior framing 50%. Lumber received.
   <tr><td>Доп. мониторинг и логи</td><td>$10–25</td><td>Sentry / Logtail / Uptime monitoring</td></tr>
   <tr><td>Telegram Bot API</td><td>Бесплатно</td><td>—</td></tr>
   <tr><td>JobTread Pave API</td><td>Бесплатно</td><td>Включено в подписку JT</td></tr>
-  <tr><td><strong>ИТОГО</strong></td><td><strong>$450–965/мес</strong></td><td>Полная продакшн-нагрузка на 3 PM с реальной интенсивностью использования</td></tr>
+  <tr><td><strong>ИТОГО</strong></td><td><strong>$450–965/мес</strong></td><td>Полный сценарий — adoption &lt; 40%; см. 1.3. Продакшн-нагрузка на 3 PM.</td></tr>
   <tr><td colspan="3" style="font-size:0.78rem; color:var(--text-muted); font-style:italic;">При росте до 5 PM (масштабирование) — линейное увеличение пропорционально объёму сообщений: ориентир $750–1,600/мес. Сравнение с альтернативой: один день простоя стройки из-за задержки закупок ≈ $2–5K, окупается за 2–3 предотвращённых простоя в год.</td></tr>
 </table>
 
