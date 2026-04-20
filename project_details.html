@@ -315,7 +315,7 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   </div>
   <div class="kpi ai">
     <div class="label">AI-модулей</div>
-    <div class="value">11</div>
+    <div class="value">12</div>
     <div class="note">идентифицировано, 4 Tier 1</div>
   </div>
   <div class="kpi success">
@@ -473,7 +473,7 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   <span>5. AI-модули: приоритизированная карта внедрения</span>
   <a href="KH_Build_Telegram_Bot_Spec_v2.html" style="display:inline-block; padding:8px 20px; background:var(--ai); color:var(--on-ai); border-radius:8px; text-decoration:none; font-size:13px; font-weight:500; transition:opacity .2s; white-space:nowrap;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Telegram Bot Spec →</a>
 </div>
-<div class="section-desc">11 модулей в 3 тирах. Принцип: сначала процессы и роли → затем Quick Wins где есть API (QuickBooks, Go High Level) → параллельно RPA-мост к BuilderTrend.</div>
+<div class="section-desc">12 модулей в 3 тирах. Принцип: сначала процессы и роли → затем Quick Wins где есть API (QuickBooks, Go High Level) → параллельно миграция на JobTread (JT имеет Pave API).</div>
 
 <div class="roadmap" id="roadmap"></div>
 
@@ -737,7 +737,8 @@ const tiers = [
       {phase:'Pre-sale', name:'Sales Presentation Assistant', impact:'med', time:'60-90 дн.', desc:'AI-генерация презентации под участок из базы 30 домов.'},
       {phase:'Permitting', name:'Custom BT Project Setup', impact:'med', time:'60-90 дн.', desc:'AI генерирует кастомный setup вместо ручной адаптации шаблонов.'},
       {phase:'Финансы', name:'Budget vs. Actual Dashboard', impact:'high', time:'60-90 дн.', desc:'Real-time сверка. Алерты при отклонениях. Auto-объяснение перерасходов.'},
-      {phase:'Финансы', name:'Vendor Payment Workflow', impact:'med', time:'90-120 дн.', desc:'Автоматизация цепочки: заявка → проверка → PM confirm → оплата → QB.'}
+      {phase:'Финансы', name:'Vendor Payment Workflow', impact:'med', time:'90-120 дн.', desc:'Автоматизация цепочки: заявка → проверка → PM confirm → оплата → QB.'},
+      {phase:'Финансы/Банк', name:'Lien Waivers Auto-generation + PandaDoc', impact:'high', time:'60-90 дн.', desc:'Запрос Анастасии: по каждому оплаченному вендору банк просит Lien Waiver. Шаблон заполняется под проект + вендора + тянет сумму из QB. Полная интеграция с PandaDoc для подписания (сгенерил → выбрал подписанта → на подпись) — как stretch, 120+ дн.'}
     ]},
   { name:'Tier 3: Стратегические', time:'120+ дней', cls:'tier3', badge:'ФУНДАМЕНТ',
     modules:[
