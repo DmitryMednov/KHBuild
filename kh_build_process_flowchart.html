@@ -278,7 +278,7 @@ const phases = [
     {skip:3},
     {par:true,label:'Параллельно',rows:[
       [{n:'Pre-Construction',w:'Андрей',d:'Utility, subs, schedule, площадка',t:[]}],
-      [{n:'Настройка BT',w:'PM / Андрей',d:'Template, to-do, подрядчики',t:['BT']}],
+      [{n:'Настройка JobTread',w:'PM / Андрей',d:'Template, to-do, подрядчики',t:['JobTread']}],
       [{n:'Оплата permit fees',w:'Анастасия',d:'Building, Elec, Plumb, HVAC',t:[]}],
     ]},
   ]
@@ -297,61 +297,61 @@ const phases = [
 ]},
 {name:'7. Строительство',dur:'12–16 мес.',who:'PM, подрядчики',c:'orange', rows:[
   [
-    {n:'Staking',w:'PM',d:'Разбивка участка, Day 0',t:['BT']},
-    {n:'Masonry & Trusses',w:'PM + subs',d:'Фундамент, каркас, стропила. ~90 дн.',t:['BT']},
+    {n:'Staking',w:'PM',d:'Разбивка участка, Day 0',t:['JobTread']},
+    {n:'Masonry & Trusses',w:'PM + subs',d:'Фундамент, каркас, стропила. ~90 дн.',t:['JobTread']},
     {par:true,label:'Параллельно',rows:[
-      [{n:'Roof Dry In',w:'PM',d:'Гидроизоляция крыши',t:['BT']}],
-      [{n:'Int. Framing',w:'PM',d:'Перегородки',t:['BT']}],
+      [{n:'Roof Dry In',w:'PM',d:'Гидроизоляция крыши',t:['JobTread']}],
+      [{n:'Int. Framing',w:'PM',d:'Перегородки',t:['JobTread']}],
     ]},
     {par:true,label:'Параллельно',rows:[
-      [{n:'Rough MEP',w:'MEP subs',d:'Черновые сети ~30 дн.',t:['BT']}],
-      [{n:'Windows',w:'PM + subs',d:'PGT glass, двери',t:['BT']}],
-    ]},
-  ],
-  [
-    {skip:1},
-    {par:true,label:'Параллельно',rows:[
-      [{n:'Stucco',w:'PM',d:'Штукатурка ~28 дн.',t:['BT']}],
-      [{n:'Roof + Insulation',w:'PM',d:'Metal roof, soffit, утепление',t:['BT']}],
-    ]},
-    {par:true,label:'Параллельно',rows:[
-      [{n:'Drywall',w:'PM',d:'Гипсокартон ~25 дн.',t:['BT']}],
-      [{n:'Ext. Paint',w:'Маляры',d:'Покраска фасада',t:['BT']}],
-      [{n:'Shower',w:'Сантехники',d:'Душевые, гидроизоляция',t:['BT']}],
+      [{n:'Rough MEP',w:'MEP subs',d:'Черновые сети ~30 дн.',t:['JobTread']}],
+      [{n:'Windows',w:'PM + subs',d:'PGT glass, двери',t:['JobTread']}],
     ]},
   ],
   [
     {skip:1},
-    {n:'Priming + Garage',w:'PM',d:'Грунтовка, гаражные ворота',t:['BT']},
-    {n:'Flooring / Trim / Doors',w:'PM + subs',d:'Полы, наличники, двери ~30 дн.',t:['BT']},
-    {n:'Tile',w:'Плиточники',d:'Кухня, ванные ~25 дн.',t:['BT']},
+    {par:true,label:'Параллельно',rows:[
+      [{n:'Stucco',w:'PM',d:'Штукатурка ~28 дн.',t:['JobTread']}],
+      [{n:'Roof + Insulation',w:'PM',d:'Metal roof, soffit, утепление',t:['JobTread']}],
+    ]},
+    {par:true,label:'Параллельно',rows:[
+      [{n:'Drywall',w:'PM',d:'Гипсокартон ~25 дн.',t:['JobTread']}],
+      [{n:'Ext. Paint',w:'Маляры',d:'Покраска фасада',t:['JobTread']}],
+      [{n:'Shower',w:'Сантехники',d:'Душевые, гидроизоляция',t:['JobTread']}],
+    ]},
   ],
   [
     {skip:1},
-    {n:'Cabinetry + Countertops',w:'PM + subs',d:'Шкафы, столешницы',t:['BT']},
-    {n:'Final MEPs',w:'MEP subs',d:'Финальные подключения ~35 дн.',t:['BT']},
+    {n:'Priming + Garage',w:'PM',d:'Грунтовка, гаражные ворота',t:['JobTread']},
+    {n:'Flooring / Trim / Doors',w:'PM + subs',d:'Полы, наличники, двери ~30 дн.',t:['JobTread']},
+    {n:'Tile',w:'Плиточники',d:'Кухня, ванные ~25 дн.',t:['JobTread']},
+  ],
+  [
+    {skip:1},
+    {n:'Cabinetry + Countertops',w:'PM + subs',d:'Шкафы, столешницы',t:['JobTread']},
+    {n:'Final MEPs',w:'MEP subs',d:'Финальные подключения ~35 дн.',t:['JobTread']},
     {par:true,label:'Параллельно',rows:[
-      [{n:'Perm. Power',w:'Duke Energy',d:'Постоянное электро',t:['BT']}],
-      [{n:'Painting',w:'Маляры',d:'Финальная покраска',t:['BT']}],
-      [{n:'Elevator',w:'PM',d:'Если предусмотрен',t:['BT']}],
+      [{n:'Perm. Power',w:'Duke Energy',d:'Постоянное электро',t:['JobTread']}],
+      [{n:'Painting',w:'Маляры',d:'Финальная покраска',t:['JobTread']}],
+      [{n:'Elevator',w:'PM',d:'Если предусмотрен',t:['JobTread']}],
     ]},
   ],
   [
     {n:'Закупки (непрерывно)',w:'Алёна + Андрей',d:'Еженедельные встречи по потребностям, заказ материалов',t:['Excel'],flow:'fin'},
     {skip:1},
-    {n:'Daily logs PM',w:'PM',d:'BT: daily logs, to-do, заметки (заполняется ~5%)',t:['BT'],flow:'fin'},
+    {n:'Daily logs PM',w:'PM',d:'JobTread: daily logs, to-do, заметки (после миграции — цель 80%+)',t:['JobTread'],flow:'fin'},
   ]
 ]},
 {name:'8. Фин. контроль',dur:'Весь цикл стройки',who:'Анастасия, Иван',c:'slate', rows:[
   [
     {n:'Vendor Invoice',w:'Подрядчик',d:'Заявка на оплату выполненных работ',t:[]},
-    {n:'Проверка scope',w:'Иван',d:'Соответствие договору',t:['Excel','BT']},
+    {n:'Проверка scope',w:'Иван',d:'Соответствие договору',t:['Excel','JobTread']},
     {n:'Подтверждение PM',w:'PM',d:'Работы выполнены, качество ОК',t:[]},
     {n:'Оплата BoA',w:'Анастасия',d:'Вручную в Bank of America',t:['BoA']},
     {n:'Категоризация QB',w:'Иван',d:'По проектам + 5 кредитных карт',t:['QB']},
   ],
   [
-    {n:'Сверка бюджет vs факт',w:'Анастасия',d:'Ежемесячно: Excel + QB + BT вручную в 3 системах',t:['Excel','QB','BT'],flow:'fin'},
+    {n:'Сверка бюджет vs факт',w:'Анастасия',d:'Ежемесячно. После миграции на JobTread — одна система с QB-интеграцией',t:['Excel','QB','JobTread'],flow:'fin'},
     {skip:2},
     {n:'Отчёты клиентам',w:'Анастасия',d:'Ежемесячно для получения следующего транша',t:['Excel'],flow:'fin'},
   ]
@@ -359,9 +359,9 @@ const phases = [
 {name:'9. Завершение',dur:'1–2 мес.',who:'PM, Андрей, Артур',c:'emerald', rows:[
   [
     {par:true,label:'Параллельно',rows:[
-      [{n:'Touch Ups',w:'PM',d:'Финальная доводка',t:['BT']}],
-      [{n:'Driveway',w:'PM + subs',d:'Подъездная дорога',t:['BT']}],
-      [{n:'Landscaping',w:'PM + subs',d:'Озеленение, дренаж',t:['BT']}],
+      [{n:'Touch Ups',w:'PM',d:'Финальная доводка',t:['JobTread']}],
+      [{n:'Driveway',w:'PM + subs',d:'Подъездная дорога',t:['JobTread']}],
+      [{n:'Landscaping',w:'PM + subs',d:'Озеленение, дренаж',t:['JobTread']}],
     ]},
     {par:true,label:'Параллельно',rows:[
       [{n:'MEP Finals',w:'Андрей',d:'Elec/Plumb/Mech/Gas',t:[]}],
