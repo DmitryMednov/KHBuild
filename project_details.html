@@ -229,9 +229,51 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 }
 
 @media (max-width:768px) {
-  .phase-header { flex-direction:column; }
-  .kpi-grid { grid-template-columns:repeat(2,1fr); }
-  .scale-grid { grid-template-columns:1fr; }
+  .container { padding:14px; }
+  .header { padding:32px 16px 24px; margin:-14px -14px 24px; }
+  .header h1 { font-size:20px; letter-spacing:0.5px; }
+  .header .subtitle { font-size:11px; line-height:1.5; }
+  .header .logo { font-size:18px; letter-spacing:4px; margin-bottom:12px; }
+  .header > div[style*="display:flex"] a { padding:8px 14px !important; font-size:10px !important; }
+  .section-title { font-size:16px; margin:28px 0 10px; }
+  .section-desc { font-size:12px; }
+  .kpi-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .kpi { padding:12px 14px; }
+  .kpi .value { font-size:22px; }
+  .kpi .label { font-size:10px; }
+  .kpi .note { font-size:10px; }
+  .phase-header { flex-direction:column; padding:14px; align-items:flex-start; }
+  .phase-header .phase-name { font-size:15px; }
+  .phase-header .meta { gap:10px; }
+  .meta-item { font-size:11px; }
+  .tab { padding:8px 10px; font-size:11px; }
+  .step { padding:12px 14px; }
+  .step .step-name { font-size:13px; }
+  .step .step-note { font-size:12px; }
+  .scale-grid { grid-template-columns:1fr; gap:12px; }
+  .scale-card { padding:16px; }
+  .scale-card h3 { font-size:14px; }
+  .scale-card .person { font-size:12px; }
+  .coverage-grid { grid-template-columns:1fr; }
+  .cov-item { padding:10px 12px; }
+  .cov-item .cov-name { font-size:12px; }
+  .cov-item .cov-bar { width:60px; }
+  .tier-header { padding:12px 14px; font-size:13px; }
+  .tier-body { padding:12px 14px; }
+  .module { flex-wrap:wrap; gap:8px; }
+  .module .mod-phase { min-width:60px; font-size:10px; }
+  .module .mod-name { font-size:13px; }
+  .module .mod-timeline { min-width:auto; font-size:11px; }
+  .stop-item { padding:12px; flex-wrap:wrap; }
+  .stop-item .stop-solution { min-width:auto; text-align:left; }
+  table { font-size:11px !important; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%; }
+  table th, table td { padding:8px 6px !important; }
+  .theme-toggle { top:10px; right:10px; width:36px; height:36px; font-size:15px; }
+  .footer { padding:20px 16px; margin:32px -14px -14px; font-size:10px; line-height:1.6; }
+}
+@media (max-width:420px) {
+  .kpi-grid { grid-template-columns:1fr; }
+  .header h1 { font-size:18px; }
 }
 </style>
 </head>
