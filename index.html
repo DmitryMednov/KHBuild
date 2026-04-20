@@ -245,9 +245,10 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 <div class="header">
   <div class="logo">KH BUILD</div>
   <h1>Карта процессов и AI-трансформация</h1>
-  <div class="subtitle">KH Build LLC | Tampa Bay, Florida | Апрель 2026 | Конфиденциально</div>
+  <div class="subtitle">KH Build LLC | Tampa Bay, Florida | Обновлено 20 апреля 2026 | Конфиденциально</div>
   <div style="margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
     <a href="sales_dashboard.html" style="display:inline-block; padding:10px 22px; background:var(--accent); color:var(--dark-section); border-radius:4px; text-decoration:none; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; transition:opacity .2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">📊 Дэшборд продаж →</a>
+    <a href="jobtread_migration.html" style="display:inline-block; padding:10px 22px; background:var(--accent); color:var(--dark-section); border-radius:4px; text-decoration:none; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; transition:opacity .2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">🔄 JobTread Migration Plan →</a>
   </div>
 </div>
 
@@ -264,9 +265,9 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     <div class="note">в 9 фазах процесса</div>
   </div>
   <div class="kpi danger">
-    <div class="label">BuilderTrend</div>
-    <div class="value">~5%</div>
-    <div class="note">утилизации premium tier</div>
+    <div class="label">JobTread</div>
+    <div class="value">Шаг 1/3</div>
+    <div class="note">миграция с BuilderTrend, 14 апр → июнь</div>
   </div>
   <div class="kpi ai">
     <div class="label">AI-модулей</div>
@@ -408,10 +409,10 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     </div>
   </div>
   <div class="scale-card">
-    <h3>Шаг 3: Активация BuilderTrend</h3>
-    <div class="person" style="color:var(--warning); font-weight:500;">Высокий приоритет — параллельно с шагами 1-2</div>
+    <h3>Шаг 3: Миграция на JobTread</h3>
+    <div class="person" style="color:var(--warning); font-weight:500;">В работе с 14 апреля 2026 — параллельно с шагами 1-2</div>
     <div style="font-size:13px; margin-top:8px; line-height:1.7;">
-      Поднять утилизацию BT с 5% до 40-50%. Обучить PM работе с to-do, daily logs, подрядчиками в BT. Зарегистрировать подрядчиков полноценно. Без этого у AI не будет данных для работы — BT является основным source of truth для construction phase.
+      Решение о переходе с BuilderTrend на JobTread принято 14 апреля 2026. JobTread имеет открытый API (GraphQL Pave), нативную интеграцию с QuickBooks и современный UI. Горизонт миграции — 1,5–2 месяца. Шаг 0: покупка подписки и выдача доступов. Шаг 1: роли и установочные задания (к 20 апреля). Шаг 2: финальные процессы как шаблоны в JT (к 27 апреля). Шаг 3: перенос 7 активных и 2 новых проектов. Детали см. в <a href="jobtread_migration.html" style="color:var(--accent);">JobTread Migration Plan</a>.
     </div>
   </div>
   <div class="scale-card">
@@ -668,7 +669,7 @@ body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
 </div>
 
 <div class="footer">
-  KH Build LLC | Конфиденциально | Подготовлено: Дмитрий (Strategy & IT Consultant) | 8 апреля 2026
+  KH Build LLC | Конфиденциально | Подготовлено: Дмитрий (Strategy & IT Consultant) | Обновлено 20 апреля 2026
 </div>
 
 </div>
@@ -898,8 +899,8 @@ tiers.forEach((t,i) => {
 // Stop factors
 const stops = [
   {icon:'crit', emoji:'⛔', name:'Нет формализованных процессов и ролей', desc:'Роли размыты (Шейлин: 3 роли, Артур: 29% data points). Нет чётких workflow по фазам', sol:'Шаг 0: формализация до AI'},
-  {icon:'crit', emoji:'⛔', name:'Нет API BuilderTrend', desc:'Блокирует мониторинг, закупки, координацию, отчёты', sol:'RPA / реверс API / миграция'},
-  {icon:'high', emoji:'⚠', name:'BT заполняется на 5%', desc:'Данных недостаточно для AI-модулей', sol:'AI-прослойка (PM → AI → BT)'},
+  {icon:'crit', emoji:'⛔', name:'Нет API BuilderTrend', desc:'Блокирует мониторинг, закупки, координацию, отчёты', sol:'Миграция на JobTread (решено 14 апр 2026)'},
+  {icon:'high', emoji:'⚠', name:'BT заполняется на 5%', desc:'Данных недостаточно для AI-модулей', sol:'JobTread + adoption-контроль'},
   {icon:'high', emoji:'⚠', name:'Сопротивление команды', desc:'Риск на всех этапах внедрения', sol:'Quick wins для демонстрации'},
   {icon:'med', emoji:'📊', name:'Нет исторических данных', desc:'Блокирует авто-смету и предиктивную аналитику', sol:'Начать собирать сейчас'},
   {icon:'med', emoji:'📋', name:'Нет стандартизации', desc:'5/6 проектов — кастом. Ломает сроки/смету', sol:'Унификация процессов'},
