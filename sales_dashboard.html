@@ -153,7 +153,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
 <div style="background:var(--warning-bg); border:1px solid rgba(212,133,15,0.4); border-left:4px solid var(--warning); border-radius:4px; padding:18px 22px; margin-bottom:20px; box-shadow:var(--shadow);">
   <div style="font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--warning-text); margin-bottom:8px;">⚠ Reality check</div>
   <div style="font-size:13px; line-height:1.7;">
-    Артур ведёт воронку с цифрой «<strong>$2,058,000 total / $1,326,000 weighted</strong>» и «3 signed». Это презентационный срез, не кэш-флоу. Честная картина ниже: <strong>в кассе $17K</strong> (из них $6K под угрозой — Jason #1 на Hold без денег на permit), <strong>надёжных подписанных контрактов — 2</strong> (Karen + Victor на $330K fee), а 100%-probability у несписанных (Alan &amp; Mary) — это не продажа, это прогресс. Реалистичный диапазон 2026 — <strong>$500–800K fee</strong>, не $2M.
+    Воронка отчётности показывает «<strong>$2,058,000 total / $1,326,000 weighted</strong>» и «3 signed» — это номинальный объём pipeline, а не ожидаемые поступления. Для cash-flow планирования смотрим на другие метрики: <strong>в кассе $17K</strong> (из них $6K на паузе по Jason #1, ожидается оплата permit fees), <strong>надёжных подписанных контрактов с движением — 2</strong> (Karen + Victor на $330K fee), а 100%-probability у ещё неподписанных сделок (Alan &amp; Mary) — это ранняя стадия переговоров, не продажа. Реалистичный диапазон дохода 2026 с учётом конверсии по стадиям — <strong>$500–800K fee</strong>.
   </div>
 </div>
 
@@ -162,7 +162,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
   <div class="kpi success">
     <div class="label">Деньги в кассе</div>
     <div class="value">$17K</div>
-    <div class="note">3 депозита. Надёжно: $11K · под угрозой: $6K (Jason #1)</div>
+    <div class="note">3 депозита. Активные: $11K · на паузе: $6K (Jason #1)</div>
   </div>
   <div class="kpi success">
     <div class="label">Надёжных контрактов</div>
@@ -170,9 +170,9 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
     <div class="note">Karen Hantman + Victor &amp; Wendy · $330K fee</div>
   </div>
   <div class="kpi warning">
-    <div class="label">Signed, но под угрозой</div>
+    <div class="label">Signed · на паузе</div>
     <div class="value">1</div>
-    <div class="note">Jason Matthews #1 · $150K fee, на Hold с 19 марта</div>
+    <div class="note">Jason Matthews #1 · $150K fee · пауза с 19 марта, ожидается финансирование</div>
   </div>
   <div class="kpi accent">
     <div class="label">Активная воронка</div>
@@ -184,16 +184,16 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
     <div class="value">$500–800K</div>
     <div class="note">fee при конверсии 30–40% от pending + надёжные signed</div>
   </div>
-  <div class="kpi danger">
-    <div class="label">Артур показывает</div>
+  <div class="kpi">
+    <div class="label">Номинальный pipeline</div>
     <div class="value">$2.06M</div>
-    <div class="note">total fee — если ВСЕ 12 сделок закроются. Исторически — нет.</div>
+    <div class="note">сумма fee по всем 12 сделкам · ориентир, не прогноз</div>
   </div>
 </div>
 
 <!-- Deals table -->
 <div class="section-title">Воронка сделок</div>
-<div class="section-desc">12 сделок, отсортированы от самых надёжных (signed + депозит + progressing) к фантазийным (pending, низкая prob). Probability — оценка Артура; столбец «Реально?» — независимая оценка на основе наличия контракта и денег в кассе.</div>
+<div class="section-desc">12 сделок, отсортированы от самых надёжных (signed + депозит + progressing) к ранней стадии (pending, низкая prob). Probability — оценка sales-команды по стадии обсуждения; столбец «Реально?» — взгляд с точки зрения cash-flow (наличие контракта и денег в кассе).</div>
 
 <div style="overflow-x:auto;">
 <table class="deal-table">
@@ -204,7 +204,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <th>Клиент</th>
       <th>Адрес</th>
       <th>Construction Fee</th>
-      <th>Prob (Артур)</th>
+      <th>Prob (sales)</th>
       <th>Контракт</th>
       <th>Депозит</th>
       <th>Реально?</th>
@@ -235,7 +235,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="status-signed">✓ Signed</td>
       <td style="color:var(--success); font-weight:700;">$3,000</td>
       <td style="color:var(--success); font-weight:700;">ДА</td>
-      <td class="note">LIA закончил дизайн 22 марта. Victor одобряет, идём к preliminary meeting со St Pete Beach. Депозит низкий ($3K на $200K fee), но движение есть. Артур — nurture.</td>
+      <td class="note">LIA закончил дизайн 22 марта. Victor одобряет, идём к preliminary meeting со St Pete Beach. Депозит $3K на $200K fee — ниже типичного, но сделка в активном движении. Статус — nurture.</td>
     </tr>
     <!-- ====== SIGNED НО ПОД УГРОЗОЙ ====== -->
     <tr style="background:rgba(212,133,15,0.1);">
@@ -245,12 +245,12 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td>301 161st Ave, Redington Beach</td>
       <td class="fee">$150,000</td>
       <td class="prob" style="color:var(--warning);">50%</td>
-      <td class="status-signed" style="color:var(--warning);">⚠ Signed · Hold</td>
+      <td class="status-signed" style="color:var(--warning);">Signed · на паузе</td>
       <td style="color:var(--warning); font-weight:700;">$6,000</td>
       <td style="color:var(--warning); font-weight:700;">ПОД УГРОЗОЙ</td>
-      <td class="note"><strong>Hold.</strong> Нет денег оплатить permit fees на 19 марта. Обещал оплатить к 31 марта. Сам Артур поставил 50% prob — это признание риска. Депозит $6K может быть потерян если сделка развалится.</td>
+      <td class="note"><strong>На паузе.</strong> Клиент ожидает финансирование для оплаты permit fees (deadline был 19 марта, обещал 31 марта). Probability 50% отражает риск стадии. Депозит $6K — в зоне риска, если сделка не возобновится.</td>
     </tr>
-    <!-- ====== HOT PENDING — 100% по Артуру, но НЕ подписан ====== -->
+    <!-- ====== HOT PENDING — 100% в оценке, но ещё не signed ====== -->
     <tr>
       <td>4</td>
       <td>Custom</td>
@@ -261,7 +261,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="status-pending">— Pending</td>
       <td>—</td>
       <td style="color:var(--warning); font-weight:700;">НЕТ</td>
-      <td class="note">Покупают участок в Tierra Verde. Alan прислал эскизы. Бюджет $1.5M (Land + Build). Если участок $0.5M — денег должно хватить. <strong>100% по Артуру — но контракт не подписан, депозита нет, участок не куплен.</strong> Это прогресс, не продажа.</td>
+      <td class="note">Покупают участок в Tierra Verde. Alan прислал эскизы. Бюджет $1.5M (Land + Build). Если участок $0.5M — денег должно хватить. Для cash-flow учёта: <strong>контракт пока не подписан, депозита нет, участок не куплен</strong> — это активный прогресс, но ещё не сделка.</td>
     </tr>
     <!-- ====== ACTIVE PENDING — 75% ====== -->
     <tr>
@@ -299,7 +299,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td class="status-pending">— Pending</td>
       <td>—</td>
       <td style="color:var(--muted);">зависит</td>
-      <td class="note">Jason нашёл инвестора и готов начать архитектуру. <strong>Зависит от судьбы проекта #3 (Jason #1 на Hold).</strong> Если #3 разваливается — #7 тоже.</td>
+      <td class="note">Jason нашёл инвестора и готов начать архитектуру. <strong>Зависит от возобновления проекта #3 (Jason #1 сейчас на паузе).</strong> Если #3 не возобновится — #7 под вопросом.</td>
     </tr>
     <tr>
       <td>8</td>
@@ -377,7 +377,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td colspan="4" style="text-align:right;">⚠ ПОД УГРОЗОЙ (Jason #1)</td>
       <td class="fee" style="color:var(--warning);">$150,000</td>
       <td></td>
-      <td>1 signed · Hold</td>
+      <td>1 signed · на паузе</td>
       <td style="color:var(--warning);">$6,000</td>
       <td style="color:var(--warning);">50/50</td>
       <td style="color:var(--warning);">Ждём оплату permit</td>
@@ -392,13 +392,13 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
       <td style="color:var(--accent);">Большинство на ранних стадиях</td>
     </tr>
     <tr style="background:var(--surface2);">
-      <td colspan="4" style="text-align:right;"><strong>Артур показывает</strong></td>
+      <td colspan="4" style="text-align:right;"><strong>Номинальный pipeline</strong></td>
       <td class="fee"><strong>$2,058,000</strong></td>
       <td></td>
       <td>3 signed</td>
       <td><strong>$17,000</strong></td>
       <td></td>
-      <td style="color:var(--danger);">Fantasy — если все 12 закроются</td>
+      <td style="color:var(--muted);">Если все 12 сделок закроются (ориентир)</td>
     </tr>
   </tfoot>
 </table>
@@ -406,10 +406,10 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
 
 <!-- Probability breakdown -->
 <div class="section-title">Расшифровка по реальности</div>
-<div class="section-desc">Три слоя: что в работе, что под угрозой, что в pending. Взвешенные цифры — это ещё не деньги; реальные деньги — это депозиты в кассе.</div>
+<div class="section-desc">Три слоя воронки: активные контракты, контракт на паузе, pending pipeline. Взвешенные цифры — ориентир, а не кэш-флоу; реальные деньги — депозиты в кассе.</div>
 
 <div class="chart-wrap">
-  <div class="chart-title">Pending сделки по Артур-probability</div>
+  <div class="chart-title">Pending сделки по sales-probability</div>
 
   <div class="bar-row">
     <div class="bar-label">100% — Alan &amp; Mary (НЕ signed!)</div>
@@ -436,10 +436,10 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
   </div>
 
   <div style="margin-top:18px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:12px;">
-    <span style="color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Итого pending / взвешенно (по Артуру)</span>
+    <span style="color:var(--muted); text-transform:uppercase; letter-spacing:0.8px;">Итого pending / взвешенно (sales-оценка)</span>
     <span style="font-weight:700; color:var(--accent);">$1,578,000 · ~$921K</span>
   </div>
-  <div style="margin-top:6px; font-size:11px; color:var(--warning-text); font-style:italic;">Проблема: «100% prob у несписанного Alan &amp; Mary» переоценивает вероятность. В реалистичной модели 100%-без-контракта = 50–60%.</div>
+  <div style="margin-top:6px; font-size:11px; color:var(--warning-text); font-style:italic;">Методологическое замечание: 100%-probability у ещё неподписанной сделки (Alan &amp; Mary) отражает уверенность sales-команды в намерении клиента. Для cash-flow прогноза используем скорректированную оценку: без подписанного контракта вероятность закрытия — 50–60%, не 100%.</div>
 </div>
 
 <div class="chart-wrap">
@@ -452,9 +452,9 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
   </div>
 
   <div class="bar-row">
-    <div class="bar-label">⚠ Signed под угрозой (Jason #1)</div>
+    <div class="bar-label">Signed · на паузе (Jason #1)</div>
     <div class="bar-track"><div class="bar-fill" style="width:7%; background:var(--warning);"></div></div>
-    <div class="bar-val">$150K · $6K (риск потери)</div>
+    <div class="bar-val">$150K · $6K (deposit в риск-зоне)</div>
   </div>
 
   <div class="bar-row">
@@ -478,14 +478,14 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
     <div class="when">Сейчас · 6 апреля 2026</div>
     <h3>Получено депозитов — $17K</h3>
     <p>• Karen &amp; Jeremy Hantman — $8,000 <span style="color:var(--success);">(надёжно)</span><br>
-      • Jason Matthews #1 — $6,000 <span style="color:var(--warning);">(под угрозой, Hold)</span><br>
+      • Jason Matthews #1 — $6,000 <span style="color:var(--warning);">(на паузе, ожидается финансирование)</span><br>
       • Victor Tonas &amp; Wendy — $3,000 <span style="color:var(--success);">(надёжно)</span><br>
       <br>
       <strong>Надёжных денег: $11K.</strong></p>
   </div>
   <div class="timing-card">
     <div class="when">До 30 апреля · следующие шаги</div>
-    <h3>Критические развилки</h3>
+    <h3>Ключевые встречи и дедлайны</h3>
     <p>• <strong>Jason #1:</strong> платит permit fees до 31 марта — или нет. От этого зависит и Jason #2.<br>
       • <strong>Laura Travison:</strong> ответ на Architectural Contract к 13 апреля.<br>
       • <strong>Karen &amp; Dave:</strong> walkthru 13 апреля.<br>
@@ -513,7 +513,7 @@ body { font-family:'Montserrat',-apple-system,sans-serif; font-weight:400; backg
     <p><strong>Надёжные:</strong> $330K (Karen + Victor).<br>
       <strong>+Jason #1 если оживёт:</strong> +$150K → $480K.<br>
       <strong>+1–2 сделки из pending (при конверсии 25%):</strong> +$150–300K → $500–800K total.<br>
-      Цифра Артура $2.06M — недостижима в 2026.</p>
+      Номинальный pipeline $2.06M — это размер воронки, а не реалистичный прогноз дохода 2026.</p>
   </div>
 </div>
 
