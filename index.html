@@ -143,38 +143,38 @@ body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); 
 
 <!-- Financial summary -->
 <div class="section-title">Финансовый срез</div>
-<div class="section-desc">Что реально в работе по продажам сейчас. Подробности — в <a href="sales_dashboard.html" style="color:var(--accent);">Дэшборде продаж</a>.</div>
+<div class="section-desc">Короткая сводка. Детально: воронка новых сделок — <a href="sales_dashboard.html" style="color:var(--accent);">Дэшборд продаж</a>, производство / cashflow — <a href="portfolio_dashboard.html" style="color:var(--accent);">Дэшборд портфеля</a>.</div>
 
 <div class="kpi-grid">
-  <div class="kpi success">
-    <div class="label">Деньги в кассе</div>
-    <div class="value">$17K</div>
-    <div class="note">3 депозита: надёжно $11K · под угрозой $6K</div>
-  </div>
-  <div class="kpi success">
-    <div class="label">Надёжных контрактов</div>
-    <div class="value">2</div>
-    <div class="note">Karen Hantman + Victor &amp; Wendy · $330K fee</div>
-  </div>
   <div class="kpi warning">
-    <div class="label">Signed · на паузе</div>
-    <div class="value">1</div>
-    <div class="note">Jason #1 · $150K · ожидается оплата permit fees</div>
+    <div class="label">Банк. остаток (APR 26)</div>
+    <div class="value">$68.8K</div>
+    <div class="note">1.1 мес фикс. burn · источник: портфель</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">В портфеле</div>
+    <div class="value">14</div>
+    <div class="note">проектов, $1.99M fee (включая 3 недавно подписанных)</div>
   </div>
   <div class="kpi accent">
     <div class="label">Активная воронка</div>
     <div class="value">9</div>
-    <div class="note">сделок, $1.58M потенциал</div>
+    <div class="note">pending, $1.58M потенциал</div>
   </div>
-  <div class="kpi">
-    <div class="label">Цель 2026 · реально</div>
+  <div class="kpi success">
+    <div class="label">Цель 2026 от воронки</div>
     <div class="value">$500–800K</div>
-    <div class="note">fee при конверсии 25–35%</div>
+    <div class="note">fee при конверсии 30–40% из pending</div>
+  </div>
+  <div class="kpi danger">
+    <div class="label">Фикс. burn/мес</div>
+    <div class="value">$61.2K</div>
+    <div class="note">зп 83.8% · см. <a href="salary.html" style="color:var(--danger);">Зарплата</a></div>
   </div>
 </div>
 
 <div class="reality-callout">
-  <strong>Как читать цифры:</strong> номинальный объём воронки — <strong>$2.06M</strong> (сумма fee по всем 12 сделкам в pipeline, включая early-stage и pending). Это размер воронки, не прогноз поступлений. С учётом реальной конверсии по стадиям реалистичный диапазон дохода 2026 — <strong>$500–800K</strong>. Подробная разбивка по сделкам в <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборде продаж</a>.
+  <strong>Две разные картинки:</strong> <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборд продаж</a> — 9 pending сделок на $1.58M fee, без подписанных контрактов (все 3 signed уехали в портфель). <a href="portfolio_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборд портфеля</a> — 14 проектов в производстве, $1.99M fee, помесячный cashflow и банковский остаток. Отдельно <a href="abc_projects.html" style="color:var(--warning-text); font-weight:700;">ABC Projects</a> — инвойсы подрядчиков и банковские линии по 10 объектам (разрыв −$115K).
 </div>
 
 <!-- To-Do board -->
@@ -305,12 +305,32 @@ body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); 
     <div class="title">Зарплата</div>
     <div class="desc">Три версии ведомости · экономия $98K/год · ключевые позиции · статусы «на паузе»</div>
   </a>
-  <a class="nav-card" href="abc_projects.html">
-    <div class="icon">🏗</div>
-    <div class="title">ABC Projects</div>
-    <div class="desc">10 объектов · invoices vs лимит · разрыв −$115K · sold-cash · action plan 14/30/60</div>
+  <a class="nav-card" href="changelog.html">
+    <div class="icon">🕓</div>
+    <div class="title">История изменений</div>
+    <div class="desc">Живая лента коммитов из GitHub · общее количество и даты всех обновлений сайта</div>
   </a>
 </div>
+
+<!-- ABC Projects — separate block -->
+<div class="section-title" style="border-bottom-color:var(--danger); color:var(--danger-text);">ABC Projects · отдельный контур</div>
+<div class="section-desc">Независимый от основного GC-портфеля поток: инвойсы подрядчиков, корпоративные кредитные линии и объекты на продажу по 10 адресам. Учитывается отдельно, не смешивается с fee-based портфелем.</div>
+
+<a href="abc_projects.html" style="display:block; text-decoration:none; background:var(--card); border:1px solid var(--danger); border-left:5px solid var(--danger); border-radius:4px; padding:22px 26px; margin-bottom:32px; box-shadow:var(--shadow); color:var(--text); transition:transform .2s, box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow)'">
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+    <div style="flex:1 1 300px;">
+      <div style="font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--danger-text); font-weight:700; margin-bottom:6px;">🏗 ABC Projects</div>
+      <div style="font-size:17px; font-weight:700; margin-bottom:10px;">10 объектов · долг $291K · лимит $175K · разрыв <span style="color:var(--danger);">−$116K</span></div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; font-size:12px;">
+        <div style="background:var(--danger-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--danger-text);">5 over-limit</strong><br><span style="color:var(--muted); font-size:11px;">счетов больше чем доступ. лимит</span></div>
+        <div style="background:var(--warning-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--warning-text);">$23.5K CC</strong><br><span style="color:var(--muted); font-size:11px;">долг по кредитным картам</span></div>
+        <div style="background:var(--success-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--success-text);">3 sold</strong><br><span style="color:var(--muted); font-size:11px;">4517/6282/6018 · $503K cash-in</span></div>
+        <div style="background:var(--surface2); padding:8px 10px; border-radius:3px;"><strong>Action plan</strong><br><span style="color:var(--muted); font-size:11px;">14/30/60 дней</span></div>
+      </div>
+    </div>
+    <div style="font-size:38px; color:var(--danger); font-weight:800;">→</div>
+  </div>
+</a>
 
 <div class="footer">
   <div style="margin-bottom:16px;">
@@ -329,5 +349,6 @@ function toggleTheme() {
   try { localStorage.setItem('kh-theme', next); } catch(e) {}
 }
 </script>
+<script src="footer.js" defer></script>
 </body>
 </html>

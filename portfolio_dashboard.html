@@ -161,6 +161,9 @@ table.data .cell-success { color:var(--success-text); }
     <li><strong>Выручка от "старых" проектов заканчивается</strong>: Bath Club — <strong>июль 26</strong>, 7840 3rd — сен 26, остальные активные — окт 26. Если новые не стартуют до Q3 — провал Q4.</li>
     <li><strong>Cost/revenue ratio</strong> через Q3 2026 держится на <strong>39-55%</strong> — маржа под давлением до марта 2027, когда ratio впервые преодолеет 1.0 (расходы больше доходов).</li>
   </ul>
+  <div style="margin-top:12px; font-size:12px; color:var(--danger-text);">
+    Эта страница — про <strong>основной GC-портфель</strong> (14 проектов, fee-based). Инвойсы подрядчиков и кредитные линии по отдельным объектам (ABC) — в <a href="abc_projects.html" style="color:var(--danger-text); font-weight:700;">ABC Projects →</a>. Воронка новых сделок — в <a href="sales_dashboard.html" style="color:var(--danger-text); font-weight:700;">Дэшборде продаж →</a>.
+  </div>
 </div>
 
 <!-- KPI -->
@@ -252,9 +255,9 @@ table.data .cell-success { color:var(--success-text); }
     <tr><td>9</td><td>15500 2nd St</td><td>Jason Matthews</td><td><span class="status permit">Permitting</span></td><td class="num">$3,500</td><td>—</td><td>—</td><td class="cell-danger">⚠ застрял · permit fees не оплачены</td></tr>
     <tr><td>10</td><td>16112 Redington Dr</td><td>Jason Matthews</td><td><span class="status active">Active</span></td><td class="num">$60,000</td><td>APR 26</td><td>JAN 27</td><td>Небольшой, но ровный</td></tr>
     <tr><td>11</td><td>11410 1st St</td><td>Kerry Iseghem</td><td><span class="status arch">Architecture</span></td><td class="num">$240,000</td><td>JUN 26</td><td>MAR 27</td><td class="cell-warning">Крупнейший в pipeline — критично запустить</td></tr>
-    <tr><td>12</td><td>5118 31st Ave S</td><td>Karen Hantman</td><td><span class="status arch">Architecture</span></td><td class="num">$135,000</td><td>OCT 26</td><td>JUN 27</td><td class="cell-warning">Старт только через 6 мес</td></tr>
-    <tr><td>13</td><td>301 161st Ave</td><td>Jason Matthews</td><td><span class="status active">Starting</span></td><td class="num">$150,000</td><td>MAY 26</td><td>JAN 27</td><td>Первая оплата уже в мае</td></tr>
-    <tr><td>14</td><td>1807 Pass A Grille Way</td><td>Victor Tonas</td><td><span class="status arch">Architecture</span></td><td class="num">$200,000</td><td>OCT 26</td><td>JUL 27</td><td class="cell-warning">Долгий старт, длинное окно</td></tr>
+    <tr><td>12</td><td>5118 31st Ave S <span style="font-size:9px; background:var(--success-bg); color:var(--success-text); padding:1px 5px; border-radius:3px; font-weight:700; letter-spacing:0.3px;">← воронка</span></td><td>Karen Hantman</td><td><span class="status arch">Architecture</span></td><td class="num">$135,000</td><td>OCT 26</td><td>JUN 27</td><td class="cell-warning">Только что из <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">воронки</a>, старт через 6 мес</td></tr>
+    <tr><td>13</td><td>301 161st Ave <span style="font-size:9px; background:var(--success-bg); color:var(--success-text); padding:1px 5px; border-radius:3px; font-weight:700; letter-spacing:0.3px;">← воронка</span></td><td>Jason Matthews</td><td><span class="status active">Starting</span></td><td class="num">$150,000</td><td>MAY 26</td><td>JAN 27</td><td>Jason #1 (был «signed на паузе»), первая оплата в мае</td></tr>
+    <tr><td>14</td><td>1807 Pass A Grille Way <span style="font-size:9px; background:var(--success-bg); color:var(--success-text); padding:1px 5px; border-radius:3px; font-weight:700; letter-spacing:0.3px;">← воронка</span></td><td>Victor Tonas</td><td><span class="status arch">Architecture</span></td><td class="num">$200,000</td><td>OCT 26</td><td>JUL 27</td><td class="cell-warning">Только что из <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">воронки</a>, долгий старт</td></tr>
     <tr class="tot"><td></td><td colspan="3">TOTAL PIPELINE</td><td class="num">$1,990,148</td><td colspan="3">Горизонт: Nov 25 → Jul 27</td></tr>
   </tbody>
 </table>
@@ -268,7 +271,7 @@ table.data .cell-success { color:var(--success-text); }
 <table class="data">
   <thead><tr><th>Статья</th><th class="num">USD / мес</th><th class="num">% от burn</th><th>Комментарий</th></tr></thead>
   <tbody>
-    <tr><td>Зарплата</td><td class="num">$51,294</td><td class="num">83.8%</td><td class="cell-danger">Главный рычаг — см. стр. «Зарплата»</td></tr>
+    <tr><td>Зарплата</td><td class="num">$51,294</td><td class="num">83.8%</td><td class="cell-danger">Главный рычаг — см. <a href="salary.html" style="color:var(--danger-text); font-weight:700;">стр. Зарплата →</a></td></tr>
     <tr><td>Insurances</td><td class="num">$3,304</td><td class="num">5.4%</td><td>Strаховки (GL, workers comp)</td></tr>
     <tr><td>Rent</td><td class="num">$2,163</td><td class="num">3.5%</td><td>Офис Tampa Bay</td></tr>
     <tr><td>Other</td><td class="num">$2,000</td><td class="num">3.3%</td><td>Мелкие операционные</td></tr>
@@ -315,7 +318,7 @@ table.data .cell-success { color:var(--success-text); }
     <p style="margin-bottom:8px;">Bath Club — июль 2026. 7840 3rd — сен 26. Ещё 4 проекта — окт 26. Если не подхватим новыми — Q4 2026 проваливается в минус по GC fee.</p>
     <ul>
       <li>Критично: 11410 1st St (Kerry) должен стартовать <strong>JUN 26</strong></li>
-      <li>Новые sales leads из воронки — <strong>+2 подписания</strong> к сентябрю</li>
+      <li>Новые sales leads из <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">воронки</a> — <strong>+2 подписания</strong> к сентябрю</li>
       <li>Средняя длительность проекта ≈ 8 мес → сделки закрывать <strong>сейчас</strong> на H2 2026</li>
     </ul>
   </div>
@@ -337,7 +340,7 @@ table.data .cell-success { color:var(--success-text); }
     <p style="margin-bottom:8px;">Cost/revenue (fix burn / GC fee) в MAY-JUN 26 ≈ 34%, но в SEP 26 поднимается до 39% (Bath Club выпадает). Без новых проектов Q4 будет ratio &gt;60%.</p>
     <ul>
       <li>Удержать зарплатный burn — <strong>без найма</strong> до Q3 2026</li>
-      <li>Отчёт зарплаты по месяцам — см. стр. «Зарплата»</li>
+      <li>Отчёт зарплаты по месяцам — см. <a href="salary.html" style="color:var(--warning-text); font-weight:700;">стр. Зарплата →</a></li>
       <li>Маркетинг-бюджет держать дисциплинированно ($50/день FB, без скачков)</li>
     </ul>
   </div>
@@ -406,5 +409,6 @@ function toggleTheme() {
   try { localStorage.setItem('kh-theme', next); } catch(e) {}
 }
 </script>
+<script src="footer.js" defer></script>
 </body>
 </html>
