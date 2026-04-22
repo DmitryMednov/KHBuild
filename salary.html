@@ -118,86 +118,132 @@ table.data .tag.zero { background:var(--danger-bg); color:var(--danger-text); }
 </div>
 
 <div class="crisis-banner">
-  <div class="cb-title">💡 Крупнейший рычаг оптимизации</div>
+  <div class="cb-title">💡 Текущая ставка + результат оптимизации</div>
   <ul>
-    <li>Зарплата = <strong>$51,294/мес</strong> (план с APR 26) = <strong>83.8%</strong> фикс. burn (подробная разбивка burn — в <a href="portfolio_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборде портфеля →</a>). Каждые $1K сокращения дают <strong>+0.02 мес runway</strong>.</li>
-    <li>Уже применено: Metelskiy <strong>$8K → $3K</strong> ($3K ставка + $3K бонус за soft project на 3 мес) — экономия <strong>$5K/мес</strong> на стационаре.</li>
-    <li><strong>3 позиции на паузе</strong> в новой структуре (Hostetter, Onoprienko, Romanovskiy) — нужно закрепить статус: увольнение / сокращение / заморозка.</li>
-    <li>Три PM (Adams, Gange, Paris) тянут 41% фонда — мониторить загрузку под активные проекты, держать &gt;85% utilization.</li>
+    <li>Действующий фонд: <strong>$51,294/мес</strong> с APR 26 = <strong>83.8%</strong> фикс. burn (см. <a href="portfolio_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборд портфеля →</a>).</li>
+    <li>Результат недавних изменений: Metelskiy $8K → $3K + 3 позиции на паузе + Cyprus добавлены → <strong>−$8.2K/мес</strong> = <strong>−$98.5K/год</strong> vs до оптимизации.</li>
+    <li>Три PM (Adams, Gange, Paris) тянут 45% фонда — мониторить загрузку под активные проекты, держать &gt;85% utilization.</li>
   </ul>
 </div>
 
 <!-- KPI -->
 <div class="section-title">Ключевые цифры</div>
 <div class="kpi-grid">
-  <div class="kpi danger">
-    <div class="label">Бывшая ставка</div>
-    <div class="value">$59.5K</div>
-    <div class="note">12 сотрудников, до оптимизации</div>
-  </div>
-  <div class="kpi warning">
-    <div class="label">Текущая ставка</div>
-    <div class="value">$56.3K</div>
-    <div class="note">без Hostetter/Onoprienko/Romanovskiy · +Cyprus</div>
-  </div>
   <div class="kpi success">
-    <div class="label">Новая ставка (с APR 26)</div>
+    <div class="label">Фонд в месяц</div>
     <div class="value">$51.3K</div>
-    <div class="note">Metelskiy: $8K → $3K</div>
+    <div class="note">с APR 26, стабильная ставка</div>
   </div>
   <div class="kpi accent">
     <div class="label">Головы</div>
-    <div class="value">10 + Cyprus</div>
-    <div class="note">3 на паузе / $0</div>
+    <div class="value">10</div>
+    <div class="note">+ Cyprus (команда)</div>
+  </div>
+  <div class="kpi warning">
+    <div class="label">Доля зп в fix burn</div>
+    <div class="value">83.8%</div>
+    <div class="note">$51.3K из $61.2K</div>
   </div>
   <div class="kpi success">
-    <div class="label">Экономия год</div>
-    <div class="value">$98.5K</div>
-    <div class="note">($59.5K - $51.3K) × 12</div>
+    <div class="label">Эффект оптимизации</div>
+    <div class="value">−$98.5K/год</div>
+    <div class="note">vs до реорганизации</div>
   </div>
   <div class="kpi">
-    <div class="label">Годовой фонд (план)</div>
+    <div class="label">Годовой фонд</div>
     <div class="value">$615.5K</div>
-    <div class="note">новая ставка × 12 мес</div>
+    <div class="note">$51.3K × 12 мес</div>
   </div>
 </div>
 
 <!-- Salary table -->
-<div class="section-title">Три версии ведомости рядом</div>
-<div class="section-desc">Бывшая (Salary) → Текущая (Salary NEW · левая половина) → Новая (Salary NEW · правая половина, с APR 26). Дельта показывает изменение от «бывшей» к «новой».</div>
+<div class="section-title">Текущая ведомость</div>
+<div class="section-desc">Ставки с APR 2026. Позиции с нулевой оплатой в новой структуре сведены вниз — статус требует формализации.</div>
 
 <div class="table-wrap">
 <table class="data">
   <thead>
     <tr>
       <th>#</th><th>Имя</th><th>Роль</th><th>Метод</th>
-      <th class="num">Бывшая</th><th class="num">Текущая</th><th class="num">Новая (APR 26+)</th><th class="num">Δ от бывшей</th>
+      <th class="num">В месяц</th><th>Комментарий</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>1</td><td>Adams, Richard</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,627</td><td class="num">$7,627</td><td class="num">$7,627</td><td class="num delta-flat">—</td></tr>
-    <tr><td>2</td><td>Bogomolny, Alexander</td><td>Construction license</td><td>Direct Deposit</td><td class="num">$2,440</td><td class="num">$2,440</td><td class="num">$2,440</td><td class="num delta-flat">—</td></tr>
-    <tr><td>3</td><td>Gange, Zachary</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$6,450</td><td class="num">$6,450</td><td class="num">$6,450</td><td class="num delta-flat">—</td></tr>
-    <tr><td>4</td><td>Hostetter, Rubicely</td><td>Procurement Manager</td><td>Direct Deposit</td><td class="num">$5,706</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$5,706</td></tr>
-    <tr><td>5</td><td>Paris, Gregory</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,497</td><td class="num">$7,497</td><td class="num">$7,497</td><td class="num delta-flat">—</td></tr>
-    <tr><td>6</td><td>Santiago, Shaylen</td><td>Clients Relationship</td><td>Direct Deposit</td><td class="num">$6,280</td><td class="num">$6,280</td><td class="num">$6,280</td><td class="num delta-flat">—</td></tr>
-    <tr><td>7</td><td>Metelskiy, Andrey</td><td>Head of Operations <span class="tag key">key</span></td><td>wire</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num delta-down">$3,000*</td><td class="num delta-down">−$5,000</td></tr>
-    <tr><td>8</td><td>Kuranova, Anastasia</td><td>Financial Controlling</td><td>Paypal</td><td class="num">$4,000</td><td class="num delta-up">$4,500</td><td class="num delta-up">$4,500</td><td class="num delta-up">+$500</td></tr>
-    <tr><td>9</td><td>Onoprienko, Olga</td><td>Accounting</td><td>Paypal</td><td class="num">$1,500</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$1,500</td></tr>
-    <tr><td>10</td><td>Danylova, Alena</td><td>Estimations &amp; Contracting</td><td>ACH</td><td class="num">$1,500</td><td class="num delta-up">$2,000</td><td class="num delta-up">$2,000</td><td class="num delta-up">+$500</td></tr>
-    <tr><td>11</td><td>Romanovskiy, Alexei</td><td>Data Analyst ($30/h)</td><td>Paypal</td><td class="num">$500</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$500</td></tr>
-    <tr><td>12</td><td>Atanov, Artur</td><td>Managing Partner <span class="tag key">key</span></td><td>wire</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num delta-flat">—</td></tr>
-    <tr><td>13</td><td>Cyprus</td><td>(локация / команда)</td><td>—</td><td class="num">—</td><td class="num">$3,500</td><td class="num">$3,500</td><td class="num delta-up">+$3,500</td></tr>
+    <tr><td>1</td><td>Atanov, Artur <span class="tag key">key</span></td><td>Managing Partner</td><td>wire</td><td class="num">$8,000</td><td>Sales closer + operations backbone</td></tr>
+    <tr><td>2</td><td>Adams, Richard</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,627</td><td>PM #1</td></tr>
+    <tr><td>3</td><td>Paris, Gregory</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,497</td><td>PM #2</td></tr>
+    <tr><td>4</td><td>Gange, Zachary</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$6,450</td><td>PM #3</td></tr>
+    <tr><td>5</td><td>Santiago, Shaylen</td><td>Clients Relationship</td><td>Direct Deposit</td><td class="num">$6,280</td><td>Client comms + design</td></tr>
+    <tr><td>6</td><td>Kuranova, Anastasia</td><td>Financial Controlling</td><td>Paypal</td><td class="num">$4,500</td><td>Finance + procurement</td></tr>
+    <tr><td>7</td><td>Cyprus</td><td>Команда / локация</td><td>—</td><td class="num">$3,500</td><td class="cell-warning">Закрепить scope и pay method</td></tr>
+    <tr><td>8</td><td>Metelskiy, Andrey <span class="tag key">key</span></td><td>Head of Operations</td><td>wire</td><td class="num">$3,000*</td><td>* $3K ставка + $3K бонус за soft project (3 мес до JUL 26)</td></tr>
+    <tr><td>9</td><td>Bogomolny, Alexander</td><td>Construction license</td><td>Direct Deposit</td><td class="num">$2,440</td><td>Лицензия</td></tr>
+    <tr><td>10</td><td>Danylova, Alena</td><td>Estimations &amp; Contracting</td><td>ACH</td><td class="num">$2,000</td><td>Эстимирование</td></tr>
+    <tr><td>—</td><td>Hostetter, Rubicely</td><td>Procurement Manager</td><td>Direct Deposit</td><td class="num"><span class="tag zero">$0</span></td><td class="cell-danger">⚠ на паузе — закрепить статус</td></tr>
+    <tr><td>—</td><td>Onoprienko, Olga</td><td>Accounting</td><td>Paypal</td><td class="num"><span class="tag zero">$0</span></td><td class="cell-danger">⚠ на паузе — закрепить статус</td></tr>
+    <tr><td>—</td><td>Romanovskiy, Alexei</td><td>Data Analyst ($30/h)</td><td>Paypal</td><td class="num"><span class="tag zero">$0</span></td><td class="cell-danger">⚠ на паузе — закрепить статус</td></tr>
     <tr class="tot">
       <td></td><td colspan="3">ИТОГО в месяц</td>
-      <td class="num">$59,499</td><td class="num">$56,294</td><td class="num">$51,294</td>
-      <td class="num delta-down">−$8,206</td>
+      <td class="num">$51,294</td><td>10 активных позиций</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<div style="font-size:11px; color:var(--muted); margin:-16px 0 24px 4px;">* Metelskiy: $3K ставка + $3K бонус за «soft project» (3 мес) → $6K фактически до июля 2026, затем $3K.</div>
+<!-- Share of salary in revenue chart -->
+<div class="section-title">Доля зарплаты в выручке</div>
+<div class="section-desc">Помесячно: зарплата / GC fee доход (по прогнозу KH Build). Зелёный — &lt;35% (здоровый), жёлтый — 35-60%, красный — &gt;60% (кризис). Видно «золотое окно» MAY-OCT 2026 и системное ухудшение с 2027.</div>
+
+<div style="background:var(--card); border:1px solid var(--border); border-radius:4px; padding:20px; box-shadow:var(--shadow); margin-bottom:24px;">
+
+<style>
+  .ratio-chart { display:grid; grid-template-columns:70px 1fr 110px 70px; gap:10px; align-items:center; padding:6px 0; font-size:12px; border-bottom:1px dashed var(--border); }
+  .ratio-chart:last-child { border-bottom:none; }
+  .ratio-chart .mo { font-weight:700; color:var(--muted); letter-spacing:0.5px; font-size:11px; }
+  .ratio-chart .bar-track { background:var(--surface2); height:22px; border-radius:3px; position:relative; overflow:hidden; }
+  .ratio-chart .bar-fill { height:100%; position:absolute; left:0; top:0; border-radius:3px; display:flex; align-items:center; padding-left:8px; color:#fff; font-weight:700; font-size:10px; letter-spacing:0.4px; }
+  .ratio-chart .bar-fill.ok { background:var(--success); }
+  .ratio-chart .bar-fill.mid { background:var(--warning); }
+  .ratio-chart .bar-fill.bad { background:var(--danger); }
+  .ratio-chart .rev { text-align:right; font-variant-numeric:tabular-nums; color:var(--muted); font-size:11px; }
+  .ratio-chart .pct { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; }
+  .ratio-chart .pct.ok { color:var(--success); }
+  .ratio-chart .pct.mid { color:var(--warning); }
+  .ratio-chart .pct.bad { color:var(--danger); }
+  .ratio-header { display:grid; grid-template-columns:70px 1fr 110px 70px; gap:10px; padding:6px 0 10px; border-bottom:2px solid var(--accent); margin-bottom:8px; font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:var(--muted); font-weight:700; }
+  .ratio-header .rev, .ratio-header .pct { text-align:right; }
+  @media (max-width:600px) {
+    .ratio-chart, .ratio-header { grid-template-columns:48px 1fr 60px; gap:6px; font-size:11px; }
+    .ratio-chart .rev, .ratio-header .rev { display:none; }
+  }
+</style>
+
+<div class="ratio-header"><div>Месяц</div><div>Доля зарплаты в GC fee</div><div class="rev">GC fee</div><div class="pct">%</div></div>
+
+<!-- Data: salary / monthly fee. Bars scaled 0..100% width (clipped at 100 for viz) -->
+<div class="ratio-chart"><div class="mo">JAN 26</div><div class="bar-track"><div class="bar-fill bad" style="width:73.0%">73%</div></div><div class="rev">$90.9K</div><div class="pct bad">73.0%</div></div>
+<div class="ratio-chart"><div class="mo">FEB 26</div><div class="bar-track"><div class="bar-fill mid" style="width:59.6%">60%</div></div><div class="rev">$98.6K</div><div class="pct mid">59.6%</div></div>
+<div class="ratio-chart"><div class="mo">MAR 26</div><div class="bar-track"><div class="bar-fill mid" style="width:45.4%">45%</div></div><div class="rev">$104.5K</div><div class="pct mid">45.4%</div></div>
+<div class="ratio-chart"><div class="mo">APR 26</div><div class="bar-track"><div class="bar-fill mid" style="width:41.9%">42%</div></div><div class="rev">$134.4K</div><div class="pct mid">41.9%</div></div>
+<div class="ratio-chart"><div class="mo">MAY 26</div><div class="bar-track"><div class="bar-fill ok" style="width:28.2%">28%</div></div><div class="rev">$181.8K</div><div class="pct ok">28.2%</div></div>
+<div class="ratio-chart"><div class="mo">JUN 26</div><div class="bar-track"><div class="bar-fill ok" style="width:26.3%">26%</div></div><div class="rev">$194.7K</div><div class="pct ok">26.3%</div></div>
+<div class="ratio-chart"><div class="mo">JUL 26</div><div class="bar-track"><div class="bar-fill ok" style="width:31.9%">32%</div></div><div class="rev">$160.8K</div><div class="pct ok">31.9%</div></div>
+<div class="ratio-chart"><div class="mo">AUG 26</div><div class="bar-track"><div class="bar-fill ok" style="width:32.5%">33%</div></div><div class="rev">$157.7K</div><div class="pct ok">32.5%</div></div>
+<div class="ratio-chart"><div class="mo">SEP 26</div><div class="bar-track"><div class="bar-fill ok" style="width:33.0%">33%</div></div><div class="rev">$155.6K</div><div class="pct ok">33.0%</div></div>
+<div class="ratio-chart"><div class="mo">OCT 26</div><div class="bar-track"><div class="bar-fill mid" style="width:36.7%">37%</div></div><div class="rev">$139.9K</div><div class="pct mid">36.7%</div></div>
+<div class="ratio-chart"><div class="mo">NOV 26</div><div class="bar-track"><div class="bar-fill mid" style="width:45.7%">46%</div></div><div class="rev">$112.2K</div><div class="pct mid">45.7%</div></div>
+<div class="ratio-chart"><div class="mo">DEC 26</div><div class="bar-track"><div class="bar-fill mid" style="width:57.3%">57%</div></div><div class="rev">$89.5K</div><div class="pct mid">57.3%</div></div>
+<div class="ratio-chart"><div class="mo">JAN 27</div><div class="bar-track"><div class="bar-fill bad" style="width:74.1%">74%</div></div><div class="rev">$69.2K</div><div class="pct bad">74.1%</div></div>
+<div class="ratio-chart"><div class="mo">FEB 27</div><div class="bar-track"><div class="bar-fill bad" style="width:62.9%">63%</div></div><div class="rev">$81.5K</div><div class="pct bad">62.9%</div></div>
+<div class="ratio-chart"><div class="mo">MAR 27</div><div class="bar-track"><div class="bar-fill bad" style="width:100%">101% ⚠</div></div><div class="rev">$50.7K</div><div class="pct bad">101.1%</div></div>
+<div class="ratio-chart"><div class="mo">APR 27</div><div class="bar-track"><div class="bar-fill bad" style="width:98%">98% ⚠</div></div><div class="rev">$52.4K</div><div class="pct bad">97.9%</div></div>
+<div class="ratio-chart"><div class="mo">MAY 27</div><div class="bar-track"><div class="bar-fill bad" style="width:100%">158% ⚠⚠</div></div><div class="rev">$32.5K</div><div class="pct bad">157.8%</div></div>
+
+<div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); line-height:1.6;">
+  <strong style="color:var(--text);">Как читать:</strong> бар показывает какой процент ежемесячной выручки по GC fee уходит на зарплату. Выше 60% — компания работает в минус по только-зарплатному соотношению (не считая прочих расходов). «Золотое окно» MAY–OCT 2026 — единственный период с &lt;35%, когда бизнес генерирует free cash flow. С JAN 2027 старые проекты заканчиваются, а новые не подписаны → кризис без действий. <strong style="color:var(--danger);">Вывод:</strong> каждая новая подписанная сделка на H2 2026 напрямую отодвигает срыв 2027.
+</div>
+
+</div>
 
 <!-- Pain points -->
 <div class="section-title">Болевые точки фонда оплаты труда</div>
