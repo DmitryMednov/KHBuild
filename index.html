@@ -143,40 +143,38 @@ body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); 
 
 <!-- Financial summary -->
 <div class="section-title">Финансовый срез</div>
-<div class="section-desc">Что реально в работе по продажам сейчас. Подробности воронки — в <a href="sales_dashboard.html" style="color:var(--accent);">Дэшборде продаж</a>. Банковский баланс и burn — в <a href="portfolio_dashboard.html" style="color:var(--accent);">Дэшборде портфеля</a>.</div>
+<div class="section-desc">Короткая сводка. Детально: воронка новых сделок — <a href="sales_dashboard.html" style="color:var(--accent);">Дэшборд продаж</a>, производство / cashflow — <a href="portfolio_dashboard.html" style="color:var(--accent);">Дэшборд портфеля</a>.</div>
 
 <div class="kpi-grid">
-  <div class="kpi success">
-    <div class="label">Контрактные депозиты</div>
-    <div class="value">$17K</div>
-    <div class="note">3 депозита: надёжно $11K · под угрозой $6K</div>
-  </div>
-  <div class="kpi success">
-    <div class="label">Надёжных контрактов</div>
-    <div class="value">2</div>
-    <div class="note">Karen Hantman + Victor &amp; Wendy · $330K fee</div>
-  </div>
   <div class="kpi warning">
-    <div class="label">Signed · на паузе</div>
-    <div class="value">1</div>
-    <div class="note">Jason #1 · $150K · ожидается оплата permit fees</div>
+    <div class="label">Банк. остаток (APR 26)</div>
+    <div class="value">$68.8K</div>
+    <div class="note">1.1 мес фикс. burn · источник: портфель</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">В портфеле</div>
+    <div class="value">14</div>
+    <div class="note">проектов, $1.99M fee (включая 3 недавно подписанных)</div>
   </div>
   <div class="kpi accent">
     <div class="label">Активная воронка</div>
     <div class="value">9</div>
-    <div class="note">сделок, $1.58M потенциал</div>
+    <div class="note">pending, $1.58M потенциал</div>
   </div>
-  <div class="kpi">
-    <div class="label">Цель 2026 · реально</div>
+  <div class="kpi success">
+    <div class="label">Цель 2026 от воронки</div>
     <div class="value">$500–800K</div>
-    <div class="note">fee при конверсии 25–35%</div>
+    <div class="note">fee при конверсии 30–40% из pending</div>
+  </div>
+  <div class="kpi danger">
+    <div class="label">Фикс. burn/мес</div>
+    <div class="value">$61.2K</div>
+    <div class="note">зп 83.8% · см. <a href="salary.html" style="color:var(--danger);">Зарплата</a></div>
   </div>
 </div>
 
 <div class="reality-callout">
-  <strong>Как читать цифры:</strong> номинальный объём воронки — <strong>$2.06M</strong> (сумма fee по всем 12 сделкам в pipeline, включая early-stage и pending). Это размер воронки, не прогноз поступлений. С учётом реальной конверсии по стадиям реалистичный диапазон дохода 2026 — <strong>$500–800K</strong>. Подробная разбивка по сделкам в <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборде продаж</a>.
-  <br><br>
-  <strong>Две разные картинки:</strong> «Контрактные депозиты $17K» выше — это оплаченные авансы по новым сделкам (sales-пайплайн). Банковский остаток на <strong>APR 2026 = $68.8K</strong> и подробный помесячный прогноз кассы по <strong>14 проектам в производстве</strong> — в <a href="portfolio_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборде портфеля</a>.
+  <strong>Две разные картинки:</strong> <a href="sales_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборд продаж</a> — 9 pending сделок на $1.58M fee, без подписанных контрактов (все 3 signed уехали в портфель). <a href="portfolio_dashboard.html" style="color:var(--warning-text); font-weight:700;">Дэшборд портфеля</a> — 14 проектов в производстве, $1.99M fee, помесячный cashflow и банковский остаток. Отдельно <a href="abc_projects.html" style="color:var(--warning-text); font-weight:700;">ABC Projects</a> — инвойсы подрядчиков и банковские линии по 10 объектам (разрыв −$115K).
 </div>
 
 <!-- To-Do board -->
