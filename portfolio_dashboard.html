@@ -198,6 +198,68 @@ table.data .cell-success { color:var(--success-text); }
   </div>
 </div>
 
+<!-- Monthly cashflow -->
+<div class="section-title">Помесячный прогноз кассы</div>
+<div class="section-desc">Остаток на конец месяца (Собственные средства). Красный — касса ниже месячного burn ($61K). Жёлтый — 1-3 мес. Зелёный — &gt;3 мес запаса.</div>
+
+<div class="table-wrap" style="padding:8px 12px;">
+  <div class="cashflow-row" style="font-weight:700; background:var(--surface2); margin:-8px -12px 4px; padding:10px 12px; border-bottom:2px solid var(--accent);">
+    <div class="mo">Месяц</div>
+    <div>Остаток</div>
+    <div class="amt">USD</div>
+    <div class="runway">Запас, мес</div>
+  </div>
+  <div class="cashflow-row"><div class="mo">NOV 25</div><div class="bar-wrap"><div class="bar low" style="width:0%"></div></div><div class="amt" style="color:var(--danger)">$0</div><div class="runway">0.0</div></div>
+  <div class="cashflow-row"><div class="mo">DEC 25</div><div class="bar-wrap"><div class="bar mid" style="width:10%"></div></div><div class="amt">$79,006</div><div class="runway">1.3</div></div>
+  <div class="cashflow-row"><div class="mo">JAN 26</div><div class="bar-wrap"><div class="bar low" style="width:4%"></div></div><div class="amt" style="color:var(--danger)">$29,720</div><div class="runway">0.5</div></div>
+  <div class="cashflow-row"><div class="mo">FEB 26</div><div class="bar-wrap"><div class="bar low" style="width:5%"></div></div><div class="amt" style="color:var(--danger)">$41,131</div><div class="runway">0.7</div></div>
+  <div class="cashflow-row"><div class="mo">MAR 26</div><div class="bar-wrap"><div class="bar mid" style="width:8%"></div></div><div class="amt">$66,778</div><div class="runway">1.1</div></div>
+  <div class="cashflow-row"><div class="mo">APR 26</div><div class="bar-wrap"><div class="bar mid" style="width:8%"></div></div><div class="amt" style="color:var(--warning-text); font-weight:700;">$68,828</div><div class="runway">1.1</div></div>
+  <div class="cashflow-row"><div class="mo">MAY 26</div><div class="bar-wrap"><div class="bar mid" style="width:14%"></div></div><div class="amt">$116,991</div><div class="runway">1.9</div></div>
+  <div class="cashflow-row"><div class="mo">JUN 26</div><div class="bar-wrap"><div class="bar high" style="width:29%"></div></div><div class="amt">$237,586</div><div class="runway">3.9</div></div>
+  <div class="cashflow-row"><div class="mo">JUL 26</div><div class="bar-wrap"><div class="bar high" style="width:45%"></div></div><div class="amt">$367,077</div><div class="runway">6.0</div></div>
+  <div class="cashflow-row"><div class="mo">AUG 26</div><div class="bar-wrap"><div class="bar high" style="width:55%"></div></div><div class="amt">$454,642</div><div class="runway">7.4</div></div>
+  <div class="cashflow-row"><div class="mo">SEP 26</div><div class="bar-wrap"><div class="bar high" style="width:66%"></div></div><div class="amt">$539,142</div><div class="runway">8.8</div></div>
+  <div class="cashflow-row"><div class="mo">OCT 26</div><div class="bar-wrap"><div class="bar high" style="width:78%"></div></div><div class="amt">$633,569</div><div class="runway">10.3</div></div>
+  <div class="cashflow-row"><div class="mo">NOV 26</div><div class="bar-wrap"><div class="bar high" style="width:87%"></div></div><div class="amt">$710,270</div><div class="runway">11.6</div></div>
+  <div class="cashflow-row"><div class="mo">DEC 26</div><div class="bar-wrap"><div class="bar high" style="width:93%"></div></div><div class="amt">$761,295</div><div class="runway">12.4</div></div>
+  <div class="cashflow-row"><div class="mo">JAN 27</div><div class="bar-wrap"><div class="bar high" style="width:96%"></div></div><div class="amt">$789,624</div><div class="runway">12.9</div></div>
+  <div class="cashflow-row"><div class="mo">MAR 27</div><div class="bar-wrap"><div class="bar high" style="width:100%"></div></div><div class="amt">$817,943</div><div class="runway">13.4</div></div>
+  <div class="cashflow-row"><div class="mo">JUL 27</div><div class="bar-wrap"><div class="bar high" style="width:91%"></div></div><div class="amt">$740,748</div><div class="runway">12.1</div></div>
+</div>
+
+<!-- Projects portfolio -->
+<div class="section-title">Портфель проектов · 14 сделок</div>
+<div class="section-desc">Статус, total fee, окно выручки. <span style="color:var(--danger-text); font-weight:700;">Красный</span> — permitting stuck. <span style="color:var(--warning-text); font-weight:700;">Жёлтый</span> — architecture (не приносит выручку). <span style="color:var(--success-text); font-weight:700;">Зелёный</span> — активный в поле.</div>
+
+<div class="table-wrap">
+<table class="data">
+  <thead>
+    <tr>
+      <th>#</th><th>Проект</th><th>Клиент</th><th>Статус</th>
+      <th class="num">Total fee</th><th>Старт выручки</th><th>Конец выручки</th><th>Комментарий</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>1919 Arrowhead</td><td>Erica Cavanaugh</td><td><span class="status active">Active</span></td><td class="num">$118,968</td><td>FEB 26</td><td>OCT 26</td><td class="cell-warning">Завершение Q4 26</td></tr>
+    <tr><td>2</td><td>408 161st</td><td>Matthew Caldwell</td><td><span class="status active">Active</span></td><td class="num">$102,467</td><td>FEB 26</td><td>OCT 26</td><td class="cell-warning">Завершение Q4 26</td></tr>
+    <tr><td>3</td><td>428 Bath Club</td><td>Carie Randesi</td><td><span class="status active">Active</span></td><td class="num">$141,079</td><td>JAN 26</td><td>JUL 26</td><td class="cell-danger">⚠ заканчивается первым — июль</td></tr>
+    <tr><td>4</td><td>586 182nd</td><td>Candice Bray</td><td><span class="status active">Active</span></td><td class="num">$157,972</td><td>JAN 26</td><td>OCT 26</td><td class="cell-warning">Завершение Q4 26</td></tr>
+    <tr><td>5</td><td>7840 3rd</td><td>Craig Dean</td><td><span class="status active">Active</span></td><td class="num">$203,201</td><td>NOV 25</td><td>SEP 26</td><td class="cell-warning">Большой чек, близко к концу</td></tr>
+    <tr><td>6</td><td>734 Placido Way</td><td>Dan Rab</td><td><span class="status active">Active</span></td><td class="num">$164,765</td><td>FEB 26</td><td>OCT 26</td><td>Стабильный профиль</td></tr>
+    <tr><td>7</td><td>256 Bayside</td><td>Ronald Walters</td><td><span class="status active">Active</span></td><td class="num">$202,813</td><td>JAN 26</td><td>JAN 27</td><td class="cell-success">Тянет в 2027</td></tr>
+    <tr><td>8</td><td>340 Boca Ciega</td><td>Marsha Buckley</td><td><span class="status active">Active</span></td><td class="num">$110,384</td><td>APR 26</td><td>FEB 27</td><td class="cell-success">Новый, тянет в 2027</td></tr>
+    <tr><td>9</td><td>15500 2nd St</td><td>Jason Matthews</td><td><span class="status permit">Permitting</span></td><td class="num">$3,500</td><td>—</td><td>—</td><td class="cell-danger">⚠ застрял · permit fees не оплачены</td></tr>
+    <tr><td>10</td><td>16112 Redington Dr</td><td>Jason Matthews</td><td><span class="status active">Active</span></td><td class="num">$60,000</td><td>APR 26</td><td>JAN 27</td><td>Небольшой, но ровный</td></tr>
+    <tr><td>11</td><td>11410 1st St</td><td>Kerry Iseghem</td><td><span class="status arch">Architecture</span></td><td class="num">$240,000</td><td>JUN 26</td><td>MAR 27</td><td class="cell-warning">Крупнейший в pipeline — критично запустить</td></tr>
+    <tr><td>12</td><td>5118 31st Ave S</td><td>Karen Hantman</td><td><span class="status arch">Architecture</span></td><td class="num">$135,000</td><td>OCT 26</td><td>JUN 27</td><td class="cell-warning">Старт только через 6 мес</td></tr>
+    <tr><td>13</td><td>301 161st Ave</td><td>Jason Matthews</td><td><span class="status active">Starting</span></td><td class="num">$150,000</td><td>MAY 26</td><td>JAN 27</td><td>Первая оплата уже в мае</td></tr>
+    <tr><td>14</td><td>1807 Pass A Grille Way</td><td>Victor Tonas</td><td><span class="status arch">Architecture</span></td><td class="num">$200,000</td><td>OCT 26</td><td>JUL 27</td><td class="cell-warning">Долгий старт, длинное окно</td></tr>
+    <tr class="tot"><td></td><td colspan="3">TOTAL PIPELINE</td><td class="num">$1,990,148</td><td colspan="3">Горизонт: Nov 25 → Jul 27</td></tr>
+  </tbody>
+</table>
+</div>
+
 <div class="footer">
   KH Build LLC · Дэшборд портфеля · Источник: KH Build Прогноз от 16 Apr 2026 · Конфиденциально
 </div>
