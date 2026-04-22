@@ -305,17 +305,32 @@ body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); 
     <div class="title">Зарплата</div>
     <div class="desc">Три версии ведомости · экономия $98K/год · ключевые позиции · статусы «на паузе»</div>
   </a>
-  <a class="nav-card" href="abc_projects.html">
-    <div class="icon">🏗</div>
-    <div class="title">ABC Projects</div>
-    <div class="desc">10 объектов · invoices vs лимит · разрыв −$115K · sold-cash · action plan 14/30/60</div>
-  </a>
   <a class="nav-card" href="changelog.html">
     <div class="icon">🕓</div>
     <div class="title">История изменений</div>
     <div class="desc">Живая лента коммитов из GitHub · общее количество и даты всех обновлений сайта</div>
   </a>
 </div>
+
+<!-- ABC Projects — separate block -->
+<div class="section-title" style="border-bottom-color:var(--danger); color:var(--danger-text);">ABC Projects · отдельный контур</div>
+<div class="section-desc">Независимый от основного GC-портфеля поток: инвойсы подрядчиков, корпоративные кредитные линии и объекты на продажу по 10 адресам. Учитывается отдельно, не смешивается с fee-based портфелем.</div>
+
+<a href="abc_projects.html" style="display:block; text-decoration:none; background:var(--card); border:1px solid var(--danger); border-left:5px solid var(--danger); border-radius:4px; padding:22px 26px; margin-bottom:32px; box-shadow:var(--shadow); color:var(--text); transition:transform .2s, box-shadow .2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.15)'" onmouseout="this.style.transform=''; this.style.boxShadow='var(--shadow)'">
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+    <div style="flex:1 1 300px;">
+      <div style="font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:var(--danger-text); font-weight:700; margin-bottom:6px;">🏗 ABC Projects</div>
+      <div style="font-size:17px; font-weight:700; margin-bottom:10px;">10 объектов · долг $291K · лимит $175K · разрыв <span style="color:var(--danger);">−$116K</span></div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; font-size:12px;">
+        <div style="background:var(--danger-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--danger-text);">5 over-limit</strong><br><span style="color:var(--muted); font-size:11px;">счетов больше чем доступ. лимит</span></div>
+        <div style="background:var(--warning-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--warning-text);">$23.5K CC</strong><br><span style="color:var(--muted); font-size:11px;">долг по кредитным картам</span></div>
+        <div style="background:var(--success-bg); padding:8px 10px; border-radius:3px;"><strong style="color:var(--success-text);">3 sold</strong><br><span style="color:var(--muted); font-size:11px;">4517/6282/6018 · $503K cash-in</span></div>
+        <div style="background:var(--surface2); padding:8px 10px; border-radius:3px;"><strong>Action plan</strong><br><span style="color:var(--muted); font-size:11px;">14/30/60 дней</span></div>
+      </div>
+    </div>
+    <div style="font-size:38px; color:var(--danger); font-weight:800;">→</div>
+  </div>
+</a>
 
 <div class="footer">
   <div style="margin-bottom:16px;">
