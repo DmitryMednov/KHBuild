@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KH Build — Зарплата</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try {
+      var t = localStorage.getItem('kh-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e) { document.documentElement.setAttribute('data-theme', 'light'); }
+  })();
+</script>
+<style>
+:root {
+  --bg:#FFFFFF; --card:#FFFFFF; --surface2:#F5F3EE; --border:#E0DDD3;
+  --text:#1A1A1A; --muted:#6B6A65; --accent:#C9A65D; --accent-strong:#B38F47;
+  --dark-section:#1A1A1A; --on-dark:#F5F3EE;
+  --danger:#C0392B; --success:#1D9E75; --warning:#D4850F; --ai:#6C41D4;
+  --danger-bg:#FCEEEC; --success-bg:#E8F8F0; --warning-bg:#FEF3E0; --ai-bg:#F0ECFE;
+  --danger-text:#8B2818; --warning-text:#8B6914; --success-text:#0F6E56; --ai-text:#4A2B96;
+  --on-accent:#1A1A1A; --shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+  --bg:#141414; --card:#1F1F1F; --surface2:#292826; --border:#38342A;
+  --text:#F5F3EE; --muted:#9A938A; --accent:#C9A65D; --accent-strong:#D9B870;
+  --dark-section:#0B0B0B;
+  --danger:#ef4444; --success:#22c997; --warning:#f59e0b; --ai:#a78bfa;
+  --danger-bg:rgba(239,68,68,0.14); --success-bg:rgba(34,201,151,0.14);
+  --warning-bg:rgba(245,158,11,0.14); --ai-bg:rgba(167,139,250,0.14);
+  --danger-text:#fca5a5; --warning-text:#fcd34d; --success-text:#6ee7b7; --ai-text:#c4b5fd;
+  --on-accent:#141414; --shadow:0 2px 8px rgba(0,0,0,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.container { max-width:1200px; margin:0 auto; padding:24px; }
+.theme-toggle { position:fixed; top:18px; right:18px; z-index:1000; width:42px; height:42px; border-radius:50%;
+  border:2px solid var(--accent); background:var(--dark-section); color:var(--accent); font-size:18px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.25); transition:transform .2s,background .2s; }
+.theme-toggle:hover { transform:scale(1.1); background:var(--accent); color:var(--dark-section); }
+[data-theme="dark"] .theme-toggle__light { display:none; }
+[data-theme="light"] .theme-toggle__dark,:root:not([data-theme="dark"]) .theme-toggle__dark { display:none; }
+.header { text-align:center; padding:56px 24px 40px; margin:-24px -24px 40px;
+  background:var(--dark-section); color:var(--on-dark); border-bottom:3px solid var(--accent); }
+.header h1 { font-size:30px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px; }
+.header .subtitle { color:#B8B5AA; font-size:14px; margin-bottom:14px; }
+.header .logo { font-size:24px; letter-spacing:6px; color:var(--accent); margin-bottom:18px; font-weight:800; }
+.header .back { display:inline-block; color:var(--accent); text-decoration:none; font-size:12px; border:1px solid var(--accent); padding:6px 14px; border-radius:4px; }
+.header .back:hover { background:var(--accent); color:var(--dark-section); }
+.section-title { font-size:20px; font-weight:700; margin:36px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--accent); text-transform:uppercase; letter-spacing:1px; }
+.section-desc { color:var(--muted); font-size:13px; margin-bottom:18px; }
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:20px; }
+.kpi { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:16px 20px; text-align:center; box-shadow:var(--shadow); }
+.kpi .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; font-weight:600; }
+.kpi .value { font-size:26px; font-weight:700; }
+.kpi .note { font-size:11px; color:var(--muted); margin-top:4px; }
+.kpi.success .value { color:var(--success); }
+.kpi.warning .value { color:var(--warning); }
+.kpi.danger .value { color:var(--danger); }
+.kpi.accent .value { color:var(--accent); }
+.crisis-banner { background:var(--warning-bg); border:1px solid rgba(212,133,15,0.4); border-left:5px solid var(--warning); border-radius:4px; padding:18px 22px; margin-bottom:24px; }
+.crisis-banner .cb-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--warning-text); margin-bottom:10px; }
+.crisis-banner ul { margin-left:20px; font-size:13px; line-height:1.7; }
+.crisis-banner strong { color:var(--warning-text); }
+.table-wrap { overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); margin-bottom:24px; }
+table.data { width:100%; border-collapse:collapse; font-size:12px; }
+table.data thead th { background:var(--surface2); padding:10px 8px; text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.5px; font-weight:700; color:var(--muted); border-bottom:2px solid var(--border); white-space:nowrap; }
+table.data thead th.num, table.data td.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.data tbody td { padding:9px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+table.data tbody tr:last-child td { border-bottom:none; }
+table.data tbody tr:hover { background:var(--surface2); }
+table.data .tot td { background:var(--surface2); font-weight:700; border-top:2px solid var(--accent); }
+table.data .delta-down { color:var(--danger); font-weight:700; }
+table.data .delta-up { color:var(--success); font-weight:700; }
+table.data .delta-flat { color:var(--muted); }
+table.data .tag { display:inline-block; padding:2px 6px; border-radius:3px; font-size:10px; font-weight:700; background:var(--surface2); color:var(--muted); }
+table.data .tag.key { background:var(--accent); color:var(--dark-section); }
+table.data .tag.zero { background:var(--danger-bg); color:var(--danger-text); }
+.pain-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin-bottom:24px; }
+.pain-card { border-radius:4px; padding:16px 18px; box-shadow:var(--shadow); border:1px solid var(--border); }
+.pain-card.red { background:var(--danger-bg); border-color:var(--danger); border-left:4px solid var(--danger); }
+.pain-card.yellow { background:var(--warning-bg); border-color:var(--warning); border-left:4px solid var(--warning); }
+.pain-card.green { background:var(--success-bg); border-color:var(--success); border-left:4px solid var(--success); }
+.pain-card .pc-cat { font-size:10px; text-transform:uppercase; letter-spacing:1px; font-weight:700; margin-bottom:6px; }
+.pain-card.red .pc-cat { color:var(--danger-text); }
+.pain-card.yellow .pc-cat { color:var(--warning-text); }
+.pain-card.green .pc-cat { color:var(--success-text); }
+.pain-card h3 { font-size:14px; font-weight:700; margin-bottom:8px; }
+.pain-card p, .pain-card ul { font-size:12px; line-height:1.6; }
+.pain-card ul { margin-left:16px; }
+.footer { text-align:center; padding:32px 24px; margin:48px -24px -24px; color:var(--on-dark); font-size:12px; background:var(--dark-section); border-top:3px solid var(--accent); }
+@media (max-width:768px) {
+  .container { padding:14px; }
+  .header { padding:32px 16px 24px; margin:-14px -14px 24px; }
+  .header h1 { font-size:20px; }
+  .header .logo { font-size:18px; letter-spacing:4px; }
+  .section-title { font-size:16px; }
+  .kpi-grid { grid-template-columns:1fr 1fr; }
+  .kpi .value { font-size:20px; }
+  .pain-grid { grid-template-columns:1fr; }
+  table.data { font-size:11px; }
+  .theme-toggle { top:10px; right:10px; width:36px; height:36px; font-size:15px; }
+}
+@media (max-width:420px) { .kpi-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()"><span class="theme-toggle__light">🌙</span><span class="theme-toggle__dark">☀</span></button>
+<div class="container">
+
+<div class="header">
+  <div class="logo">KH BUILD</div>
+  <h1>Зарплатная ведомость</h1>
+  <div class="subtitle">Факт + план · 16 апреля 2026 · 83.8% фиксированного burn</div>
+  <a class="back" href="index.html">← Назад на главную</a>
+</div>
+
+<div class="crisis-banner">
+  <div class="cb-title">💡 Крупнейший рычаг оптимизации</div>
+  <ul>
+    <li>Зарплата = <strong>$51,294/мес</strong> (план с APR 26) = <strong>83.8%</strong> фикс. burn. Каждые $1K сокращения дают <strong>+0.02 мес runway</strong>.</li>
+    <li>Уже применено: Metelskiy <strong>$8K → $3K</strong> ($3K ставка + $3K бонус за soft project на 3 мес) — экономия <strong>$5K/мес</strong> на стационаре.</li>
+    <li><strong>3 позиции на паузе</strong> в новой структуре (Hostetter, Onoprienko, Romanovskiy) — нужно закрепить статус: увольнение / сокращение / заморозка.</li>
+    <li>Три PM (Adams, Gange, Paris) тянут 41% фонда — мониторить загрузку под активные проекты, держать &gt;85% utilization.</li>
+  </ul>
+</div>
+
+<!-- KPI -->
+<div class="section-title">Ключевые цифры</div>
+<div class="kpi-grid">
+  <div class="kpi danger">
+    <div class="label">Бывшая ставка</div>
+    <div class="value">$59.5K</div>
+    <div class="note">12 сотрудников, до оптимизации</div>
+  </div>
+  <div class="kpi warning">
+    <div class="label">Текущая ставка</div>
+    <div class="value">$56.3K</div>
+    <div class="note">без Hostetter/Onoprienko/Romanovskiy · +Cyprus</div>
+  </div>
+  <div class="kpi success">
+    <div class="label">Новая ставка (с APR 26)</div>
+    <div class="value">$51.3K</div>
+    <div class="note">Metelskiy: $8K → $3K</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">Головы</div>
+    <div class="value">10 + Cyprus</div>
+    <div class="note">3 на паузе / $0</div>
+  </div>
+  <div class="kpi success">
+    <div class="label">Экономия год</div>
+    <div class="value">$98.5K</div>
+    <div class="note">($59.5K - $51.3K) × 12</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Годовой фонд (план)</div>
+    <div class="value">$615.5K</div>
+    <div class="note">новая ставка × 12 мес</div>
+  </div>
+</div>
+
+<!-- Salary table -->
+<div class="section-title">Три версии ведомости рядом</div>
+<div class="section-desc">Бывшая (Salary) → Текущая (Salary NEW · левая половина) → Новая (Salary NEW · правая половина, с APR 26). Дельта показывает изменение от «бывшей» к «новой».</div>
+
+<div class="table-wrap">
+<table class="data">
+  <thead>
+    <tr>
+      <th>#</th><th>Имя</th><th>Роль</th><th>Метод</th>
+      <th class="num">Бывшая</th><th class="num">Текущая</th><th class="num">Новая (APR 26+)</th><th class="num">Δ от бывшей</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>Adams, Richard</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,627</td><td class="num">$7,627</td><td class="num">$7,627</td><td class="num delta-flat">—</td></tr>
+    <tr><td>2</td><td>Bogomolny, Alexander</td><td>Construction license</td><td>Direct Deposit</td><td class="num">$2,440</td><td class="num">$2,440</td><td class="num">$2,440</td><td class="num delta-flat">—</td></tr>
+    <tr><td>3</td><td>Gange, Zachary</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$6,450</td><td class="num">$6,450</td><td class="num">$6,450</td><td class="num delta-flat">—</td></tr>
+    <tr><td>4</td><td>Hostetter, Rubicely</td><td>Procurement Manager</td><td>Direct Deposit</td><td class="num">$5,706</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$5,706</td></tr>
+    <tr><td>5</td><td>Paris, Gregory</td><td>Project Manager</td><td>Direct Deposit</td><td class="num">$7,497</td><td class="num">$7,497</td><td class="num">$7,497</td><td class="num delta-flat">—</td></tr>
+    <tr><td>6</td><td>Santiago, Shaylen</td><td>Clients Relationship</td><td>Direct Deposit</td><td class="num">$6,280</td><td class="num">$6,280</td><td class="num">$6,280</td><td class="num delta-flat">—</td></tr>
+    <tr><td>7</td><td>Metelskiy, Andrey</td><td>Head of Operations <span class="tag key">key</span></td><td>wire</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num delta-down">$3,000*</td><td class="num delta-down">−$5,000</td></tr>
+    <tr><td>8</td><td>Kuranova, Anastasia</td><td>Financial Controlling</td><td>Paypal</td><td class="num">$4,000</td><td class="num delta-up">$4,500</td><td class="num delta-up">$4,500</td><td class="num delta-up">+$500</td></tr>
+    <tr><td>9</td><td>Onoprienko, Olga</td><td>Accounting</td><td>Paypal</td><td class="num">$1,500</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$1,500</td></tr>
+    <tr><td>10</td><td>Danylova, Alena</td><td>Estimations &amp; Contracting</td><td>ACH</td><td class="num">$1,500</td><td class="num delta-up">$2,000</td><td class="num delta-up">$2,000</td><td class="num delta-up">+$500</td></tr>
+    <tr><td>11</td><td>Romanovskiy, Alexei</td><td>Data Analyst ($30/h)</td><td>Paypal</td><td class="num">$500</td><td class="num"><span class="tag zero">$0</span></td><td class="num"><span class="tag zero">$0</span></td><td class="num delta-down">−$500</td></tr>
+    <tr><td>12</td><td>Atanov, Artur</td><td>Managing Partner <span class="tag key">key</span></td><td>wire</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num">$8,000</td><td class="num delta-flat">—</td></tr>
+    <tr><td>13</td><td>Cyprus</td><td>(локация / команда)</td><td>—</td><td class="num">—</td><td class="num">$3,500</td><td class="num">$3,500</td><td class="num delta-up">+$3,500</td></tr>
+    <tr class="tot">
+      <td></td><td colspan="3">ИТОГО в месяц</td>
+      <td class="num">$59,499</td><td class="num">$56,294</td><td class="num">$51,294</td>
+      <td class="num delta-down">−$8,206</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="font-size:11px; color:var(--muted); margin:-16px 0 24px 4px;">* Metelskiy: $3K ставка + $3K бонус за «soft project» (3 мес) → $6K фактически до июля 2026, затем $3K.</div>
+
+<!-- Pain points -->
+<div class="section-title">Болевые точки фонда оплаты труда</div>
+<div class="section-desc">Через призму crisis management: не сокращать «под нож», но зафиксировать риски и действия.</div>
+
+<div class="pain-grid">
+  <div class="pain-card red">
+    <div class="pc-cat">🔴 Неопределённость</div>
+    <h3>3 позиции на $0 — что с ними?</h3>
+    <p style="margin-bottom:8px;">Hostetter (Procurement $5.7K), Onoprienko (Accounting $1.5K), Romanovskiy (Data Analyst $0.5K) — в новой ведомости ставка ноль. Это либо:</p>
+    <ul>
+      <li>Увольнение → оформить юридически, закрыть access</li>
+      <li>Заморозка / контрактная оплата → отразить в учёте</li>
+      <li>Уход по собственной инициативе → зафиксировать</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>Действие:</strong> до конца апреля определить статус и закрепить письменно с каждым.</p>
+  </div>
+
+  <div class="pain-card yellow">
+    <div class="pc-cat">🟡 Концентрация</div>
+    <h3>Две «ключевые» позиции — $11K в месяц</h3>
+    <p>Atanov ($8K) и Metelskiy ($3-6K) закрывают operations + sales. Уход одного — операционный коллапс.</p>
+    <ul>
+      <li>Документировать критические процессы (ТЗ, SOP) в JobTread</li>
+      <li>Построить backup-покрытие для каждой роли</li>
+      <li>Не расширять их scope новыми обязанностями</li>
+    </ul>
+  </div>
+
+  <div class="pain-card yellow">
+    <div class="pc-cat">🟡 PM utilization</div>
+    <h3>3 PM × $7.2K = $21.6K/мес</h3>
+    <p>Adams, Gange, Paris — 42% фонда. При 8 активных проектах это ~2.7 проекта/PM — нормально. Но когда Bath Club закончится в июле, один PM разгружается.</p>
+    <ul>
+      <li>Мониторить загрузку еженедельно в JT</li>
+      <li>Кого перекинуть на 301 161st Ave, Redington с мая</li>
+      <li>Не нанимать 4-го PM до подписания 2+ новых контрактов</li>
+    </ul>
+  </div>
+
+  <div class="pain-card yellow">
+    <div class="pc-cat">🟡 Зависимость от wire</div>
+    <h3>Cyprus $3.5K — что это?</h3>
+    <p>В новой ведомости появилась строка «Cyprus». Без роли и pay method. Нужно зафиксировать:</p>
+    <ul>
+      <li>Это юр. лицо, команда, отдельный сотрудник?</li>
+      <li>Какой scope работ покрывает?</li>
+      <li>Нужна ли декларация доходов / валютные потоки?</li>
+    </ul>
+  </div>
+
+  <div class="pain-card green">
+    <div class="pc-cat">🟢 Уже сделано</div>
+    <h3>Metelskiy — grown-up решение</h3>
+    <p>Снижение $8K → $3K с временным бонусом — правильный crisis move:</p>
+    <ul>
+      <li>Сохраняет ключевого человека (нет разрыва)</li>
+      <li>Даёт ему upside через бонус за результат</li>
+      <li>Снимает $60K фикс. нагрузки в год</li>
+      <li>Через 3 мес — ревью и решение «ставка vs результат»</li>
+    </ul>
+  </div>
+
+  <div class="pain-card red">
+    <div class="pc-cat">🔴 Soft project</div>
+    <h3>Контрольные точки бонуса Metelskiy</h3>
+    <p>3 месяца — это MAY / JUN / JUL 2026. К JUL должны быть конкретные deliverables. Иначе бонус = необоснованные $9K.</p>
+    <ul>
+      <li>Зафиксировать в письменном виде scope «soft project»</li>
+      <li>Установить KPI (проекты мигрированы, команда обучена, процессы задокументированы)</li>
+      <li>Ревью 30/60/90</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  KH Build LLC · Зарплата · Источник: KH Build Прогноз от 16 Apr 2026 · Конфиденциально
+</div>
+
+</div>
+<script>
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('kh-theme', next); } catch(e) {}
+}
+</script>
+</body>
+</html>
