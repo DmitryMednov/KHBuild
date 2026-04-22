@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KH Build — Дэшборд портфеля проектов</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try {
+      var t = localStorage.getItem('kh-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e) { document.documentElement.setAttribute('data-theme', 'light'); }
+  })();
+</script>
+<style>
+:root {
+  --bg:#FFFFFF; --card:#FFFFFF; --surface2:#F5F3EE; --border:#E0DDD3;
+  --text:#1A1A1A; --muted:#6B6A65; --accent:#C9A65D; --accent-strong:#B38F47;
+  --dark-section:#1A1A1A; --on-dark:#F5F3EE;
+  --danger:#C0392B; --success:#1D9E75; --warning:#D4850F; --ai:#6C41D4;
+  --danger-bg:#FCEEEC; --success-bg:#E8F8F0; --warning-bg:#FEF3E0; --ai-bg:#F0ECFE;
+  --danger-text:#8B2818; --warning-text:#8B6914; --success-text:#0F6E56; --ai-text:#4A2B96;
+  --on-accent:#1A1A1A; --shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+  --bg:#141414; --card:#1F1F1F; --surface2:#292826; --border:#38342A;
+  --text:#F5F3EE; --muted:#9A938A; --accent:#C9A65D; --accent-strong:#D9B870;
+  --dark-section:#0B0B0B;
+  --danger:#ef4444; --success:#22c997; --warning:#f59e0b; --ai:#a78bfa;
+  --danger-bg:rgba(239,68,68,0.14); --success-bg:rgba(34,201,151,0.14);
+  --warning-bg:rgba(245,158,11,0.14); --ai-bg:rgba(167,139,250,0.14);
+  --danger-text:#fca5a5; --warning-text:#fcd34d; --success-text:#6ee7b7; --ai-text:#c4b5fd;
+  --on-accent:#141414; --shadow:0 2px 8px rgba(0,0,0,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; font-weight:400; }
+.container { max-width:1280px; margin:0 auto; padding:24px; }
+
+.theme-toggle { position:fixed; top:18px; right:18px; z-index:1000; width:42px; height:42px; border-radius:50%;
+  border:2px solid var(--accent); background:var(--dark-section); color:var(--accent);
+  font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,0.25); transition:transform .2s,background .2s; font-family:inherit; }
+.theme-toggle:hover { transform:scale(1.1); background:var(--accent); color:var(--dark-section); }
+[data-theme="dark"] .theme-toggle__light { display:none; }
+[data-theme="light"] .theme-toggle__dark,:root:not([data-theme="dark"]) .theme-toggle__dark { display:none; }
+
+.header { text-align:center; padding:56px 24px 40px; margin:-24px -24px 40px;
+  background:var(--dark-section); color:var(--on-dark); border-bottom:3px solid var(--accent); }
+.header h1 { font-size:30px; font-weight:700; margin-bottom:10px; color:var(--on-dark); text-transform:uppercase; letter-spacing:1px; }
+.header .subtitle { color:#B8B5AA; font-size:14px; letter-spacing:0.5px; margin-bottom:14px; }
+.header .logo { font-size:24px; letter-spacing:6px; color:var(--accent); margin-bottom:18px; font-weight:800; }
+.header .back { display:inline-block; color:var(--accent); text-decoration:none; font-size:12px; letter-spacing:0.5px; border:1px solid var(--accent); padding:6px 14px; border-radius:4px; }
+.header .back:hover { background:var(--accent); color:var(--dark-section); }
+
+.section-title { font-size:20px; font-weight:700; margin:36px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--accent); text-transform:uppercase; letter-spacing:1px; }
+.section-desc { color:var(--muted); font-size:13px; margin-bottom:18px; }
+
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:20px; }
+.kpi { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:16px 20px; text-align:center; box-shadow:var(--shadow); }
+.kpi .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; font-weight:600; }
+.kpi .value { font-size:26px; font-weight:700; }
+.kpi .note { font-size:11px; color:var(--muted); margin-top:4px; }
+.kpi.success .value { color:var(--success); }
+.kpi.warning .value { color:var(--warning); }
+.kpi.danger .value { color:var(--danger); }
+.kpi.accent .value { color:var(--accent); }
+
+.crisis-banner { background:var(--danger-bg); border:1px solid var(--danger); border-left:5px solid var(--danger); border-radius:4px; padding:18px 22px; margin-bottom:24px; box-shadow:var(--shadow); }
+.crisis-banner .cb-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--danger-text); margin-bottom:10px; }
+.crisis-banner ul { margin-left:20px; font-size:13px; line-height:1.7; }
+.crisis-banner ul li { margin-bottom:6px; }
+.crisis-banner strong { color:var(--danger-text); }
+
+.pain-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin-bottom:24px; }
+.pain-card { border-radius:4px; padding:16px 18px; box-shadow:var(--shadow); border:1px solid var(--border); }
+.pain-card.red { background:var(--danger-bg); border-color:var(--danger); border-left:4px solid var(--danger); }
+.pain-card.yellow { background:var(--warning-bg); border-color:var(--warning); border-left:4px solid var(--warning); }
+.pain-card.green { background:var(--success-bg); border-color:var(--success); border-left:4px solid var(--success); }
+.pain-card .pc-cat { font-size:10px; text-transform:uppercase; letter-spacing:1px; font-weight:700; margin-bottom:6px; }
+.pain-card.red .pc-cat { color:var(--danger-text); }
+.pain-card.yellow .pc-cat { color:var(--warning-text); }
+.pain-card.green .pc-cat { color:var(--success-text); }
+.pain-card h3 { font-size:14px; font-weight:700; margin-bottom:8px; line-height:1.4; }
+.pain-card p, .pain-card ul { font-size:12px; line-height:1.6; }
+.pain-card ul { margin-left:16px; }
+.pain-card ul li { margin-bottom:4px; }
+
+.table-wrap { overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); margin-bottom:24px; }
+table.data { width:100%; border-collapse:collapse; font-size:12px; }
+table.data thead th { background:var(--surface2); padding:10px 8px; text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:0.5px; font-weight:700; color:var(--muted); border-bottom:2px solid var(--border); white-space:nowrap; }
+table.data thead th.num, table.data td.num { text-align:right; font-variant-numeric:tabular-nums; }
+table.data tbody td { padding:9px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+table.data tbody tr:last-child td { border-bottom:none; }
+table.data tbody tr:hover { background:var(--surface2); }
+table.data .tot td { background:var(--surface2); font-weight:700; border-top:2px solid var(--accent); }
+table.data .status { display:inline-block; padding:2px 8px; border-radius:3px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; white-space:nowrap; }
+table.data .status.active { background:var(--success-bg); color:var(--success-text); }
+table.data .status.arch { background:var(--warning-bg); color:var(--warning-text); }
+table.data .status.permit { background:var(--danger-bg); color:var(--danger-text); }
+table.data .status.done { background:var(--surface2); color:var(--muted); }
+table.data .cell-danger { color:var(--danger); font-weight:700; }
+table.data .cell-warning { color:var(--warning-text); font-weight:600; }
+table.data .cell-success { color:var(--success-text); }
+
+.cashflow-row { display:grid; grid-template-columns:100px 1fr 120px 90px; gap:10px; align-items:center; padding:8px 12px; border-bottom:1px solid var(--border); font-size:12px; }
+.cashflow-row:last-child { border-bottom:none; }
+.cashflow-row .mo { font-weight:700; color:var(--muted); letter-spacing:0.5px; }
+.cashflow-row .bar-wrap { background:var(--surface2); height:14px; border-radius:2px; overflow:hidden; position:relative; }
+.cashflow-row .bar { height:100%; background:var(--accent); border-radius:2px; }
+.cashflow-row .bar.low { background:var(--danger); }
+.cashflow-row .bar.mid { background:var(--warning); }
+.cashflow-row .bar.high { background:var(--success); }
+.cashflow-row .amt { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }
+.cashflow-row .runway { text-align:right; font-size:10px; color:var(--muted); }
+
+.footer { text-align:center; padding:32px 24px; margin:48px -24px -24px; color:var(--on-dark); font-size:12px; letter-spacing:0.5px; background:var(--dark-section); border-top:3px solid var(--accent); }
+
+@media (max-width: 768px) {
+  .container { padding:14px; }
+  .header { padding:32px 16px 24px; margin:-14px -14px 24px; }
+  .header h1 { font-size:20px; letter-spacing:0.5px; }
+  .header .subtitle { font-size:11px; }
+  .header .logo { font-size:18px; letter-spacing:4px; margin-bottom:12px; }
+  .section-title { font-size:16px; margin:28px 0 10px; }
+  .kpi-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .kpi { padding:12px 14px; }
+  .kpi .value { font-size:20px; }
+  .pain-grid { grid-template-columns:1fr; }
+  .cashflow-row { grid-template-columns:64px 1fr 90px; }
+  .cashflow-row .runway { display:none; }
+  table.data { font-size:11px; }
+  table.data thead th, table.data tbody td { padding:7px 6px; }
+  .theme-toggle { top:10px; right:10px; width:36px; height:36px; font-size:15px; }
+  .footer { padding:20px 16px; margin:32px -14px -14px; font-size:10px; }
+}
+@media (max-width: 420px) { .kpi-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Переключить тему">
+  <span class="theme-toggle__light">🌙</span>
+  <span class="theme-toggle__dark">☀</span>
+</button>
+
+<div class="container">
+
+<div class="header">
+  <div class="logo">KH BUILD</div>
+  <h1>Дэшборд портфеля проектов</h1>
+  <div class="subtitle">Snapshot 16 апреля 2026 · cash, burn, pipeline и болевые точки</div>
+  <a class="back" href="index.html">← Назад на главную</a>
+</div>
+
+<!-- CRISIS BANNER — top of dashboard -->
+<div class="crisis-banner">
+  <div class="cb-title">🚨 Crisis check — что болит прямо сейчас</div>
+  <ul>
+    <li><strong>Runway тонкий:</strong> в кассе <strong>$68.8K</strong>, фиксированный burn ~<strong>$61.2K/мес</strong>. Если завтра встанут все поступления — <strong>~1.1 месяца</strong> до нуля.</li>
+    <li><strong>4 проекта застряли</strong> в architecture/permitting (не приносят выручку, но потребляют внимание): Kerry Iseghem $240K, Karen Hantman $135K, Victor Tonas $200K, Jason #1 $3.5K. Всего заморожено <strong>$578.5K</strong> потенциала.</li>
+    <li><strong>Выручка от "старых" проектов заканчивается</strong>: Bath Club — <strong>июль 26</strong>, 7840 3rd — сен 26, остальные активные — окт 26. Если новые не стартуют до Q3 — провал Q4.</li>
+    <li><strong>Cost/revenue ratio</strong> через Q3 2026 держится на <strong>39-55%</strong> — маржа под давлением до марта 2027, когда ratio впервые преодолеет 1.0 (расходы больше доходов).</li>
+  </ul>
+</div>
+
+<!-- KPI -->
+<div class="section-title">Ключевые цифры</div>
+<div class="kpi-grid">
+  <div class="kpi warning">
+    <div class="label">Касса сейчас (APR 26)</div>
+    <div class="value">$68.8K</div>
+    <div class="note">1.1 мес фикс. расходов</div>
+  </div>
+  <div class="kpi success">
+    <div class="label">Касса на конец 2026 (прогноз)</div>
+    <div class="value">$761K</div>
+    <div class="note">если pipeline едет по плану</div>
+  </div>
+  <div class="kpi danger">
+    <div class="label">Фиксированный burn</div>
+    <div class="value">$61.2K</div>
+    <div class="note">зп + rent + soft + ins + mkt + other</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">Активных по выручке</div>
+    <div class="value">8</div>
+    <div class="note">+ 1 старт с apr 26 (301 161st)</div>
+  </div>
+  <div class="kpi warning">
+    <div class="label">Замороженные</div>
+    <div class="value">4</div>
+    <div class="note">arch / permitting · $578K fee</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Общий fee pipeline</div>
+    <div class="value">$1.99M</div>
+    <div class="note">все 14 проектов · горизонт до июля 2027</div>
+  </div>
+</div>
+
+<div class="footer">
+  KH Build LLC · Дэшборд портфеля · Источник: KH Build Прогноз от 16 Apr 2026 · Конфиденциально
+</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('kh-theme', next); } catch(e) {}
+}
+</script>
+</body>
+</html>
