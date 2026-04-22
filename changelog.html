@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KH Build — История изменений</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try {
+      var t = localStorage.getItem('kh-theme') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch(e) { document.documentElement.setAttribute('data-theme', 'light'); }
+  })();
+</script>
+<style>
+:root {
+  --bg:#FFFFFF; --card:#FFFFFF; --surface2:#F5F3EE; --border:#E0DDD3;
+  --text:#1A1A1A; --muted:#6B6A65; --accent:#C9A65D;
+  --dark-section:#1A1A1A; --on-dark:#F5F3EE;
+  --danger:#C0392B; --success:#1D9E75; --warning:#D4850F; --ai:#6C41D4;
+  --shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+  --bg:#141414; --card:#1F1F1F; --surface2:#292826; --border:#38342A;
+  --text:#F5F3EE; --muted:#9A938A; --accent:#C9A65D;
+  --dark-section:#0B0B0B;
+  --danger:#ef4444; --success:#22c997; --warning:#f59e0b; --ai:#a78bfa;
+  --shadow:0 2px 8px rgba(0,0,0,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Montserrat',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.container { max-width:1000px; margin:0 auto; padding:24px; }
+.theme-toggle { position:fixed; top:18px; right:18px; z-index:1000; width:42px; height:42px; border-radius:50%;
+  border:2px solid var(--accent); background:var(--dark-section); color:var(--accent); font-size:18px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 2px 12px rgba(0,0,0,0.25); }
+.theme-toggle:hover { transform:scale(1.1); background:var(--accent); color:var(--dark-section); }
+[data-theme="dark"] .theme-toggle__light { display:none; }
+[data-theme="light"] .theme-toggle__dark,:root:not([data-theme="dark"]) .theme-toggle__dark { display:none; }
+.header { text-align:center; padding:56px 24px 40px; margin:-24px -24px 40px;
+  background:var(--dark-section); color:var(--on-dark); border-bottom:3px solid var(--accent); }
+.header h1 { font-size:30px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px; }
+.header .subtitle { color:#B8B5AA; font-size:14px; margin-bottom:14px; }
+.header .logo { font-size:24px; letter-spacing:6px; color:var(--accent); margin-bottom:18px; font-weight:800; }
+.header .back { display:inline-block; color:var(--accent); text-decoration:none; font-size:12px; border:1px solid var(--accent); padding:6px 14px; border-radius:4px; }
+.header .back:hover { background:var(--accent); color:var(--dark-section); }
+.summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:24px; }
+.sum-card { background:var(--card); border:1px solid var(--border); border-radius:4px; padding:16px 20px; text-align:center; box-shadow:var(--shadow); }
+.sum-card .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:600; }
+.sum-card .value { font-size:26px; font-weight:700; margin-top:4px; }
+.sum-card .value.accent { color:var(--accent); }
+.sum-card .value.success { color:var(--success); }
+.filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; align-items:center; font-size:12px; }
+.filter-bar label { color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; font-size:11px; }
+.filter-bar input, .filter-bar select { background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:3px; padding:6px 10px; font-size:12px; font-family:inherit; }
+.filter-bar input { min-width:200px; }
+.commit-list { background:var(--card); border:1px solid var(--border); border-radius:4px; box-shadow:var(--shadow); overflow:hidden; }
+.commit { padding:14px 20px; border-bottom:1px solid var(--border); display:grid; grid-template-columns:80px 1fr 90px; gap:14px; align-items:start; font-size:13px; }
+.commit:last-child { border-bottom:none; }
+.commit:hover { background:var(--surface2); }
+.commit .date { font-size:11px; color:var(--muted); font-weight:700; letter-spacing:0.4px; white-space:nowrap; }
+.commit .date .time { display:block; font-weight:400; color:var(--muted); margin-top:2px; }
+.commit .msg { line-height:1.5; }
+.commit .msg .author { font-size:11px; color:var(--muted); margin-top:4px; }
+.commit .sha { text-align:right; }
+.commit .sha a { display:inline-block; font-family:'Courier New',monospace; font-size:11px; background:var(--surface2); color:var(--accent); padding:3px 8px; border-radius:3px; text-decoration:none; border:1px solid var(--border); font-weight:700; }
+.commit .sha a:hover { background:var(--accent); color:var(--dark-section); }
+.loading { text-align:center; padding:40px 20px; color:var(--muted); font-size:14px; }
+.error-box { background:rgba(192,57,43,0.1); border:1px solid var(--danger); color:var(--danger); border-radius:4px; padding:16px 20px; margin-bottom:20px; font-size:13px; line-height:1.6; }
+.github-link { display:inline-block; margin-top:18px; padding:10px 22px; background:var(--accent); color:var(--dark-section); border-radius:4px; text-decoration:none; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; }
+.github-link:hover { opacity:0.85; }
+.footer { text-align:center; padding:32px 24px; margin:48px -24px -24px; color:var(--on-dark); font-size:12px; background:var(--dark-section); border-top:3px solid var(--accent); }
+.footer a { color:var(--accent); text-decoration:none; }
+.footer a:hover { text-decoration:underline; }
+@media (max-width:600px) {
+  .container { padding:14px; }
+  .header { padding:32px 16px 24px; margin:-14px -14px 24px; }
+  .header h1 { font-size:20px; }
+  .commit { grid-template-columns:60px 1fr; gap:10px; padding:12px 14px; font-size:12px; }
+  .commit .sha { grid-column:1 / -1; text-align:left; margin-top:2px; }
+  .filter-bar input { flex:1 1 100%; min-width:0; }
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()"><span class="theme-toggle__light">🌙</span><span class="theme-toggle__dark">☀</span></button>
+<div class="container">
+
+<div class="header">
+  <div class="logo">KH BUILD</div>
+  <h1>История изменений</h1>
+  <div class="subtitle">Живая лента коммитов из GitHub · <a href="https://github.com/DmitryMednov/KHBuild/commits/claude/debug-khbuild-errors-fFMSX" target="_blank" rel="noopener" style="color:#B8B5AA; text-decoration:underline;">полностью на GitHub →</a></div>
+  <a class="back" href="index.html">← Назад на главную</a>
+</div>
+
+<div class="summary">
+  <div class="sum-card">
+    <div class="label">Всего коммитов</div>
+    <div class="value accent" id="total-commits">—</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">Последний</div>
+    <div class="value" id="latest-date" style="font-size:18px;">—</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">Первый в истории</div>
+    <div class="value" id="first-date" style="font-size:18px;">—</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">Активных дней</div>
+    <div class="value success" id="active-days">—</div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <label>Поиск:</label>
+  <input type="text" id="search" placeholder="фильтр по тексту коммита…">
+  <label>Ветка:</label>
+  <select id="branch">
+    <option value="claude/debug-khbuild-errors-fFMSX">claude/debug-khbuild-errors-fFMSX</option>
+    <option value="main">main</option>
+  </select>
+</div>
+
+<div id="error" style="display:none;"></div>
+<div id="commits"><div class="loading">Загружаю коммиты из GitHub…</div></div>
+
+<div style="text-align:center;">
+  <a class="github-link" id="gh-link" href="https://github.com/DmitryMednov/KHBuild/commits/claude/debug-khbuild-errors-fFMSX" target="_blank" rel="noopener">Открыть полностью на GitHub →</a>
+</div>
+
+<div class="footer">
+  KH Build LLC · Changelog · <a href="index.html">← На главную</a>
+</div>
+
+</div>
+
+<script>
+function toggleTheme() {
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('kh-theme', next); } catch(e) {}
+}
+
+var REPO = 'DmitryMednov/KHBuild';
+var allCommits = [];
+
+function fmtDate(iso) {
+  var d = new Date(iso);
+  var m = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'][d.getMonth()];
+  return d.getDate() + ' ' + m + ' ' + d.getFullYear();
+}
+function fmtTime(iso) {
+  var d = new Date(iso);
+  return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+
+function renderList(commits) {
+  var box = document.getElementById('commits');
+  if (!commits.length) { box.innerHTML = '<div class="loading">Нет коммитов по фильтру.</div>'; return; }
+  var html = '<div class="commit-list">';
+  commits.forEach(function(c) {
+    var iso = c.commit.committer.date;
+    var msg = (c.commit.message || '').split('\n')[0];
+    var sha = c.sha.substring(0, 7);
+    var url = c.html_url;
+    var author = c.commit.author && c.commit.author.name || '';
+    html += '<div class="commit">';
+    html += '<div class="date">' + fmtDate(iso) + '<span class="time">' + fmtTime(iso) + '</span></div>';
+    html += '<div class="msg">' + escapeHtml(msg);
+    if (author) html += '<div class="author">' + escapeHtml(author) + '</div>';
+    html += '</div>';
+    html += '<div class="sha"><a href="' + url + '" target="_blank" rel="noopener">' + sha + '</a></div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
+}
+
+function updateSummary(commits) {
+  document.getElementById('total-commits').textContent = commits.length;
+  if (commits.length) {
+    document.getElementById('latest-date').textContent = fmtDate(commits[0].commit.committer.date);
+    document.getElementById('first-date').textContent = fmtDate(commits[commits.length - 1].commit.committer.date);
+    var days = {};
+    commits.forEach(function(c) { days[c.commit.committer.date.substring(0,10)] = 1; });
+    document.getElementById('active-days').textContent = Object.keys(days).length;
+  }
+}
+
+function loadBranch(branch) {
+  document.getElementById('commits').innerHTML = '<div class="loading">Загружаю коммиты из GitHub…</div>';
+  document.getElementById('error').style.display = 'none';
+  document.getElementById('gh-link').href = 'https://github.com/' + REPO + '/commits/' + branch;
+  fetch('https://api.github.com/repos/' + REPO + '/commits?sha=' + encodeURIComponent(branch) + '&per_page=100')
+    .then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(data){
+      if (!Array.isArray(data)) throw new Error('Unexpected response');
+      allCommits = data;
+      updateSummary(allCommits);
+      renderList(allCommits);
+    })
+    .catch(function(err){
+      var box = document.getElementById('error');
+      box.className = 'error-box';
+      box.innerHTML = '<strong>Не удалось загрузить коммиты из GitHub.</strong> ' + escapeHtml(err.message) + '.<br>Причина может быть: приватный репозиторий, лимит API (60 запросов/час анонимно) или отсутствие сети. Используйте кнопку ниже, чтобы открыть историю прямо на GitHub.';
+      box.style.display = 'block';
+      document.getElementById('commits').innerHTML = '';
+      document.getElementById('total-commits').textContent = '?';
+    });
+}
+
+document.getElementById('search').addEventListener('input', function(e){
+  var q = e.target.value.toLowerCase();
+  var filtered = allCommits.filter(function(c){
+    return (c.commit.message || '').toLowerCase().indexOf(q) !== -1;
+  });
+  renderList(filtered);
+});
+
+document.getElementById('branch').addEventListener('change', function(e){
+  loadBranch(e.target.value);
+});
+
+loadBranch(document.getElementById('branch').value);
+</script>
+</body>
+</html>
