@@ -104,9 +104,40 @@ table.data .tag.zero { background:var(--danger-bg); color:var(--danger-text); }
   .theme-toggle { top:10px; right:10px; width:36px; height:36px; font-size:15px; }
 }
 @media (max-width:420px) { .kpi-grid { grid-template-columns:1fr; } }
+.lock-overlay { position:fixed; inset:0; z-index:9999; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:20px; }
+.lock-box { max-width:420px; width:100%; background:var(--card); border:1px solid var(--border); border-top:4px solid var(--accent); border-radius:6px; padding:36px 32px; box-shadow:0 8px 32px rgba(0,0,0,0.12); text-align:center; }
+.lock-box .lock-logo { font-size:22px; letter-spacing:6px; color:var(--accent); font-weight:800; margin-bottom:14px; }
+.lock-box h2 { font-size:18px; font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+.lock-box .hint { font-size:12px; color:var(--muted); margin-bottom:22px; line-height:1.6; }
+.lock-box input { width:100%; padding:12px 14px; font-size:15px; font-family:inherit; background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:4px; margin-bottom:12px; text-align:center; letter-spacing:2px; }
+.lock-box input:focus { outline:none; border-color:var(--accent); }
+.lock-box button { width:100%; padding:12px; background:var(--accent); color:var(--dark-section); border:none; border-radius:4px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; font-family:inherit; cursor:pointer; transition:opacity .2s; }
+.lock-box button:hover { opacity:0.85; }
+.lock-box .err { color:var(--danger); font-size:12px; margin-top:10px; min-height:16px; font-weight:600; }
+.lock-box .back { display:inline-block; margin-top:18px; color:var(--muted); font-size:11px; text-decoration:none; letter-spacing:0.5px; }
+.lock-box .back:hover { color:var(--accent); }
+.gated-content { display:none; }
+.gated-content.unlocked { display:block; }
 </style>
 </head>
 <body>
+
+<!-- Access gate -->
+<div class="lock-overlay" id="lock-overlay">
+  <div class="lock-box">
+    <div class="lock-logo">KH BUILD</div>
+    <h2>🔒 Закрытый раздел</h2>
+    <div class="hint">Данные о вознаграждении. Доступ по паролю — только для инвестора и руководства.</div>
+    <form id="lock-form" autocomplete="off">
+      <input type="password" id="lock-pw" placeholder="пароль" autofocus autocomplete="off">
+      <button type="submit">Открыть</button>
+      <div class="err" id="lock-err"></div>
+    </form>
+    <a class="back" href="index.html">← Вернуться на главную</a>
+  </div>
+</div>
+
+<div class="gated-content" id="gated-content">
 <button class="theme-toggle" onclick="toggleTheme()"><span class="theme-toggle__light">🌙</span><span class="theme-toggle__dark">☀</span></button>
 <div class="container">
 
@@ -324,7 +355,46 @@ table.data .tag.zero { background:var(--danger-bg); color:var(--danger-text); }
 </div>
 
 </div>
+</div>
 <script>
+// Access gate — SHA-256 of password
+// Current password: khbuild-2026 (change PW_HASH below to update)
+var PW_HASH = 'ba5d390ea3ea2aa74d0daec533bad79b45e3dded8a38add206be68b59b34568b';
+var STORAGE_KEY = 'kh-salary-unlocked-v1';
+
+async function sha256Hex(s) {
+  var buf = new TextEncoder().encode(s);
+  var hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function unlock() {
+  document.getElementById('lock-overlay').style.display = 'none';
+  document.getElementById('gated-content').classList.add('unlocked');
+  try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
+}
+
+// Already unlocked this session?
+try { if (sessionStorage.getItem(STORAGE_KEY) === '1') { unlock(); } } catch(e) {}
+
+document.getElementById('lock-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var pw = document.getElementById('lock-pw').value;
+  var err = document.getElementById('lock-err');
+  err.textContent = '';
+  try {
+    var h = await sha256Hex(pw);
+    if (h === PW_HASH) {
+      unlock();
+    } else {
+      err.textContent = 'Неверный пароль';
+      document.getElementById('lock-pw').value = '';
+    }
+  } catch(ex) {
+    err.textContent = 'Ошибка: ' + ex.message;
+  }
+});
+
 function toggleTheme() {
   var cur = document.documentElement.getAttribute('data-theme') || 'light';
   var next = cur === 'dark' ? 'light' : 'dark';
